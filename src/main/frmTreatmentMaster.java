@@ -21,6 +21,16 @@ boolean add,edit;
         setDefaultCloseOperation(frmTreatmentMaster.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
     }
+    private void SetHeader(){
+       tblTreatment.getColumnModel().getColumn(0).setHeaderValue("ID");
+       tblTreatment.getColumnModel().getColumn(1).setHeaderValue("Code");
+       tblTreatment.getColumnModel().getColumn(2).setHeaderValue("Group");
+       tblTreatment.getColumnModel().getColumn(3).setHeaderValue("Description");
+       tblTreatment.getColumnModel().getColumn(4).setHeaderValue("Price");
+       tblTreatment.getColumnModel().getColumn(5).setHeaderValue("Status");
+       tblTreatment.getColumnModel().getColumn(6).setHeaderValue("User Added");
+       tblTreatment.getColumnModel().getColumn(7).setHeaderValue("Date");
+    }
     private void FillTable(){
         try{
             DbConn.SQLQuery = "SELEct * from tbltreatmentmaster order by tm_description";
@@ -28,6 +38,7 @@ boolean add,edit;
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblTreatment.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
+            SetHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -57,7 +68,6 @@ boolean add,edit;
         btnEdit = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -148,14 +158,6 @@ boolean add,edit;
         btnDelete.setText("DELETE");
         jPanel4.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 120, 110));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -227,12 +229,6 @@ boolean add,edit;
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-frmMedicineMaster obj = new frmMedicineMaster();
-this.dispose();
-obj.setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
     private void clearTexts(){
         txtCode.setText("");
         txtDescription.setText("");
@@ -279,7 +275,6 @@ obj.setVisible(true);// TODO add your handling code here:
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnSave;
     private javax.swing.ButtonGroup groupActive;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -51,6 +51,20 @@ String GetApptID,GetBillStatus;
         lblPayable.setText(String.valueOf(DbConn.df.format(GetPayable)));
         lblNet.setText(String.valueOf(DbConn.df.format(GetNet)));
     }
+    private void SetHeader(){
+       tblSales.getColumnModel().getColumn(0).setHeaderValue("INV NUM");
+       tblSales.getColumnModel().getColumn(1).setHeaderValue("Name");
+       tblSales.getColumnModel().getColumn(2).setHeaderValue("Appt ID");
+       tblSales.getColumnModel().getColumn(3).setHeaderValue("Insurance");
+       tblSales.getColumnModel().getColumn(4).setHeaderValue("Cash");
+       tblSales.getColumnModel().getColumn(5).setHeaderValue("Card");
+       tblSales.getColumnModel().getColumn(6).setHeaderValue("Cheque");
+       tblSales.getColumnModel().getColumn(7).setHeaderValue("Discount");
+       tblSales.getColumnModel().getColumn(8).setHeaderValue("Sub Total");
+       tblSales.getColumnModel().getColumn(9).setHeaderValue("Net Amount");
+       tblSales.getColumnModel().getColumn(10).setHeaderValue("Doctor");
+       
+    }
     private void FillCurrentDate(){
         try{
             DbConn.SQLQuery ="select ih_number,ih_patientname,ih_apptid,ih_insurance,ih_cash,ih_card,ih_cheque,ih_discount,"
@@ -62,6 +76,7 @@ String GetApptID,GetBillStatus;
             tblSales.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close(); 
             FillSummary();
+            SetHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

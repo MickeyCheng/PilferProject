@@ -24,11 +24,15 @@ boolean add,edit;
     }
     private void FillTable(){
         try{
-            DbConn.SQLQuery = "SELEct * from tblicddetails order by ic_code";
+            DbConn.SQLQuery = "Select * from tblicddetails order by ic_code";
             DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblTreatment.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
+            tblTreatment.getColumnModel().getColumn(0).setHeaderValue("Code");
+            tblTreatment.getColumnModel().getColumn(1).setHeaderValue("Description");
+            tblTreatment.getColumnModel().getColumn(2).setHeaderValue("Case/Type");
+            tblTreatment.getColumnModel().getColumn(3).setHeaderValue("Status");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

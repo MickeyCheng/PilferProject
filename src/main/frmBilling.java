@@ -80,10 +80,17 @@ String GetApptID,GetBillStatus,GetPID,GetDoctor,GetPatientName;
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblBilling.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
-            
+            SetBillingHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+    }
+    private void SetBillingHeader(){
+            tblBilling.getColumnModel().getColumn(0).setHeaderValue("APPT NUMBER");
+            tblBilling.getColumnModel().getColumn(1).setHeaderValue("NAME");
+            tblBilling.getColumnModel().getColumn(2).setHeaderValue("TIME");
+            tblBilling.getColumnModel().getColumn(3).setHeaderValue("DOCTOR");
+            tblBilling.getColumnModel().getColumn(4).setHeaderValue("ID");
     }
     private void FillCurrentDay(){
         try{
@@ -94,6 +101,7 @@ String GetApptID,GetBillStatus,GetPID,GetDoctor,GetPatientName;
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblBilling.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
+            SetBillingHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -157,7 +165,7 @@ String GetApptID,GetBillStatus,GetPID,GetDoctor,GetPatientName;
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Description", "Quantity", "Price", "Value"
             }
         ));
         jScrollPane2.setViewportView(tblPayable);
@@ -369,6 +377,10 @@ String GetApptID,GetBillStatus,GetPID,GetDoctor,GetPatientName;
             GetPatientName = tblBilling.getValueAt(ba, 1).toString();
             DbConn.pstmt.close();
             GetSubTotal();
+            tblPayable.getColumnModel().getColumn(0).setHeaderValue("Description");
+            tblPayable.getColumnModel().getColumn(1).setHeaderValue("Quantity");
+            tblPayable.getColumnModel().getColumn(2).setHeaderValue("Price");
+            tblPayable.getColumnModel().getColumn(3).setHeaderValue("Value");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

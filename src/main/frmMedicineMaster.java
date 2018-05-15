@@ -26,11 +26,25 @@ boolean add,edit;
             DbConn.SQLQuery = "SELEct * from tblmedicinemaster order by mm_name";
             DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
             DbConn.rs = DbConn.pstmt.executeQuery();
-            tblTreatment.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
+            tblMedicine.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
+            SetHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+    }
+    private void SetHeader(){
+        tblMedicine.getColumnModel().getColumn(0).setHeaderValue("ID");
+        tblMedicine.getColumnModel().getColumn(2).setHeaderValue("Code");
+        tblMedicine.getColumnModel().getColumn(3).setHeaderValue("Name");
+        tblMedicine.getColumnModel().getColumn(4).setHeaderValue("Description");
+        tblMedicine.getColumnModel().getColumn(5).setHeaderValue("Price");
+        tblMedicine.getColumnModel().getColumn(6).setHeaderValue("Generic");
+        tblMedicine.getColumnModel().getColumn(7).setHeaderValue("Generic 2");
+        tblMedicine.getColumnModel().getColumn(8).setHeaderValue("Status");
+        tblMedicine.getColumnModel().getColumn(9).setHeaderValue("Add By");
+        tblMedicine.getColumnModel().getColumn(10).setHeaderValue("Date");
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -44,7 +58,7 @@ boolean add,edit;
         jPanel4 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblTreatment = new javax.swing.JTable();
+        tblMedicine = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -97,7 +111,7 @@ boolean add,edit;
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel4.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, -3, 50, 430));
 
-        tblTreatment.setModel(new javax.swing.table.DefaultTableModel(
+        tblMedicine.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -108,7 +122,7 @@ boolean add,edit;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblTreatment);
+        jScrollPane1.setViewportView(tblMedicine);
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 520, 410));
 
@@ -314,7 +328,7 @@ boolean add,edit;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JRadioButton radNo;
     private javax.swing.JRadioButton radYes;
-    private javax.swing.JTable tblTreatment;
+    private javax.swing.JTable tblMedicine;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtDescription;
     private javax.swing.JTextField txtGeneric1;

@@ -78,16 +78,31 @@ DbConnection DbConn = new DbConnection();
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
+    private void SetHeaderDoctorTable(){
+        
+        tblDoctor2.getColumnModel().getColumn(0).setHeaderValue("ID");
+        tblDoctor2.getColumnModel().getColumn(1).setHeaderValue("TIME");
+        tblDoctor2.getColumnModel().getColumn(2).setHeaderValue("NAME");
+        tblDoctor2.getColumnModel().getColumn(3).setHeaderValue("CPR");
+        tblDoctor2.getColumnModel().getColumn(4).setHeaderValue("MOBILE");
+        tblDoctor2.getColumnModel().getColumn(5).setHeaderValue("APPT NUMBER");
+    }
     private void fillTableSchedule(){
         String fillTableScheduleQuery ="Select ap_pid,ap_appttime,ap_name,ap_cpr,ap_mobile,ap_apptnumber from tblappointment "
                 + "where ap_doctor=? and ap_apptdate=? order by ap_appttime";
         try{
-           DbConn.pstmt = DbConn.conn.prepareStatement(fillTableScheduleQuery);
-           DbConn.pstmt.setString(1,cmbDoctor1.getSelectedItem().toString());
-           DbConn.pstmt.setString(2,sdfDate.format(dateBooked.getDate()));
-           DbConn.rs = DbConn.pstmt.executeQuery();
-           tblDoctor1.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
-           DbConn.pstmt.close();
+            DbConn.pstmt = DbConn.conn.prepareStatement(fillTableScheduleQuery);
+            DbConn.pstmt.setString(1,cmbDoctor1.getSelectedItem().toString());
+            DbConn.pstmt.setString(2,sdfDate.format(dateBooked.getDate()));
+            DbConn.rs = DbConn.pstmt.executeQuery();
+            tblDoctor1.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
+            DbConn.pstmt.close();
+            tblDoctor1.getColumnModel().getColumn(0).setHeaderValue("ID");
+            tblDoctor1.getColumnModel().getColumn(1).setHeaderValue("TIME");
+            tblDoctor1.getColumnModel().getColumn(2).setHeaderValue("NAME");
+            tblDoctor1.getColumnModel().getColumn(3).setHeaderValue("CPR");
+            tblDoctor1.getColumnModel().getColumn(4).setHeaderValue("MOBILE");
+            tblDoctor1.getColumnModel().getColumn(5).setHeaderValue("APPT NUMBER");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }   
@@ -96,12 +111,18 @@ DbConnection DbConn = new DbConnection();
         String fillTableScheduleQuery ="Select ap_pid, ap_appttime,ap_name,ap_cpr,ap_mobile,ap_apptnumber from tblappointment "
                 + "where ap_doctor=? and ap_apptdate=? order by ap_appttime";
         try{
-           DbConn.pstmt = DbConn.conn.prepareStatement(fillTableScheduleQuery);
-           DbConn.pstmt.setString(1,cmbDoctor2.getSelectedItem().toString());
-           DbConn.pstmt.setString(2,sdfDate.format(dateBooked.getDate()));
-           DbConn.rs = DbConn.pstmt.executeQuery();
-           tblDoctor2.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
-           DbConn.pstmt.close();
+            DbConn.pstmt = DbConn.conn.prepareStatement(fillTableScheduleQuery);
+            DbConn.pstmt.setString(1,cmbDoctor2.getSelectedItem().toString());
+            DbConn.pstmt.setString(2,sdfDate.format(dateBooked.getDate()));
+            DbConn.rs = DbConn.pstmt.executeQuery();
+            tblDoctor2.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
+            DbConn.pstmt.close();
+            tblDoctor2.getColumnModel().getColumn(0).setHeaderValue("ID");
+            tblDoctor2.getColumnModel().getColumn(1).setHeaderValue("TIME");
+            tblDoctor2.getColumnModel().getColumn(2).setHeaderValue("NAME");
+            tblDoctor2.getColumnModel().getColumn(3).setHeaderValue("CPR");
+            tblDoctor2.getColumnModel().getColumn(4).setHeaderValue("MOBILE");
+            tblDoctor2.getColumnModel().getColumn(5).setHeaderValue("APPT NUMBER");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }   

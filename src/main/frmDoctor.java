@@ -43,6 +43,8 @@ Date todayDate = new Date();
         tblMedicineTable.setAutoResizeMode(tblMedicineTable.AUTO_RESIZE_OFF);
         tblMedicineTable.setAutoscrolls(true);
         lblDoctor.setText(DbConn.LoggedUserName);
+        txtAreaDiagnosisHistory.setEditable(false);
+        txtAreaNotesHistory.setEditable(false);
         dateAppointment.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {FillApptChange();}
@@ -85,17 +87,23 @@ Date todayDate = new Date();
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblMedicine.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
+            tblMedicine.getColumnModel().getColumn(0).setHeaderValue("Code");
+            tblMedicine.getColumnModel().getColumn(1).setHeaderValue("Name");
+            tblMedicine.getColumnModel().getColumn(2).setHeaderValue("Description");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
     private void FillICD(){
         try{
-            DbConn.SQLQuery = "Select * from tblicddetails order by ic_code";
+            DbConn.SQLQuery = "Select ic_code,ic_description from tblicddetails order by ic_code";
             DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblICDSearch.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
+            tblICDSearch.getColumnModel().getColumn(0).setHeaderValue("Code");
+            tblICDSearch.getColumnModel().getColumn(1).setHeaderValue("Description");
+            
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -107,6 +115,9 @@ Date todayDate = new Date();
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblTreatment.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
+            tblTreatment.getColumnModel().getColumn(0).setHeaderValue("Code");
+            tblTreatment.getColumnModel().getColumn(1).setHeaderValue("Description");
+            tblTreatment.getColumnModel().getColumn(2).setHeaderValue("Price");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -336,6 +347,12 @@ Date todayDate = new Date();
         tblHistorySummary = new javax.swing.JTable();
         jLabel22 = new javax.swing.JLabel();
         btnSaveAll = new javax.swing.JButton();
+        jScrollPane21 = new javax.swing.JScrollPane();
+        txtAreaNotesHistory = new javax.swing.JTextArea();
+        jScrollPane22 = new javax.swing.JScrollPane();
+        txtAreaDiagnosisHistory = new javax.swing.JTextArea();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         lblDoctor = new javax.swing.JLabel();
@@ -853,7 +870,25 @@ Date todayDate = new Date();
                 btnSaveAllActionPerformed(evt);
             }
         });
-        jPanel14.add(btnSaveAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 120, 60));
+        jPanel14.add(btnSaveAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 120, 60));
+
+        txtAreaNotesHistory.setColumns(20);
+        txtAreaNotesHistory.setRows(5);
+        jScrollPane21.setViewportView(txtAreaNotesHistory);
+
+        jPanel14.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 460, -1));
+
+        txtAreaDiagnosisHistory.setColumns(20);
+        txtAreaDiagnosisHistory.setRows(5);
+        jScrollPane22.setViewportView(txtAreaDiagnosisHistory);
+
+        jPanel14.add(jScrollPane22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 460, -1));
+
+        jLabel33.setText("Notes:");
+        jPanel14.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+
+        jLabel34.setText("Diagnosis:");
+        jPanel14.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
 
         jPanel10.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 480, 540));
 
@@ -1239,6 +1274,8 @@ Date todayDate = new Date();
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1273,6 +1310,8 @@ Date todayDate = new Date();
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
+    private javax.swing.JScrollPane jScrollPane21;
+    private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -1304,9 +1343,11 @@ Date todayDate = new Date();
     private javax.swing.JTextArea txtAreaAllergies;
     private javax.swing.JTextArea txtAreaChiefComplaint;
     private javax.swing.JTextArea txtAreaDiagnosis;
+    private javax.swing.JTextArea txtAreaDiagnosisHistory;
     private javax.swing.JTextArea txtAreaFamilyHistory;
     private javax.swing.JTextArea txtAreaHabits;
     private javax.swing.JTextArea txtAreaNotes;
+    private javax.swing.JTextArea txtAreaNotesHistory;
     private javax.swing.JTextArea txtAreaPastHistory;
     private javax.swing.JTextArea txtAreaPlanning;
     private javax.swing.JTextArea txtAreaPresentation;

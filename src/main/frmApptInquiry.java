@@ -44,7 +44,12 @@ Date todayDate = new Date();
         tblAppointment.getColumnModel().getColumn(2).setPreferredWidth(50);
         tblAppointment.getColumnModel().getColumn(3).setPreferredWidth(100);
         tblAppointment.getColumnModel().getColumn(4).setPreferredWidth(100);
-        
+
+        tblAppointment.getColumnModel().getColumn(0).setHeaderValue("ID");
+        tblAppointment.getColumnModel().getColumn(1).setHeaderValue("NAME");
+        tblAppointment.getColumnModel().getColumn(2).setHeaderValue("APPT NUMBER");
+        tblAppointment.getColumnModel().getColumn(3).setHeaderValue("DATE");
+        tblAppointment.getColumnModel().getColumn(4).setHeaderValue("DOCTOR");
     }
     private void FillTable(){
         try{

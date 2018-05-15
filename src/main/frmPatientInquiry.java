@@ -48,7 +48,13 @@ DbConnection DbConn = new DbConnection();
             DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblPatient.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
-            DbConn.pstmt.close();
+            DbConn.pstmt.close();        
+            tblPatient.getColumnModel().getColumn(0).setHeaderValue("ID");
+            tblPatient.getColumnModel().getColumn(1).setHeaderValue("Name");
+            tblPatient.getColumnModel().getColumn(2).setHeaderValue("Gender");
+            tblPatient.getColumnModel().getColumn(3).setHeaderValue("DOB");
+            tblPatient.getColumnModel().getColumn(4).setHeaderValue("Address");
+            tblPatient.getColumnModel().getColumn(5).setHeaderValue("Mobile");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
