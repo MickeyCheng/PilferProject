@@ -37,12 +37,22 @@ boolean add,edit;
         cmbCategory.addItem("Other");
         cmbCategory.setSelectedItem(-1);
     }
+    private void SetHeader(){
+        tblUserMaster.getColumnModel().getColumn(0).setHeaderValue("ID");
+        tblUserMaster.getColumnModel().getColumn(1).setHeaderValue("Name");
+        tblUserMaster.getColumnModel().getColumn(2).setHeaderValue("Password");
+        tblUserMaster.getColumnModel().getColumn(3).setHeaderValue("Position");
+        tblUserMaster.getColumnModel().getColumn(4).setHeaderValue("Admin Rights");
+        tblUserMaster.getColumnModel().getColumn(5).setHeaderValue("Status");
+        tblUserMaster.getColumnModel().getColumn(6).setHeaderValue("Category");
+    }
     private void FillTable(){
         try{
             DbConn.pstmt = DbConn.conn.prepareStatement("Select * from tblusermaster");
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblUserMaster.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
+            SetHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
