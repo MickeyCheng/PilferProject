@@ -434,8 +434,8 @@ Date todayDate = new Date();
         ));
         jScrollPane4.setViewportView(tblTreatment);
 
-        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 900, 70));
-        jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 920, 20));
+        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 900, 120));
+        jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 920, 20));
 
         tblTreatmentService.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -452,7 +452,7 @@ Date todayDate = new Date();
         });
         jScrollPane5.setViewportView(tblTreatmentService);
 
-        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 900, 300));
+        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 900, 270));
 
         btnAddTreatment.setText("ADD");
         btnAddTreatment.addActionListener(new java.awt.event.ActionListener() {
@@ -460,7 +460,7 @@ Date todayDate = new Date();
                 btnAddTreatmentActionPerformed(evt);
             }
         });
-        jPanel4.add(btnAddTreatment, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 600, 30));
+        jPanel4.add(btnAddTreatment, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 600, 30));
 
         TabTreatments.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 920, 480));
 
@@ -628,7 +628,7 @@ Date todayDate = new Date();
         ));
         jScrollPane7.setViewportView(tblMedicine);
 
-        jPanel5.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 440, 80));
+        jPanel5.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 440, 110));
 
         btnAddMedicine.setText("ADD");
         btnAddMedicine.addActionListener(new java.awt.event.ActionListener() {
@@ -636,8 +636,8 @@ Date todayDate = new Date();
                 btnAddMedicineActionPerformed(evt);
             }
         });
-        jPanel5.add(btnAddMedicine, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 300, 30));
-        jPanel5.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 460, 20));
+        jPanel5.add(btnAddMedicine, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 300, 30));
+        jPanel5.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 460, 20));
 
         tblMedicineTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -649,7 +649,7 @@ Date todayDate = new Date();
         ));
         jScrollPane8.setViewportView(tblMedicineTable);
 
-        jPanel5.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 440, 250));
+        jPanel5.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 440, 280));
 
         javax.swing.GroupLayout TabPrescriptionLayout = new javax.swing.GroupLayout(TabPrescription);
         TabPrescription.setLayout(TabPrescriptionLayout);
@@ -754,7 +754,7 @@ Date todayDate = new Date();
         ));
         jScrollPane12.setViewportView(tblICDShow);
 
-        jPanel15.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 560, 110));
+        jPanel15.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 560, 110));
 
         btnAddICD.setText("ADD");
         btnAddICD.addActionListener(new java.awt.event.ActionListener() {
@@ -762,8 +762,8 @@ Date todayDate = new Date();
                 btnAddICDActionPerformed(evt);
             }
         });
-        jPanel15.add(btnAddICD, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 190, 30));
-        jPanel15.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 560, 20));
+        jPanel15.add(btnAddICD, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 190, 30));
+        jPanel15.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 560, 20));
 
         tblICDSearch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -778,9 +778,9 @@ Date todayDate = new Date();
         ));
         jScrollPane13.setViewportView(tblICDSearch);
 
-        jPanel15.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 560, 90));
+        jPanel15.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 560, 130));
 
-        jPanel8.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 580, 350));
+        jPanel8.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 580, 380));
 
         TabVitalAndCC.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 920, 530));
 
@@ -999,7 +999,7 @@ Date todayDate = new Date();
     private void btnAddMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMedicineActionPerformed
         DefaultTableModel modelMedicine = (DefaultTableModel)tblMedicineTable.getModel();
         int row = tblMedicine.getSelectedRow();
-        Object[] addMedicine = {tblMedicine.getValueAt(row, 0),tblMedicine.getValueAt(row, 1)};
+        Object[] addMedicine = {tblMedicine.getValueAt(row, 0),tblMedicine.getValueAt(row, 1),"1","1","na","na","na","na","na","na"};
         modelMedicine.addRow(addMedicine);
         fillRoute();
         tblMedicineTable.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(cmbRoute));
@@ -1120,7 +1120,7 @@ Date todayDate = new Date();
                 DbConn.pstmt.close();
                 rowCount++;
             }catch(SQLException e){
-                JOptionPane.showMessageDialog(this, e.getMessage());
+                JOptionPane.showMessageDialog(this, "Please fill up the medications");
             }
         }
     }
