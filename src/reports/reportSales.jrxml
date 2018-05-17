@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="742147e0-e683-475a-ae80-988499adc02e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="dateTo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dateFrom" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select ih_number,ih_patientname,ih_apptid,ih_insurance,ih_cash,ih_card,ih_cheque,ih_discount, ih_subtotal,ih_netamount,ih_doctor from tblinvoiceheader where ih_date between $P{dateFrom} and $P{dateTo}]]>
+	</queryString>
+	<field name="ih_number" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ih_patientname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ih_apptid" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ih_insurance" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ih_cash" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ih_card" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ih_cheque" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ih_discount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ih_subtotal" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ih_netamount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ih_doctor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="totalPatients" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{ih_number}]]></variableExpression>
+	</variable>
+	<variable name="totalPayable" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{ih_subtotal}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalDiscount" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{ih_discount}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalNet" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{ih_netamount}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="170" y="0" width="263" height="62" uuid="0321ebfd-240c-407b-959e-7cad429d9f80"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Coffee Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="219" y="62" width="196" height="22" uuid="0aa3ef52-6ab0-4a00-b2b2-5fc27799b3be"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Coffee SubTitle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="94" width="383" height="42" uuid="4a159b09-2091-467a-b869-40eadad6b009"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="375cf269-fb3b-4bfb-9c98-2e42d5e78527"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="25" height="15" forecolor="#736343" uuid="0d26548f-d1fb-4658-ae85-e11befd396e2"/>
+				<text><![CDATA[ih_number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="37" y="0" width="214" height="15" forecolor="#736343" uuid="cb13ff1f-47fa-4cec-b6cf-a5e27e777750"/>
+				<text><![CDATA[ih_patientname]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="251" y="0" width="34" height="15" forecolor="#736343" uuid="5edb5c6a-2228-470a-907a-cc99db7c997f"/>
+				<text><![CDATA[INS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="291" y="0" width="38" height="15" forecolor="#736343" uuid="b4c24258-8dd4-4fe6-a0aa-30013f806593"/>
+				<text><![CDATA[CASH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="334" y="0" width="37" height="15" forecolor="#736343" uuid="9ad0b0ab-fcf4-4ac3-8e55-6187e65aefe7"/>
+				<text><![CDATA[CARD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="374" y="0" width="29" height="15" forecolor="#736343" uuid="26ef55de-a5f5-4c3f-bc2c-aa88dec778d2"/>
+				<text><![CDATA[CHQ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="408" y="0" width="24" height="15" forecolor="#736343" uuid="fbac92b3-c069-433d-bc96-49eb27ab70c0"/>
+				<text><![CDATA[DIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="437" y="0" width="32" height="15" forecolor="#736343" uuid="43ff9ada-6282-40e8-ab41-c3560e17e8ce"/>
+				<text><![CDATA[SUB]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="477" y="0" width="27" height="15" forecolor="#736343" uuid="6f8d5aa5-87e1-4d87-8eb0-42da01ed79e6"/>
+				<text><![CDATA[NET]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="512" y="0" width="38" height="15" forecolor="#736343" uuid="abb242f7-3c40-4ff3-9654-8cbb28e2b490"/>
+				<text><![CDATA[DOC]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="49" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="0" y="0" width="25" height="15" uuid="7105308a-9c85-4371-9b08-e6dd081bdaed"/>
+				<textFieldExpression><![CDATA[$F{ih_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="37" y="0" width="214" height="49" uuid="05cdb789-d354-4bd3-b6cd-924b5f30669f"/>
+				<textFieldExpression><![CDATA[$F{ih_patientname}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="251" y="0" width="34" height="15" uuid="fc2efd84-f7c0-42b1-86ff-48e65e5d8222"/>
+				<textFieldExpression><![CDATA[$F{ih_insurance}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="291" y="0" width="38" height="15" uuid="07a54736-9667-424b-ad94-1213ff803542"/>
+				<textFieldExpression><![CDATA[$F{ih_cash}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="374" y="0" width="29" height="15" uuid="34536d1f-5c8e-4d86-9983-4f7033a0ab15"/>
+				<textFieldExpression><![CDATA[$F{ih_cheque}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="334" y="0" width="37" height="15" uuid="4da685ae-da4f-41f2-b2fb-9e38912bfc83"/>
+				<textFieldExpression><![CDATA[$F{ih_card}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="408" y="0" width="24" height="15" uuid="ebb4dd71-29bd-4670-a5e6-03f94a25bbc3"/>
+				<textFieldExpression><![CDATA[$F{ih_discount}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="437" y="0" width="32" height="15" uuid="2130e45a-37d5-4493-ac76-d259152d56cf"/>
+				<textFieldExpression><![CDATA[$F{ih_subtotal}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="477" y="0" width="27" height="15" uuid="5027e81c-ec2a-4f8a-a44e-9123d349ed13"/>
+				<textFieldExpression><![CDATA[$F{ih_netamount}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="513" y="0" width="38" height="15" uuid="39311f90-4f6e-4655-854f-c368bc937fd8"/>
+				<textFieldExpression><![CDATA[$F{ih_doctor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="98" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="4b7106e3-ee8c-478e-bbd6-c5ff73fc7773"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="e1bd789c-86d8-447a-a2d0-ea60ca1b3a79"/>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" x="339" y="4" width="98" height="15" forecolor="#736343" uuid="dc70d639-3610-4d17-b60a-708afc167e8a"/>
+				<text><![CDATA[Total Patients:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="339" y="23" width="98" height="15" forecolor="#736343" uuid="8d04f5d1-0fb5-4096-a00b-bf20cad82023"/>
+				<text><![CDATA[Total Payable:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="339" y="41" width="98" height="15" forecolor="#736343" uuid="e927c0b7-ee3f-4c42-8e25-6cb0c44529c6"/>
+				<text><![CDATA[Total Discount:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="339" y="73" width="98" height="15" forecolor="#736343" uuid="eb5e467c-cd64-4cf6-8805-9ba42bbce249"/>
+				<text><![CDATA[Total Net:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="432" y="4" width="100" height="19" uuid="7662d1d6-9bda-4983-ba2f-0205ceb482cf"/>
+				<textFieldExpression><![CDATA[$V{totalPatients}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="23" width="100" height="15" uuid="eac2fb3e-7e25-4bca-bf78-5163e8089dd4"/>
+				<textFieldExpression><![CDATA[$V{totalPayable}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="41" width="100" height="15" uuid="397dd124-2646-4451-8fba-f40bf517ae4d"/>
+				<textFieldExpression><![CDATA[$V{totalDiscount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="73" width="100" height="15" uuid="7ceddd0c-0fb5-43bf-a4d7-f122fa6cbbf5"/>
+				<textFieldExpression><![CDATA[$V{totalNet}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="339" y="56" width="212" height="1" uuid="e863a60f-5732-4927-bedb-3d70b4f89732"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="d0764a9e-c0ee-4c19-9a90-b3dba6635250"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="543f0c7f-1178-4da3-98ab-4c308a66f89a"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="ce213d57-a22f-4ab9-94df-45dd66299aa3"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="f719e03c-326c-4984-ae69-8739dfc6c986"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
