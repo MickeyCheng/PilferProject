@@ -104,6 +104,11 @@ boolean add,edit;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblTreatment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTreatmentMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblTreatment);
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 520, 410));
@@ -210,25 +215,62 @@ boolean add,edit;
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        try{
-         DbConn.SQLQuery = "insert into tbltreatmentmaster (tm_code, tm_description,tm_price,tm_active) values (?,?,?,?)";
-         DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
-         DbConn.pstmt.setString(1, txtCode.getText());
-         DbConn.pstmt.setString(2, txtDescription.getText());
-         DbConn.pstmt.setString(3, txtPrice.getText());
-         if (radYes.isSelected()){
-            DbConn.pstmt.setString(4, "Y");
-         }else{
-             DbConn.pstmt.setString(4, "N");
-         }
-         DbConn.pstmt.execute();
-         JOptionPane.showMessageDialog(this, "Treatment Saved");
-         clearTexts();
-         FillTable();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(this, e.getMessage());
+        int row = tblTreatment.getSelectedRow();
+        if (add==true && edit==false){
+            try{
+             DbConn.SQLQuery = "insert into tbltreatmentmaster (tm_code, tm_description,tm_price,tm_active) values (?,?,?,?)";
+             DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
+             DbConn.pstmt.setString(1, txtCode.getText());
+             DbConn.pstmt.setString(2, txtDescription.getText());
+             DbConn.pstmt.setString(3, txtPrice.getText());
+             if (radYes.isSelected()){
+                DbConn.pstmt.setString(4, "Y");
+             }else{
+                 DbConn.pstmt.setString(4, "N");
+             }
+             DbConn.pstmt.execute();
+             JOptionPane.showMessageDialog(this, "Treatment Saved");
+             clearTexts();
+             FillTable();
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+        }else if (edit==true && add==false){
+            try{
+             DbConn.SQLQuery = "update tbltreatmentmaster set tm_code=?, tm_description=?,tm_price=?,tm_active=? where tm_code=?";
+             DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
+             DbConn.pstmt.setString(1, txtCode.getText());
+             DbConn.pstmt.setString(2, txtDescription.getText());
+             DbConn.pstmt.setString(3, txtPrice.getText());
+             if (radYes.isSelected()){
+                DbConn.pstmt.setString(4, "Y");
+             }else{
+                 DbConn.pstmt.setString(4, "N");
+             }
+             DbConn.pstmt.setString(5, tblTreatment.getValueAt(row, 1).toString());
+             DbConn.pstmt.executeUpdate();
+             JOptionPane.showMessageDialog(this, "Treatment Updated");
+             clearTexts();
+             FillTable();
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void tblTreatmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTreatmentMouseClicked
+        int row = tblTreatment.getSelectedRow();
+        int ba = tblTreatment.convertRowIndexToModel(row);
+        txtCode.setText(tblTreatment.getValueAt(ba, 1).toString());
+        txtDescription.setText(tblTreatment.getValueAt(ba, 3).toString());
+        txtPrice.setText(tblTreatment.getValueAt(ba, 4).toString());
+        String GetStatus = tblTreatment.getValueAt(ba, 5).toString();
+        if (GetStatus == "Y"){
+            radYes.isSelected();
+        }else{
+            radNo.isSelected();
+        }
+    }//GEN-LAST:event_tblTreatmentMouseClicked
     private void clearTexts(){
         txtCode.setText("");
         txtDescription.setText("");

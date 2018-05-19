@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Window;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,8 +14,20 @@ public class frmMain extends javax.swing.JFrame {
         initComponents();
 //        DbConn.DoConnect();
         setExtendedState(frmMain.MAXIMIZED_BOTH);
+        CheckAccessLevel();
     }
-
+    private void CheckAccessLevel(){
+        if (!DbConn.LoggedUserCategory.equals("Doctor") && !DbConn.LoggedUserAdmin.equals("Y")){
+            mnuMedCert.setEnabled(false);
+            btnDoctor.setEnabled(false);
+        }
+        if (!DbConn.LoggedUserAdmin.equals("Y")){
+            mnuSalesInq.setEnabled(false);
+            mnuGenMaster.setEnabled(false);
+            mnuUserMaster.setEnabled(false);
+            mnuUserSecMaster.setEnabled(false);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,11 +41,6 @@ public class frmMain extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         btnAppointment = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        btnICDMaster = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        btnGeneralMaster = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnDoctor = new javax.swing.JButton();
@@ -48,8 +56,9 @@ public class frmMain extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         mnuApptInquiry = new javax.swing.JMenuItem();
         mnuSalesInq = new javax.swing.JMenuItem();
-        frmBillingInq = new javax.swing.JMenuItem();
+        mnuBillingInq = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        mnuMedCert = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         mnuGenMaster = new javax.swing.JMenuItem();
         mnuUserMaster = new javax.swing.JMenuItem();
@@ -80,46 +89,6 @@ public class frmMain extends javax.swing.JFrame {
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 120));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 220, 140));
-
-        jButton4.setText("User Master");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, -1, 70));
-
-        btnICDMaster.setText("ICD Master");
-        btnICDMaster.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnICDMasterActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnICDMaster, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 130, 70));
-
-        jButton5.setText("Sales");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 100, 130));
-
-        jButton6.setText("Billing");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 100, 130));
-
-        btnGeneralMaster.setText("General Master");
-        btnGeneralMaster.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGeneralMasterActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnGeneralMaster, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, 100, 130));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -204,17 +173,26 @@ public class frmMain extends javax.swing.JFrame {
         });
         mnuPatientInquiry.add(mnuSalesInq);
 
-        frmBillingInq.setText("Billing Inquiry");
-        frmBillingInq.addActionListener(new java.awt.event.ActionListener() {
+        mnuBillingInq.setText("Billing Inquiry");
+        mnuBillingInq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmBillingInqActionPerformed(evt);
+                mnuBillingInqActionPerformed(evt);
             }
         });
-        mnuPatientInquiry.add(frmBillingInq);
+        mnuPatientInquiry.add(mnuBillingInq);
 
         jMenuBar1.add(mnuPatientInquiry);
 
         jMenu4.setText("Reports");
+
+        mnuMedCert.setText("Medical Certificate");
+        mnuMedCert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuMedCertActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuMedCert);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Master");
@@ -311,72 +289,6 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
     }//GEN-LAST:event_btnDoctorActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-//        try{
-//            frmUserMaster obj = new frmUserMaster();
-//            obj.setVisible(true);
-//            this.dispose();
-//            DbConn.pstmt.close();
-//            DbConn.conn.close();
-//        }catch(SQLException e){
-//            e.getMessage();
-//        }
-        frmUserMaster obj = new frmUserMaster();
-            obj.setVisible(true);
-            this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void btnICDMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnICDMasterActionPerformed
-//       try{
-//            frmICDMaster obj = new frmICDMaster();
-//            obj.setVisible(true);
-//            this.dispose();
-//            DbConn.pstmt.close();
-//            DbConn.conn.close();
-//        }catch(SQLException e){
-//            e.getMessage();
-//        }
-       frmICDMaster obj = new frmICDMaster();
-            obj.setVisible(true);
-            this.dispose();
-    }//GEN-LAST:event_btnICDMasterActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-//        try{
-//            frmSalesInquiry obj = new frmSalesInquiry();
-//            obj.setVisible(true);
-//            this.dispose();
-//            DbConn.pstmt.close();
-//            DbConn.conn.close();
-//        }catch(SQLException e){
-//            e.getMessage();
-//        }
-        frmSalesInquiry obj = new frmSalesInquiry();
-            obj.setVisible(true);
-            this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-//        try{
-//            frmBilling obj = new frmBilling();
-//            obj.setVisible(true);
-//            this.dispose();
-//            DbConn.pstmt.close();
-//            DbConn.conn.close();
-//        }catch(SQLException e){
-//            e.getMessage();
-//        }
-        frmBilling obj = new frmBilling();
-            obj.setVisible(true);
-            this.dispose();
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void btnGeneralMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneralMasterActionPerformed
-        frmGeneralMaster obj = new frmGeneralMaster();
-            obj.setVisible(true);
-            this.dispose();
-    }//GEN-LAST:event_btnGeneralMasterActionPerformed
-
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         frmPatientInquiry obj = new frmPatientInquiry();
         obj.setVisible(true);
@@ -392,10 +304,10 @@ public class frmMain extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_mnuSalesInqActionPerformed
 
-    private void frmBillingInqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmBillingInqActionPerformed
+    private void mnuBillingInqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuBillingInqActionPerformed
         frmBilling obj = new frmBilling();
         obj.setVisible(true);
-    }//GEN-LAST:event_frmBillingInqActionPerformed
+    }//GEN-LAST:event_mnuBillingInqActionPerformed
 
     private void mnuGenMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGenMasterActionPerformed
         frmGeneralMaster obj = new frmGeneralMaster();
@@ -439,8 +351,16 @@ public class frmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        System.exit(0);
+        int selectExit = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?","Exit",JOptionPane.YES_NO_OPTION);
+        if (selectExit == JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void mnuMedCertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMedCertActionPerformed
+        frmMedicalCertificate obj = new frmMedicalCertificate();
+        obj.setVisible(true);
+    }//GEN-LAST:event_mnuMedCertActionPerformed
 
     /**
      * @param args the command line arguments
@@ -480,13 +400,7 @@ public class frmMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAppointment;
     private javax.swing.JButton btnDoctor;
-    private javax.swing.JButton btnGeneralMaster;
-    private javax.swing.JButton btnICDMaster;
     private javax.swing.JButton btnRegistration;
-    private javax.swing.JMenuItem frmBillingInq;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
@@ -503,10 +417,12 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JMenuItem mnuApptInquiry;
+    private javax.swing.JMenuItem mnuBillingInq;
     private javax.swing.JMenuItem mnuDrugMaster;
     private javax.swing.JMenuItem mnuGenMaster;
     private javax.swing.JMenuItem mnuICDMaster;
     private javax.swing.JMenuItem mnuInsuranceMaster;
+    private javax.swing.JMenuItem mnuMedCert;
     private javax.swing.JMenu mnuPatientInquiry;
     private javax.swing.JMenuItem mnuSalesInq;
     private javax.swing.JMenuItem mnuTreatmentMaster;

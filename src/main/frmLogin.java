@@ -97,6 +97,8 @@ DbConnection DbConn = new DbConnection();
             DbConn.rs = DbConn.pstmt.executeQuery();
             if (DbConn.rs.next()){
                 DbConn.LoggedUserName = DbConn.rs.getString("um_name");
+                DbConn.LoggedUserCategory = DbConn.rs.getString("um_category");
+                DbConn.LoggedUserAdmin = DbConn.rs.getString("um_administrator");
                 JOptionPane.showMessageDialog(this, "Welcome " + DbConn.LoggedUserName);
                 frmMain obj = new frmMain();
                 obj.setVisible(true);
@@ -110,7 +112,7 @@ DbConnection DbConn = new DbConnection();
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_btnLoginActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */

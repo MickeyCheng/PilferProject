@@ -20,6 +20,16 @@ boolean add,edit;
         radYes.setSelected(true);
         setDefaultCloseOperation(frmMedicineMaster.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        tblMedicine.setAutoResizeMode(tblMedicine.AUTO_RESIZE_OFF);
+        tblMedicine.setAutoscrolls(true);
+        SetWidth();
+    }
+    private void SetWidth(){
+        int i=0;
+        while (i != tblMedicine.getColumnCount()){
+            tblMedicine.getColumnModel().getColumn(i).setPreferredWidth(100);
+            i++;
+        }
     }
     private void FillTable(){
         try{
@@ -35,15 +45,15 @@ boolean add,edit;
     }
     private void SetHeader(){
         tblMedicine.getColumnModel().getColumn(0).setHeaderValue("ID");
-        tblMedicine.getColumnModel().getColumn(2).setHeaderValue("Code");
-        tblMedicine.getColumnModel().getColumn(3).setHeaderValue("Name");
-        tblMedicine.getColumnModel().getColumn(4).setHeaderValue("Description");
-        tblMedicine.getColumnModel().getColumn(5).setHeaderValue("Price");
-        tblMedicine.getColumnModel().getColumn(6).setHeaderValue("Generic");
-        tblMedicine.getColumnModel().getColumn(7).setHeaderValue("Generic 2");
-        tblMedicine.getColumnModel().getColumn(8).setHeaderValue("Status");
-        tblMedicine.getColumnModel().getColumn(9).setHeaderValue("Add By");
-        tblMedicine.getColumnModel().getColumn(10).setHeaderValue("Date");
+        tblMedicine.getColumnModel().getColumn(1).setHeaderValue("Code");
+        tblMedicine.getColumnModel().getColumn(2).setHeaderValue("Name");
+        tblMedicine.getColumnModel().getColumn(3).setHeaderValue("Description");
+        tblMedicine.getColumnModel().getColumn(4).setHeaderValue("Price");
+        tblMedicine.getColumnModel().getColumn(5).setHeaderValue("Generic");
+        tblMedicine.getColumnModel().getColumn(6).setHeaderValue("Generic 2");
+        tblMedicine.getColumnModel().getColumn(7).setHeaderValue("Status");
+        tblMedicine.getColumnModel().getColumn(8).setHeaderValue("Add By");
+        tblMedicine.getColumnModel().getColumn(9).setHeaderValue("Date");
         
     }
     @SuppressWarnings("unchecked")
