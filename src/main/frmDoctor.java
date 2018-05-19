@@ -1,7 +1,10 @@
 
 package main;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import java.sql.ResultSet;
@@ -12,12 +15,22 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.joda.time.LocalTime;
 public class frmDoctor extends javax.swing.JFrame {
 DbConnection DbConn = new DbConnection();
@@ -45,6 +58,16 @@ Date todayDate = new Date();
         lblDoctor.setText(DbConn.LoggedUserName);
         txtAreaDiagnosisHistory.setEditable(false);
         txtAreaNotesHistory.setEditable(false);
+        cmbDoctor.setVisible(false);
+        FillComboDoctor();
+        lblCurrentDoctor.setText(cmbDoctor.getSelectedItem().toString());
+        if (DbConnection.LoggedUserAdmin.equals("Y")){
+            cmbDoctor.setVisible(true);
+        }
+        cmbDoctor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {FillAdminDoctorChange();}
+        });
         dateAppointment.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {FillApptChange();}
@@ -79,6 +102,20 @@ Date todayDate = new Date();
             @Override
             public void changedUpdate(DocumentEvent e) {ListenICD();}
         });
+    }
+    private void FillComboDoctor(){
+        cmbDoctor.removeAllItems();
+        try{
+            DbConn.pstmt = DbConn.conn.prepareStatement("Select * from tblUsermaster where um_category =? order by um_name");
+            DbConn.pstmt.setString(1, "Doctor");
+            DbConn.rs = DbConn.pstmt.executeQuery();
+            while (DbConn.rs.next()){
+                cmbDoctor.addItem(DbConn.rs.getString("um_name"));
+            }
+            DbConn.pstmt.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
     private void FillMedicine(){
         try{
@@ -190,6 +227,21 @@ Date todayDate = new Date();
         dateMedCertAppt.setDate(todayDate);
         dateMedCertDischarge.setDate(todayDate);
     }
+    private void FillAdminDoctorChange(){
+        lblCurrentDoctor.setText(cmbDoctor.getSelectedItem().toString());
+        try{
+            DbConn.SQLQuery = "Select ap_appttime,ap_name,ap_pid,ap_apptnumber from tblappointment where ap_doctor =? and ap_apptdate=?";
+            DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
+            DbConn.pstmt.setString(1, lblCurrentDoctor.getText());
+            DbConn.pstmt.setString(2, DbConn.sdfDate.format(dateAppointment.getDate()));
+            DbConn.rs = DbConn.pstmt.executeQuery();
+            tblAppointment.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
+            DbConn.pstmt.close();
+            SetApptHeader();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
     private void FillApptChange(){
         try{
             DbConn.SQLQuery = "Select ap_appttime,ap_name,ap_pid,ap_apptnumber from tblappointment where ap_doctor =? and ap_apptdate=?";
@@ -198,7 +250,8 @@ Date todayDate = new Date();
             DbConn.pstmt.setString(2, DbConn.sdfDate.format(dateAppointment.getDate()));
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblAppointment.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
-//            DbConn.pstmt.close();
+            DbConn.pstmt.close();
+            SetApptHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -211,10 +264,17 @@ Date todayDate = new Date();
             DbConn.pstmt.setString(2, DbConn.sdfDate.format(dateAppointment.getDate()));
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblAppointment.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
-//            DbConn.pstmt.close();
+            SetApptHeader();
+            DbConn.pstmt.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+    }
+    private void SetApptHeader(){
+        tblAppointment.getColumnModel().getColumn(0).setHeaderValue("Time");
+        tblAppointment.getColumnModel().getColumn(1).setHeaderValue("Name");
+        tblAppointment.getColumnModel().getColumn(2).setHeaderValue("PID");
+        tblAppointment.getColumnModel().getColumn(3).setHeaderValue("Appt Number");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -237,6 +297,7 @@ Date todayDate = new Date();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAppointment = new javax.swing.JTable();
         dateAppointment = new com.toedter.calendar.JDateChooser();
+        cmbDoctor = new javax.swing.JComboBox<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         TabTreatments = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -356,6 +417,7 @@ Date todayDate = new Date();
         jPanel9 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         lblDoctor = new javax.swing.JLabel();
+        lblCurrentDoctor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -368,7 +430,7 @@ Date todayDate = new Date();
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         lblPatientName.setText("Patient Name");
-        jPanel2.add(lblPatientName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 360, 20));
+        jPanel2.add(lblPatientName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 380, 20));
 
         jLabel24.setText("Name:");
         jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -377,7 +439,7 @@ Date todayDate = new Date();
         jPanel2.add(lblPID, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 110, -1));
 
         lblApptID.setText("apptid");
-        jPanel2.add(lblApptID, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+        jPanel2.add(lblApptID, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1040, 70));
 
@@ -393,7 +455,7 @@ Date todayDate = new Date();
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Time", "Name", "PID", "Appt Number"
             }
         ));
         tblAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -403,7 +465,7 @@ Date todayDate = new Date();
         });
         jScrollPane1.setViewportView(tblAppointment);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 330, 510));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 330, 480));
 
         dateAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -411,6 +473,9 @@ Date todayDate = new Date();
             }
         });
         jPanel3.add(dateAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 30));
+
+        cmbDoctor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel3.add(cmbDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 330, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 350, 580));
         jPanel3.getAccessibleContext().setAccessibleName("");
@@ -839,6 +904,11 @@ Date todayDate = new Date();
         jPanel11.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 300, -1));
 
         jButton1.setText("PRINT MEDICAL CERTIFICATE");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel11.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 300, -1));
 
         jPanel10.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 430, 540));
@@ -904,6 +974,9 @@ Date todayDate = new Date();
 
         lblDoctor.setText("Doctor");
         jPanel9.add(lblDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 170, -1));
+
+        lblCurrentDoctor.setText("jLabel35");
+        jPanel9.add(lblCurrentDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 210, -1));
 
         jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 10, 240, 70));
 
@@ -973,12 +1046,17 @@ Date todayDate = new Date();
     }//GEN-LAST:event_txtBloodSugarActionPerformed
 
     private void tblAppointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAppointmentMouseClicked
-        fillVitalsAndCC();
-        int row = tblAppointment.getSelectedRow();
-        int ba = tblAppointment.convertRowIndexToModel(row);
-        lblApptID.setText(tblAppointment.getValueAt(ba, 3).toString());
-        lblPID.setText(tblAppointment.getValueAt(ba, 2).toString());
-        lblPatientName.setText(tblAppointment.getValueAt(ba, 1).toString());
+        try{
+            int row = tblAppointment.getSelectedRow();
+            int ba = tblAppointment.convertRowIndexToModel(row);
+            lblApptID.setText(tblAppointment.getValueAt(ba, 3).toString());
+            lblPID.setText(tblAppointment.getValueAt(ba, 2).toString());
+            lblPatientName.setText(tblAppointment.getValueAt(ba, 1).toString());
+            fillVitalsAndCC();
+            SetApptHeader();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Please check that you have chosen the correct patient.");
+        }
     }//GEN-LAST:event_tblAppointmentMouseClicked
 
     private void btnAddTreatmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTreatmentActionPerformed
@@ -1037,6 +1115,27 @@ Date todayDate = new Date();
             RowCount++;
         }
     }//GEN-LAST:event_tblTreatmentServiceKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Map param = new HashMap();
+        param.put("ApptNumber", lblApptID.getText());
+//        param.put("dateTo", sdfDate.format(getToDate));
+//        param.put("showStatus", cmbStatus.getSelectedItem().toString());
+//        param.put("showClient", cmbClient.getSelectedItem().toString());
+        try{
+            DbConn.conn.close();
+            Class.forName("com.mysql.jdbc.Driver");
+            //            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbticketing","root","root");
+            DbConn.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbemrph","root","root");
+            JasperDesign jd = JRXmlLoader.load(new File("src\\reports\\reportMedCert.jrxml"));
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = JasperFillManager.fillReport(jr, param,DbConn.conn);
+            JasperViewer.viewReport(jp,false);
+
+        }catch(ClassNotFoundException | SQLException | JRException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
     private void UpdateAppointment(){
         try{
             DbConn.pstmt = DbConn.conn.prepareStatement("Update tblappointment set ap_billed=? where ap_apptnumber =?");
@@ -1242,6 +1341,7 @@ Date todayDate = new Date();
     private javax.swing.JButton btnAddMedicine;
     private javax.swing.JButton btnAddTreatment;
     private javax.swing.JButton btnSaveAll;
+    private javax.swing.JComboBox<String> cmbDoctor;
     private javax.swing.JComboBox<String> cmbMedCert;
     private com.toedter.calendar.JDateChooser dateAppointment;
     private com.toedter.calendar.JDateChooser dateMedCertAppt;
@@ -1327,6 +1427,7 @@ Date todayDate = new Date();
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblApptID;
+    private javax.swing.JLabel lblCurrentDoctor;
     private javax.swing.JLabel lblDoctor;
     private javax.swing.JLabel lblPID;
     private javax.swing.JLabel lblPatientName;
