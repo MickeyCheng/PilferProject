@@ -1085,11 +1085,28 @@ Date todayDate = new Date();
             fillVitalsAndCC();
             SetApptHeader();
             FillHistory();
+            LoadTreatment();
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Please check that you have chosen the correct patient.");
         }
     }//GEN-LAST:event_tblAppointmentMouseClicked
-
+    private void LoadTreatment(){
+        DefaultTableModel modelTreatment = (DefaultTableModel)tblTreatmentService.getModel(); 
+        modelTreatment.setRowCount(0);
+        try{
+            DbConn.SQLQuery = "Select * from tblpatientservices where ps_apptid =?";
+            DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
+            DbConn.pstmt.setString(1, lblApptID.getText());
+            DbConn.rs = DbConn.pstmt.executeQuery();
+            while (DbConn.rs.next()){  
+                Object[] addTreatment = {DbConn.rs.getString("ps_code"),DbConn.rs.getString("ps_description"),DbConn.rs.getString("ps_price"),DbConn.rs.getString("ps_qty"),DbConn.rs.getString("ps_value")};
+                modelTreatment.addRow(addTreatment);
+            }
+            DbConn.pstmt.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
     private void btnAddTreatmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTreatmentActionPerformed
         Double SetValue;
         DefaultTableModel modelTreatment = (DefaultTableModel)tblTreatmentService.getModel();
