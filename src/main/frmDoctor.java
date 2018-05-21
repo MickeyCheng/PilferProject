@@ -1086,10 +1086,31 @@ Date todayDate = new Date();
             SetApptHeader();
             FillHistory();
             LoadTreatment();
+            LoadMedicine();
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Please check that you have chosen the correct patient.");
         }
     }//GEN-LAST:event_tblAppointmentMouseClicked
+    private void LoadMedicine(){
+        DefaultTableModel modelMedicine = (DefaultTableModel)tblMedicineTable.getModel(); 
+        modelMedicine.setRowCount(0);
+        try{
+            DbConn.SQLQuery = "Select * from tblpatientmedications where pm_apptid =?";
+            DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
+            DbConn.pstmt.setString(1, lblApptID.getText());
+            DbConn.rs = DbConn.pstmt.executeQuery();
+            //code,name,qty,days,route,signa,dose,instructions,comments,value
+            while (DbConn.rs.next()){  
+                Object[] AddMedicine = {DbConn.rs.getString("pm_code"),DbConn.rs.getString("pm_description"),DbConn.rs.getString("pm_qty"),DbConn.rs.getString("pm_days")
+                        ,DbConn.rs.getString("pm_route"),DbConn.rs.getString("pm_signa"),DbConn.rs.getString("pm_dose"),DbConn.rs.getString("pm_specialinstruction")
+                        ,DbConn.rs.getString("pm_comments")};
+                modelMedicine.addRow(AddMedicine);
+            }
+            DbConn.pstmt.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
     private void LoadTreatment(){
         DefaultTableModel modelTreatment = (DefaultTableModel)tblTreatmentService.getModel(); 
         modelTreatment.setRowCount(0);
