@@ -32,6 +32,21 @@
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Invoice &amp; Receipt"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuInvoiceReceipt">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Invoice Generate"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuInvoiceReceiptActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="mnuPatientInquiry">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inquiry"/>
@@ -61,12 +76,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuSalesInqActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuBillingInq">
+            <MenuItem class="javax.swing.JMenuItem" name="mnuInvoiceInq">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Billing Inquiry"/>
+                <Property name="text" type="java.lang.String" value="Invoice Inquiry"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuBillingInqActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuInvoiceInqActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

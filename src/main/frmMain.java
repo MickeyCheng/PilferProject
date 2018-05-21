@@ -52,11 +52,13 @@ public class frmMain extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        mnuInvoiceReceipt = new javax.swing.JMenuItem();
         mnuPatientInquiry = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         mnuApptInquiry = new javax.swing.JMenuItem();
         mnuSalesInq = new javax.swing.JMenuItem();
-        mnuBillingInq = new javax.swing.JMenuItem();
+        mnuInvoiceInq = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         mnuMedCert = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -147,6 +149,18 @@ public class frmMain extends javax.swing.JFrame {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setText("Invoice & Receipt");
+
+        mnuInvoiceReceipt.setText("Invoice Generate");
+        mnuInvoiceReceipt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuInvoiceReceiptActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnuInvoiceReceipt);
+
+        jMenuBar1.add(jMenu3);
+
         mnuPatientInquiry.setText("Inquiry");
 
         jMenuItem7.setText("Patient Inquiry");
@@ -173,13 +187,13 @@ public class frmMain extends javax.swing.JFrame {
         });
         mnuPatientInquiry.add(mnuSalesInq);
 
-        mnuBillingInq.setText("Billing Inquiry");
-        mnuBillingInq.addActionListener(new java.awt.event.ActionListener() {
+        mnuInvoiceInq.setText("Invoice Inquiry");
+        mnuInvoiceInq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuBillingInqActionPerformed(evt);
+                mnuInvoiceInqActionPerformed(evt);
             }
         });
-        mnuPatientInquiry.add(mnuBillingInq);
+        mnuPatientInquiry.add(mnuInvoiceInq);
 
         jMenuBar1.add(mnuPatientInquiry);
 
@@ -304,10 +318,9 @@ public class frmMain extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_mnuSalesInqActionPerformed
 
-    private void mnuBillingInqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuBillingInqActionPerformed
-        frmBilling obj = new frmBilling();
-        obj.setVisible(true);
-    }//GEN-LAST:event_mnuBillingInqActionPerformed
+    private void mnuInvoiceInqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInvoiceInqActionPerformed
+
+    }//GEN-LAST:event_mnuInvoiceInqActionPerformed
 
     private void mnuGenMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGenMasterActionPerformed
         frmGeneralMaster obj = new frmGeneralMaster();
@@ -362,6 +375,11 @@ public class frmMain extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_mnuMedCertActionPerformed
 
+    private void mnuInvoiceReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInvoiceReceiptActionPerformed
+        frmBilling obj = new frmBilling();
+        obj.setVisible(true);
+    }//GEN-LAST:event_mnuInvoiceReceiptActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -403,6 +421,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistration;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
@@ -417,11 +436,12 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JMenuItem mnuApptInquiry;
-    private javax.swing.JMenuItem mnuBillingInq;
     private javax.swing.JMenuItem mnuDrugMaster;
     private javax.swing.JMenuItem mnuGenMaster;
     private javax.swing.JMenuItem mnuICDMaster;
     private javax.swing.JMenuItem mnuInsuranceMaster;
+    private javax.swing.JMenuItem mnuInvoiceInq;
+    private javax.swing.JMenuItem mnuInvoiceReceipt;
     private javax.swing.JMenuItem mnuMedCert;
     private javax.swing.JMenu mnuPatientInquiry;
     private javax.swing.JMenuItem mnuSalesInq;
