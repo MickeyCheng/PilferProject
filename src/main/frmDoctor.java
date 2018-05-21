@@ -58,8 +58,8 @@ Date todayDate = new Date();
         tblHistory.setAutoResizeMode(tblMedicineTable.AUTO_RESIZE_OFF);
         tblHistory.setAutoscrolls(true);
         lblDoctor.setText(DbConn.LoggedUserName);
-        txtAreaDiagnosisHistory.setEditable(false);
         txtAreaNotesHistory.setEditable(false);
+        txtAreaDiagnosisHistory.setEditable(false);
         cmbDoctor.setVisible(false);
         FillComboDoctor();
         lblCurrentDoctor.setText(cmbDoctor.getSelectedItem().toString());
@@ -114,6 +114,7 @@ Date todayDate = new Date();
             while (DbConn.rs.next()){
                 cmbDoctor.addItem(DbConn.rs.getString("um_name"));
             }
+            cmbDoctor.setSelectedItem(lblDoctor.getText());
             DbConn.pstmt.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -706,7 +707,7 @@ Date todayDate = new Date();
         txtAreaDiagnosis.setRows(5);
         jScrollPane6.setViewportView(txtAreaDiagnosis);
 
-        jPanel5.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 190, -1, -1));
+        jPanel5.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 190, -1, 150));
 
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel5.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 20, 530));
@@ -1090,9 +1091,11 @@ Date todayDate = new Date();
     }//GEN-LAST:event_tblAppointmentMouseClicked
 
     private void btnAddTreatmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTreatmentActionPerformed
+        Double SetValue;
         DefaultTableModel modelTreatment = (DefaultTableModel)tblTreatmentService.getModel();
         int row = tblTreatment.getSelectedRow();    
-        Object[] addTreatment = {tblTreatment.getValueAt(row, 0),tblTreatment.getValueAt(row, 1),tblTreatment.getValueAt(row, 2)};
+        SetValue = Double.valueOf(tblTreatment.getValueAt(row, 2).toString()) * 1;
+        Object[] addTreatment = {tblTreatment.getValueAt(row, 0),tblTreatment.getValueAt(row, 1),tblTreatment.getValueAt(row, 2),"1",SetValue};
         modelTreatment.addRow(addTreatment);
     }//GEN-LAST:event_btnAddTreatmentActionPerformed
 
@@ -1138,7 +1141,7 @@ Date todayDate = new Date();
     private void tblTreatmentServiceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblTreatmentServiceKeyReleased
         int RowCount =0;
         Double GetQty=0.0, GetPrice= 0.0;
-        while (RowCount!=tblTreatmentService.getRowCount()){
+        while (RowCount<tblTreatmentService.getRowCount()){
             GetPrice = Double.valueOf(tblTreatmentService.getValueAt(RowCount, 2).toString());
             GetQty = Double.valueOf(tblTreatmentService.getValueAt(RowCount,3).toString());
             tblTreatmentService.setValueAt(String.valueOf(GetPrice*GetQty), RowCount, 4);
@@ -1307,7 +1310,8 @@ Date todayDate = new Date();
     private void SaveHistory(){
         if (HistoryCheck.equals("insert")){
             try{
-                DbConn.SQLQuery = "insert into tblpatienthistory (ph_pid,ph_notes,ph_subjective,ph_presentation,ph_habits,ph_familyhistory,ph_allergies,ph_planning,ph_doctor,ph_diagnosis,ph_chiefcomplaint,ph_pasthistory,ph_apptdate) "
+                DbConn.SQLQuery = "insert into tblpatienthistory (ph_pid,ph_notes,ph_subjective,ph_presentation,ph_habits,ph_familyhistory,ph_allergies,"
+                        + "ph_planning,ph_doctor,ph_diagnosis,ph_chiefcomplaint,ph_pasthistory,ph_apptdate,ph_apptnumber) "
                         + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
                 DbConn.pstmt.setString(1, lblPID.getText());
@@ -1322,7 +1326,8 @@ Date todayDate = new Date();
                 DbConn.pstmt.setString(10,txtAreaDiagnosis.getText());
                 DbConn.pstmt.setString(11,txtAreaChiefComplaint.getText());
                 DbConn.pstmt.setString(12,txtAreaPastHistory.getText());
-                DbConn.pstmt.setString(11,GetApptDate);
+                DbConn.pstmt.setString(13,GetApptDate);
+                DbConn.pstmt.setString(14,lblApptID.getText());
                 DbConn.pstmt.execute();
                 DbConn.pstmt.close();
             }catch(SQLException e){
