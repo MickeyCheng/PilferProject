@@ -38,6 +38,9 @@ String GetApptID,GetBillStatus,GetPID,GetDoctor,GetPatientName;
         setLocationRelativeTo(null);
         lblBillChecker.setText("<html><center>Bill<br> Processed</center></html>");
         lblBillChecker.setVisible(false);
+        tblBilling.setAutoResizeMode(tblBilling.AUTO_RESIZE_OFF);
+        tblBilling.setAutoscrolls(true);
+        tblBilling.setAutoCreateRowSorter(true);
         dateAppointment.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {FillDateChange();}
