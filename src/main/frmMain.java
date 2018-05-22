@@ -149,7 +149,7 @@ public class frmMain extends javax.swing.JFrame {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Invoice & Receipt");
+        jMenu3.setText("Billing");
 
         mnuInvoiceReceipt.setText("Invoice Generate");
         mnuInvoiceReceipt.addActionListener(new java.awt.event.ActionListener() {

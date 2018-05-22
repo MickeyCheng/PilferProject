@@ -727,6 +727,11 @@ Date todayDate = new Date();
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblMedicine.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMedicineMouseClicked(evt);
+            }
+        });
         jScrollPane7.setViewportView(tblMedicine);
 
         jPanel5.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 440, 110));
@@ -1087,10 +1092,42 @@ Date todayDate = new Date();
             FillHistory();
             LoadTreatment();
             LoadMedicine();
+            LoadHistory();
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Please check that you have chosen the correct patient.");
         }
     }//GEN-LAST:event_tblAppointmentMouseClicked
+    private void ClearHistoryTexts(){
+        txtAreaDiagnosisHistory.setText("");
+        txtAreaSubjective.setText("");
+        txtAreaPresentation.setText("");
+        txtAreaPastHistory.setText("");
+        txtAreaHabits.setText("");
+        txtAreaFamilyHistory.setText("");
+        txtAreaAllergies.setText("");
+        txtAreaPlanning.setText("");
+    }
+    private void LoadHistory(){
+        ClearHistoryTexts();
+        try{
+            DbConn.SQLQuery = "select * from tblpatienthistory where ph_apptnumber =?";
+            DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
+            DbConn.pstmt.setString(1, lblApptID.getText());
+            DbConn.rs = DbConn.pstmt.executeQuery();
+            if (DbConn.rs.next()){
+                txtAreaDiagnosisHistory.setText(DbConn.rs.getString("ph_diagnosis"));
+                txtAreaSubjective.setText(DbConn.rs.getString("ph_subjective"));
+                txtAreaPresentation.setText(DbConn.rs.getString("ph_presentation"));
+                txtAreaPastHistory.setText(DbConn.rs.getString("ph_pasthistory"));
+                txtAreaHabits.setText(DbConn.rs.getString("ph_habits"));
+                txtAreaFamilyHistory.setText(DbConn.rs.getString("ph_familyhistory"));
+                txtAreaAllergies.setText(DbConn.rs.getString("ph_allergies"));
+                txtAreaPlanning.setText(DbConn.rs.getString("ph_planning"));
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
     private void LoadMedicine(){
         DefaultTableModel modelMedicine = (DefaultTableModel)tblMedicineTable.getModel(); 
         modelMedicine.setRowCount(0);
@@ -1230,6 +1267,10 @@ Date todayDate = new Date();
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_tblHistoryMouseClicked
+
+    private void tblMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMedicineMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblMedicineMouseClicked
     private void UpdateAppointment(){
         try{
             DbConn.pstmt = DbConn.conn.prepareStatement("Update tblappointment set ap_billed=? where ap_apptnumber =?");
