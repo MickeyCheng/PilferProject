@@ -108,10 +108,15 @@ DbConnection DbConn = new DbConnection();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(214, 214, 194));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel2.setForeground(new java.awt.Color(0, 0, 0));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("REGISTRATION");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -119,9 +124,9 @@ DbConnection DbConn = new DbConnection();
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(344, 344, 344)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addContainerGap(679, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,20 +138,28 @@ DbConnection DbConn = new DbConnection();
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 830, 40));
 
+        jPanel3.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel3.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("DEPARTMENT:");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 285, 110, 25));
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("SYSTEM ID:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 80, 25));
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("OCCUPATION:");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 242, 110, 25));
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("POSITION:");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 328, 110, 25));
 
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("REMARKS:");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 110, 25));
         jPanel3.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 44, 390, -1));
@@ -161,18 +174,23 @@ DbConnection DbConn = new DbConnection();
         jPanel3.add(txtPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 330, 390, -1));
         jPanel3.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 140, 30));
 
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("NAME:");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 42, 80, 25));
 
+        lblPid.setForeground(new java.awt.Color(0, 0, 0));
         lblPid.setText("PID");
         jPanel3.add(lblPid, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 5, 90, -1));
 
-        jLabel10.setText("DATE OF BIRTH:");
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("DOB:");
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 88, 25));
 
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("NATIONALITY:");
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 80, 30));
 
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("MOBILE NUMBER:");
         jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 145, 140, 34));
@@ -183,8 +201,9 @@ DbConnection DbConn = new DbConnection();
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 145, 220, 86));
 
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("ADDRESS:");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 154, 80, 25));
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 80, 25));
         jPanel3.add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 185, 140, -1));
 
         txtRemarks.setColumns(20);
@@ -193,44 +212,56 @@ DbConnection DbConn = new DbConnection();
 
         jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 364, 390, 115));
 
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("GENDER:");
         jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 70, 20));
 
         btnGroupGender.add(rbFemale);
+        rbFemale.setForeground(new java.awt.Color(0, 0, 0));
         rbFemale.setText("Female");
         jPanel3.add(rbFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
 
         btnGroupGender.add(rbMale);
+        rbMale.setForeground(new java.awt.Color(0, 0, 0));
         rbMale.setText("Male");
         jPanel3.add(rbMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
 
-        jButton3.setText("add");
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/NewIcon.png"))); // NOI18N
+        jButton3.setText("Add");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, -1));
+        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 2, 110, 40));
         jPanel3.add(dateBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 150, 30));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 530, 490));
 
+        jPanel4.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/SaveIcon.png"))); // NOI18N
         jButton2.setText("SAVE");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 270, 60));
+        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 120, 60));
 
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("PICTURE");
         jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 270, 137));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, 290, 240));
 
+        jPanel5.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblPatient.setModel(new javax.swing.table.DefaultTableModel(

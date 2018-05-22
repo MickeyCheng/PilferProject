@@ -401,6 +401,7 @@ Date todayDate = new Date();
         jScrollPane13 = new javax.swing.JScrollPane();
         tblICDSearch = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
+        jSeparator7 = new javax.swing.JSeparator();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -428,28 +429,36 @@ Date todayDate = new Date();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(214, 214, 194));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("PID:");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
+        lblPatientName.setForeground(new java.awt.Color(0, 0, 0));
         lblPatientName.setText("Patient Name");
         jPanel2.add(lblPatientName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 380, 20));
 
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Name:");
         jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        lblPID.setForeground(new java.awt.Color(0, 0, 0));
         lblPID.setText("Patient Id");
         jPanel2.add(lblPID, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 110, -1));
 
+        lblApptID.setForeground(new java.awt.Color(0, 0, 0));
         lblApptID.setText("apptid");
         jPanel2.add(lblApptID, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1040, 70));
 
+        jPanel3.setBackground(new java.awt.Color(214, 214, 194));
         jPanel3.setName(""); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 350, 10));
@@ -488,11 +497,16 @@ Date todayDate = new Date();
         jPanel3.getAccessibleContext().setAccessibleName("");
         jPanel3.getAccessibleContext().setAccessibleDescription("");
 
+        jTabbedPane1.setBackground(new java.awt.Color(214, 214, 194));
+        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
+
+        TabTreatments.setBackground(new java.awt.Color(214, 214, 194));
         TabTreatments.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel4.setBackground(new java.awt.Color(214, 214, 194));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblTreatment.setBackground(new java.awt.Color(214, 214, 194));
         tblTreatment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -509,6 +523,7 @@ Date todayDate = new Date();
         jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 900, 120));
         jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 920, 20));
 
+        tblTreatmentService.setBackground(new java.awt.Color(214, 214, 194));
         tblTreatmentService.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -526,25 +541,31 @@ Date todayDate = new Date();
 
         jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 900, 270));
 
+        btnAddTreatment.setBackground(new java.awt.Color(255, 255, 255));
+        btnAddTreatment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/NewIcon.png"))); // NOI18N
         btnAddTreatment.setText("ADD");
         btnAddTreatment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddTreatmentActionPerformed(evt);
             }
         });
-        jPanel4.add(btnAddTreatment, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 600, 30));
+        jPanel4.add(btnAddTreatment, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 120, 40));
 
         TabTreatments.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 920, 480));
 
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Type Service Here:");
         TabTreatments.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 140, 20));
         TabTreatments.add(txtTreatment, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 750, -1));
 
         jTabbedPane1.addTab("Treatments", TabTreatments);
 
-        jPanel7.setBackground(new java.awt.Color(102, 102, 102));
+        TabNotes.setForeground(new java.awt.Color(0, 0, 0));
+
+        jPanel7.setBackground(new java.awt.Color(214, 214, 194));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtAreaNotes.setBackground(new java.awt.Color(214, 214, 194));
         txtAreaNotes.setColumns(20);
         txtAreaNotes.setRows(5);
         jScrollPane3.setViewportView(txtAreaNotes);
@@ -570,29 +591,38 @@ Date todayDate = new Date();
 
         jTabbedPane1.addTab("Notes", TabNotes);
 
+        TabHistory.setBackground(new java.awt.Color(214, 214, 194));
         TabHistory.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel6.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel6.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Planning:");
         jPanel6.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, -1, -1));
 
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("Subjective:");
         jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("Presentation:");
         jPanel6.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
 
+        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
         jLabel29.setText("Past History:");
         jPanel6.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
 
+        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("Habits:");
         jPanel6.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, -1, -1));
 
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("Family History:");
         jPanel6.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, -1, -1));
 
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
         jLabel32.setText("Allergies:");
         jPanel6.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, -1, -1));
 
@@ -658,6 +688,7 @@ Date todayDate = new Date();
 
         jPanel6.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 460, 110));
 
+        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setText("Diagnosis:");
         jPanel6.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
@@ -671,9 +702,10 @@ Date todayDate = new Date();
 
         jTabbedPane1.addTab("Patient History", TabHistory);
 
-        jPanel5.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel5.setBackground(new java.awt.Color(214, 214, 194));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Appointment Date:");
         jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 110, -1));
 
@@ -684,6 +716,7 @@ Date todayDate = new Date();
         });
         jPanel5.add(dateMedCertAppt, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 170, 30));
 
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Diagnosis:");
         jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 110, -1));
 
@@ -694,12 +727,14 @@ Date todayDate = new Date();
         });
         jPanel5.add(dateMedCertDischarge, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 170, 30));
 
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Discharged Date:");
         jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 110, -1));
 
         cmbMedCert.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel5.add(cmbMedCert, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, 170, -1));
 
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Days:");
         jPanel5.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 110, -1));
 
@@ -710,8 +745,9 @@ Date todayDate = new Date();
         jPanel5.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 190, -1, 150));
 
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel5.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 20, 530));
+        jPanel5.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 20, 540));
 
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Type Medicine Here:");
         jPanel5.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, 20));
         jPanel5.add(txtMedicineSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 440, -1));
@@ -736,14 +772,16 @@ Date todayDate = new Date();
 
         jPanel5.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 440, 110));
 
+        btnAddMedicine.setBackground(new java.awt.Color(255, 255, 255));
+        btnAddMedicine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/NewIcon.png"))); // NOI18N
         btnAddMedicine.setText("ADD");
         btnAddMedicine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddMedicineActionPerformed(evt);
             }
         });
-        jPanel5.add(btnAddMedicine, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 300, 30));
-        jPanel5.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 460, 20));
+        jPanel5.add(btnAddMedicine, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 120, 50));
+        jPanel5.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 460, 20));
 
         tblMedicineTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -755,7 +793,7 @@ Date todayDate = new Date();
         ));
         jScrollPane8.setViewportView(tblMedicineTable);
 
-        jPanel5.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 440, 280));
+        jPanel5.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 440, 270));
 
         javax.swing.GroupLayout TabPrescriptionLayout = new javax.swing.GroupLayout(TabPrescription);
         TabPrescription.setLayout(TabPrescriptionLayout);
@@ -776,14 +814,17 @@ Date todayDate = new Date();
 
         jTabbedPane1.addTab("Prescription and Medical Certificate", TabPrescription);
 
+        TabVitalAndCC.setBackground(new java.awt.Color(214, 214, 194));
         TabVitalAndCC.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel8.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel8.setBackground(new java.awt.Color(214, 214, 194));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Chief Complaint");
         jPanel8.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 100, 30));
 
+        txtAreaChiefComplaint.setBackground(new java.awt.Color(214, 214, 194));
         txtAreaChiefComplaint.setColumns(20);
         txtAreaChiefComplaint.setRows(5);
         jScrollPane2.setViewportView(txtAreaChiefComplaint);
@@ -792,14 +833,17 @@ Date todayDate = new Date();
         jPanel8.add(txtVisionRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 40, -1));
         jPanel8.add(txtVisionLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 40, -1));
 
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("LEFT");
         jPanel8.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 40, -1));
 
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("RIGHT");
         jPanel8.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 40, -1));
 
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("VISION");
         jPanel8.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 100, 20));
@@ -811,17 +855,21 @@ Date todayDate = new Date();
         });
         jPanel8.add(txtBloodSugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 110, -1));
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("BLOOD SUGAR:");
         jPanel8.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 100, 20));
 
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("TEMPERATURE:");
         jPanel8.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 100, 20));
         jPanel8.add(txtTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 110, -1));
         jPanel8.add(txtPulse, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 110, -1));
 
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("PULSE:");
         jPanel8.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 100, 20));
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("BP:");
         jPanel8.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 100, 20));
         jPanel8.add(txtBP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 50, -1));
@@ -832,24 +880,30 @@ Date todayDate = new Date();
         jPanel8.add(txtWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 110, -1));
         jPanel8.add(txtHeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 110, -1));
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("WEIGHT:");
         jPanel8.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 100, 20));
         jPanel8.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 260, 10));
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("HEIGHT:");
         jPanel8.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 100, 20));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("VITAL SIGNS");
         jPanel8.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 260, 30));
 
+        jPanel15.setBackground(new java.awt.Color(214, 214, 194));
         jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("Type ICD Here:");
         jPanel15.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 110, 20));
         jPanel15.add(txtICDSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 340, -1));
 
+        tblICDShow.setBackground(new java.awt.Color(214, 214, 194));
         tblICDShow.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -862,15 +916,18 @@ Date todayDate = new Date();
 
         jPanel15.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 560, 110));
 
+        btnAddICD.setBackground(new java.awt.Color(255, 255, 255));
+        btnAddICD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/NewIcon.png"))); // NOI18N
         btnAddICD.setText("ADD");
         btnAddICD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddICDActionPerformed(evt);
             }
         });
-        jPanel15.add(btnAddICD, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 190, 30));
+        jPanel15.add(btnAddICD, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 100, 50));
         jPanel15.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 560, 20));
 
+        tblICDSearch.setBackground(new java.awt.Color(214, 214, 194));
         tblICDSearch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -884,24 +941,30 @@ Date todayDate = new Date();
         ));
         jScrollPane13.setViewportView(tblICDSearch);
 
-        jPanel15.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 560, 130));
+        jPanel15.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 560, 120));
 
         jPanel8.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 580, 380));
 
         jButton3.setText("View Graph");
         jPanel8.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
 
+        jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel8.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 30, 530));
+
         TabVitalAndCC.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 920, 530));
 
         jTabbedPane1.addTab("Vital Signs, Chief Complains & ICD", TabVitalAndCC);
 
+        jPanel10.setBackground(new java.awt.Color(214, 214, 194));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel11.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel11.setBackground(new java.awt.Color(214, 214, 194));
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel12.setBackground(new java.awt.Color(214, 214, 194));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblTreatmentSummary.setBackground(new java.awt.Color(214, 214, 194));
         tblTreatmentSummary.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -919,14 +982,18 @@ Date todayDate = new Date();
 
         jPanel11.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 410, 160));
 
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Treatment");
         jPanel11.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Prescription");
         jPanel11.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
+        jPanel13.setBackground(new java.awt.Color(214, 214, 194));
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblPrescriptionSummary.setBackground(new java.awt.Color(214, 214, 194));
         tblPrescriptionSummary.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -944,22 +1011,28 @@ Date todayDate = new Date();
 
         jPanel11.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 410, 160));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/printericon.png"))); // NOI18N
         jButton2.setText("PRINT PRESCRIPTION");
-        jPanel11.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 300, -1));
+        jPanel11.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 300, 50));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/printericon.png"))); // NOI18N
         jButton1.setText("PRINT MEDICAL CERTIFICATE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel11.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 300, -1));
+        jPanel11.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 300, 50));
 
         jPanel10.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 430, 540));
 
-        jPanel14.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel14.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel14.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblHistorySummary.setBackground(new java.awt.Color(214, 214, 194));
         tblHistorySummary.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -975,16 +1048,19 @@ Date todayDate = new Date();
 
         jPanel14.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 460, 150));
 
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Patient History");
         jPanel14.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        btnSaveAll.setBackground(new java.awt.Color(255, 255, 255));
+        btnSaveAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/SaveIcon.png"))); // NOI18N
         btnSaveAll.setText("SAVE");
         btnSaveAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveAllActionPerformed(evt);
             }
         });
-        jPanel14.add(btnSaveAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 120, 60));
+        jPanel14.add(btnSaveAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 120, 60));
 
         txtAreaNotesHistory.setColumns(20);
         txtAreaNotesHistory.setRows(5);
@@ -992,6 +1068,7 @@ Date todayDate = new Date();
 
         jPanel14.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 460, -1));
 
+        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setText("Notes:");
         jPanel14.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
@@ -1002,14 +1079,18 @@ Date todayDate = new Date();
         jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 940, 580));
         jTabbedPane1.getAccessibleContext().setAccessibleName("");
 
+        jPanel9.setBackground(new java.awt.Color(214, 214, 194));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Doctor:");
         jPanel9.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        lblDoctor.setForeground(new java.awt.Color(0, 0, 0));
         lblDoctor.setText("Doctor");
         jPanel9.add(lblDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 170, -1));
 
+        lblCurrentDoctor.setForeground(new java.awt.Color(0, 0, 0));
         lblCurrentDoctor.setText("jLabel35");
         jPanel9.add(lblCurrentDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 210, -1));
 
@@ -1593,6 +1674,7 @@ Date todayDate = new Date();
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblApptID;
     private javax.swing.JLabel lblCurrentDoctor;

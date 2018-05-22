@@ -40,13 +40,13 @@ public class frmMain extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        btnAppointment = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        btnDoctor = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         btnRegistration = new javax.swing.JButton();
+        btnAppointment = new javax.swing.JButton();
+        btnDoctor = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -72,59 +72,69 @@ public class frmMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(214, 214, 194));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(0, 0, 102));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnAppointment.setText("Appointment");
-        btnAppointment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAppointmentActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, 90));
-
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 120));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 220, 140));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 220, 140));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 0));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnDoctor.setText("Doctor");
-        btnDoctor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDoctorActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, 90));
-
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 120));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 220, 140));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 220, 140));
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel7.setBackground(new java.awt.Color(102, 0, 0));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 120));
 
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, 220, 140));
+
+        btnRegistration.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/registrationButtonMain.png"))); // NOI18N
         btnRegistration.setText("Registration");
+        btnRegistration.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRegistration.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnRegistration.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnRegistration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrationActionPerformed(evt);
             }
         });
-        jPanel7.add(btnRegistration, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, 90));
+        jPanel1.add(btnRegistration, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 220, 240));
 
-        jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 120));
+        btnAppointment.setBackground(new java.awt.Color(255, 255, 255));
+        btnAppointment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ApptButtonMain.png"))); // NOI18N
+        btnAppointment.setText("Appointments");
+        btnAppointment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAppointment.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAppointment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAppointmentActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 220, 240));
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 220, 140));
+        btnDoctor.setBackground(new java.awt.Color(255, 255, 255));
+        btnDoctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/DoctorButtonMain.png"))); // NOI18N
+        btnDoctor.setText("Doctor");
+        btnDoctor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDoctor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoctorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 220, 240));
 
         jMenu1.setText("File");
 

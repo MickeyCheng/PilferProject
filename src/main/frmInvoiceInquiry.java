@@ -171,11 +171,16 @@ String GetFromDate,GetToDate;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Invoice Inquiry");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 280, -1));
 
@@ -186,9 +191,11 @@ String GetFromDate,GetToDate;
         });
         jPanel2.add(fromDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 140, 30));
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("From:");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, -1, 30));
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("To:");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, -1, 30));
 
@@ -199,12 +206,14 @@ String GetFromDate,GetToDate;
         });
         jPanel2.add(toDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, 140, 30));
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Attending Doctor:");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
-        jPanel2.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 290, -1));
+        jPanel2.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 290, -1));
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Name or PID:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         cmbDoctor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(cmbDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 280, -1));
@@ -214,6 +223,7 @@ String GetFromDate,GetToDate;
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 900, 110));
 
+        tblInvoice.setBackground(new java.awt.Color(214, 214, 194));
         tblInvoice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -229,13 +239,15 @@ String GetFromDate,GetToDate;
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 900, 340));
 
+        btnViewInvoice.setBackground(new java.awt.Color(255, 255, 255));
+        btnViewInvoice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ReportsIcon.png"))); // NOI18N
         btnViewInvoice.setText("View Invoice");
         btnViewInvoice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewInvoiceActionPerformed(evt);
             }
         });
-        jPanel1.add(btnViewInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 480, -1, -1));
+        jPanel1.add(btnViewInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, -1, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

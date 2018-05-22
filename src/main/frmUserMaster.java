@@ -95,11 +95,15 @@ boolean add,edit;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblUserMaster.setBackground(new java.awt.Color(214, 214, 194));
         tblUserMaster.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -120,21 +124,26 @@ boolean add,edit;
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 660, 210));
 
-        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel3.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("ACCOUNT NAME:");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, 20));
         jPanel3.add(txtAccountName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 240, -1));
         jPanel3.add(txtUserId, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 240, -1));
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("USER ID:");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 120, 20));
         jPanel3.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 240, -1));
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("ACTIVE:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 50, 20));
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("PASSWORD:");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 120, 20));
 
@@ -144,7 +153,8 @@ boolean add,edit;
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 20, 210));
 
-        jButton1.setText("NEW");
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/NewIcon.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -152,7 +162,8 @@ boolean add,edit;
         });
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 100, 60));
 
-        jButton2.setText("EDIT");
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/EditIcon.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -160,36 +171,44 @@ boolean add,edit;
         });
         jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, 100, 60));
 
-        jButton3.setText("DELETE");
-        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 100, 60));
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/DeleteIcon.png"))); // NOI18N
+        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 100, 60));
 
-        jButton4.setText("SAVE");
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/SaveIcon.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 100, 60));
+        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 100, 60));
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("CATEGORY");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 120, 20));
 
         AdminGroup.add(radAdminYes);
+        radAdminYes.setForeground(new java.awt.Color(0, 0, 0));
         radAdminYes.setText("Yes");
         jPanel3.add(radAdminYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 60, -1));
 
         AdminGroup.add(radAdminNo);
+        radAdminNo.setForeground(new java.awt.Color(0, 0, 0));
         radAdminNo.setText("No");
         jPanel3.add(radAdminNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 50, -1));
 
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("ADMIN:");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 50, 20));
 
         ActiveGroup.add(radActiveYes);
+        radActiveYes.setForeground(new java.awt.Color(0, 0, 0));
         radActiveYes.setText("Yes");
         jPanel3.add(radActiveYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 60, -1));
 
         ActiveGroup.add(radActiveNo);
+        radActiveNo.setForeground(new java.awt.Color(0, 0, 0));
         radActiveNo.setText("No");
         jPanel3.add(radActiveNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 50, -1));
 

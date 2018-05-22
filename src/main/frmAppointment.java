@@ -189,7 +189,14 @@ DbConnection DbConn = new DbConnection();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        txtCpr = new javax.swing.JTextField();
+        txtMobile = new javax.swing.JTextField();
+        lblPID = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        dateDob = new com.toedter.calendar.JDateChooser();
+        jLabel14 = new javax.swing.JLabel();
+        txtRemarks = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         cmbTime = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -199,14 +206,6 @@ DbConnection DbConn = new DbConnection();
         cmbDoctor = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        txtCpr = new javax.swing.JTextField();
-        txtMobile = new javax.swing.JTextField();
-        lblPID = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        dateDob = new com.toedter.calendar.JDateChooser();
-        jLabel14 = new javax.swing.JLabel();
-        txtRemarks = new javax.swing.JTextField();
         txtSearch = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -233,7 +232,7 @@ DbConnection DbConn = new DbConnection();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(214, 214, 194));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblPatient.setModel(new javax.swing.table.DefaultTableModel(
@@ -256,73 +255,36 @@ DbConnection DbConn = new DbConnection();
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 410, 140));
 
+        jPanel2.setBackground(new java.awt.Color(214, 214, 194));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel3.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("MOBILE:");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 50, 20));
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("NAME:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 90, 20));
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("CPR:");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 90, 20));
 
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("BIRTHDATE:");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, 20));
-
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel5.setBackground(new java.awt.Color(102, 102, 102));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel5.add(cmbTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 230, 30));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("TIME:");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 80, 30));
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel9.setText("DATE:");
-        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 80, 30));
-
-        dateAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                dateAppointmentMouseReleased(evt);
-            }
-        });
-        jPanel5.add(dateAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 230, 30));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("DOCTOR:");
-        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 80, 30));
-
-        jPanel5.add(cmbDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 230, 30));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SET APPOINTMENT");
-        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 320, -1));
-
-        jButton1.setText("SAVE APPOINTMENT");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 230, -1));
-
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 190));
-
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 370, 210));
         jPanel3.add(txtCpr, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 250, -1));
         jPanel3.add(txtMobile, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 130, -1));
 
+        lblPID.setForeground(new java.awt.Color(0, 0, 0));
         lblPID.setText("pid");
         jPanel3.add(lblPID, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 50, -1));
 
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("PID:");
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, 20));
         jPanel3.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 250, -1));
@@ -334,20 +296,72 @@ DbConnection DbConn = new DbConnection();
         });
         jPanel3.add(dateDob, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 250, 30));
 
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("REMARKS:");
         jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 90, 20));
         jPanel3.add(txtRemarks, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 250, -1));
+
+        jPanel5.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel5.add(cmbTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 230, 30));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("TIME:");
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 80, 30));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("DATE:");
+        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 80, 30));
+
+        dateAppointment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                dateAppointmentMouseReleased(evt);
+            }
+        });
+        jPanel5.add(dateAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 230, 30));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("DOCTOR:");
+        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 80, 30));
+
+        jPanel5.add(cmbDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 230, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("SET APPOINTMENT");
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 320, -1));
+
+        jButton1.setText("SAVE APPOINTMENT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 230, -1));
+
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 350, 200));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 390, 420));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 410, 440));
         jPanel1.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 290, 30));
 
+        jPanel6.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel7.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel7.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(204, 204, 204)));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel8.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblDoctor2.setModel(new javax.swing.table.DefaultTableModel(
@@ -372,12 +386,16 @@ DbConnection DbConn = new DbConnection();
 
         jPanel8.add(cmbDoctor2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 230, 30));
 
+        jLabel12.setBackground(new java.awt.Color(0, 0, 0));
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("DOCTOR:");
         jPanel8.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, 30));
 
         jPanel7.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 420, 240));
 
+        jPanel9.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel9.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblDoctor1.setModel(new javax.swing.table.DefaultTableModel(
@@ -400,7 +418,9 @@ DbConnection DbConn = new DbConnection();
 
         jPanel9.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 400, 180));
 
+        jLabel11.setBackground(new java.awt.Color(0, 0, 0));
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("DOCTOR:");
         jPanel9.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, 30));
 
@@ -409,6 +429,7 @@ DbConnection DbConn = new DbConnection();
         jPanel7.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 420, 240));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("DATE:");
         jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 80, 30));
 
@@ -427,6 +448,8 @@ DbConnection DbConn = new DbConnection();
         });
         jPanel7.add(btnApptShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, -1, -1));
 
+        jPanel10.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel10.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnVitalSigns.setText("VITAL SIGNS ENTRY");
@@ -454,6 +477,9 @@ DbConnection DbConn = new DbConnection();
         jPanel10.add(btnChiefComplaint, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 190, -1));
 
         jPanel7.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 420, 260));
+
+        jPanel11.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel11.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel7.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 420, 260));
 
         jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 870, 610));
@@ -743,7 +769,6 @@ DbConnection DbConn = new DbConnection();
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;

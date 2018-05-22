@@ -98,6 +98,8 @@ String GetApptID,GetBillStatus;
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -117,10 +119,14 @@ String GetApptID,GetBillStatus;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(214, 214, 194));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(214, 214, 194));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dateFrom.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,53 +134,53 @@ String GetApptID,GetBillStatus;
                 dateFromMouseReleased(evt);
             }
         });
-        jPanel3.add(dateFrom, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 190, 30));
+        jPanel3.add(dateFrom, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 190, 30));
 
         dateTo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 dateToMouseReleased(evt);
             }
         });
-        jPanel3.add(dateTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 190, 30));
+        jPanel3.add(dateTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 190, 30));
 
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("To:");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, -1, -1));
 
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("From:");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ReportsIcon.png"))); // NOI18N
         jButton1.setText("View");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 120, 80));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 120, 80));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 20, 110));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 760, 120));
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Sales Inquiry");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 90));
 
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 8, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 750, 120));
+
+        jPanel4.setBackground(new java.awt.Color(214, 214, 194));
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel5.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel5.setBackground(new java.awt.Color(214, 214, 194));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblSales.setBackground(new java.awt.Color(214, 214, 194));
         tblSales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -190,49 +196,60 @@ String GetApptID,GetBillStatus;
 
         jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 720, 220));
 
+        jPanel6.setBackground(new java.awt.Color(214, 214, 194));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Total Net:");
         jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, -1));
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Total Patients:");
         jPanel6.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Total Payable:");
         jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, -1, -1));
         jPanel6.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 200, 10));
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Total Discount:");
         jPanel6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, -1, -1));
 
+        lblPatients.setForeground(new java.awt.Color(0, 0, 0));
         lblPatients.setText("0.00");
         jPanel6.add(lblPatients, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 130, -1));
 
+        lblPayable.setForeground(new java.awt.Color(0, 0, 0));
         lblPayable.setText("0.00");
         jPanel6.add(lblPayable, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 120, -1));
 
+        lblDiscount.setForeground(new java.awt.Color(0, 0, 0));
         lblDiscount.setText("0.00");
         jPanel6.add(lblDiscount, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 130, -1));
 
+        lblNet.setForeground(new java.awt.Color(0, 0, 0));
         lblNet.setText("0.00");
         jPanel6.add(lblNet, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 100, -1));
 
-        jButton2.setText("Print");
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/printericon.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, 100));
+        jPanel6.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 110, 50));
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Export");
-        jPanel6.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 110, 100));
+        jPanel6.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 110, 50));
 
         jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 720, 120));
 
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 740, 370));
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 730, 370));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 760, 390));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 750, 390));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -337,6 +354,7 @@ String GetApptID,GetBillStatus;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -346,6 +364,7 @@ String GetApptID,GetBillStatus;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblDiscount;
     private javax.swing.JLabel lblNet;
     private javax.swing.JLabel lblPatients;
