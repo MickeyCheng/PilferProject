@@ -238,6 +238,11 @@ public class frmMain extends javax.swing.JFrame {
         jMenu5.add(mnuUserMaster);
 
         mnuUserSecMaster.setText("User Security");
+        mnuUserSecMaster.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuUserSecMasterActionPerformed(evt);
+            }
+        });
         jMenu5.add(mnuUserSecMaster);
 
         mnuDrugMaster.setText("Drug Master");
@@ -358,7 +363,8 @@ public class frmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuICDMasterActionPerformed
 
     private void mnuInsuranceMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInsuranceMasterActionPerformed
-        
+        frmInsurance obj = new frmInsurance();
+        obj.setVisible(true);
     }//GEN-LAST:event_mnuInsuranceMasterActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -389,6 +395,11 @@ public class frmMain extends javax.swing.JFrame {
         frmBilling obj = new frmBilling();
         obj.setVisible(true);
     }//GEN-LAST:event_mnuInvoiceReceiptActionPerformed
+
+    private void mnuUserSecMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuUserSecMasterActionPerformed
+        frmUserSecurity obj = new frmUserSecurity();
+        obj.setVisible(true);
+    }//GEN-LAST:event_mnuUserSecMasterActionPerformed
 
     /**
      * @param args the command line arguments

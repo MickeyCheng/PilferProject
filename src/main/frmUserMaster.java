@@ -272,6 +272,7 @@ boolean add,edit;
                 DbConn.pstmt.execute();
                 JOptionPane.showMessageDialog(this, "USER ADDED");
                 FillTable();
+                InsertUserSecurity();
                 ClearTexts();
             }else if (add==false && edit==true){
                 DbConn.SQLQuery = "update tblusermaster set um_name=?,um_password=?,um_status=?,um_category=?,um_administrator=? where um_id=?";
@@ -300,7 +301,53 @@ boolean add,edit;
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_jButton4ActionPerformed
-
+    private void InsertUserSecurity(){
+        try{
+                DbConn.SQLQuery = "insert into tblusersecurity (us_id,us_name,us_regview,us_reginsert,us_regedit,us_regdelete,us_regprint,"
+                        + "us_apptview,us_apptinsert,us_apptedit,us_apptdelete,us_apptprint,"
+                        + "us_docview,us_docinsert,us_docedit,us_docdelete,us_docprint,"
+                        + "us_billview,us_billprocess,us_billprint,us_billinvoicegen,"
+                        + "us_inqpatient,us_inqappointment,us_inqsales,us_inqinvoice,"
+                        + "us_mastergen,us_masteruser,us_mastersecurity,us_masterdrug,us_mastertreatment,us_masterinsurance,us_mastericd) "
+                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
+                DbConn.pstmt.setString(1, txtUserId.getText());
+                DbConn.pstmt.setString(2, txtAccountName.getText());
+                DbConn.pstmt.setString(3, "N");
+                DbConn.pstmt.setString(4, "N");
+                DbConn.pstmt.setString(5, "N");
+                DbConn.pstmt.setString(6, "N");
+                DbConn.pstmt.setString(7, "N");
+                DbConn.pstmt.setString(8, "N");
+                DbConn.pstmt.setString(9, "N");
+                DbConn.pstmt.setString(10, "N");
+                DbConn.pstmt.setString(11, "N");
+                DbConn.pstmt.setString(12, "N");
+                DbConn.pstmt.setString(13,"N" );
+                DbConn.pstmt.setString(14, "N");
+                DbConn.pstmt.setString(15, "N");
+                DbConn.pstmt.setString(16, "N");
+                DbConn.pstmt.setString(17, "N");
+                DbConn.pstmt.setString(18, "N");
+                DbConn.pstmt.setString(19, "N");
+                DbConn.pstmt.setString(20, "N");
+                DbConn.pstmt.setString(21, "N");
+                DbConn.pstmt.setString(22, "N");
+                DbConn.pstmt.setString(23, "N");
+                DbConn.pstmt.setString(24, "N");
+                DbConn.pstmt.setString(25, "N");
+                DbConn.pstmt.setString(26, "N");
+                DbConn.pstmt.setString(27, "N");
+                DbConn.pstmt.setString(28, "N");
+                DbConn.pstmt.setString(29, "N");
+                DbConn.pstmt.setString(30, "N");
+                DbConn.pstmt.setString(31, "N");
+                DbConn.pstmt.setString(32, "N");
+                DbConn.pstmt.execute();
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+    }
     private void tblUserMasterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUserMasterMouseClicked
         int row = tblUserMaster.getSelectedRow();
         int ba = tblUserMaster.convertColumnIndexToModel(row);
