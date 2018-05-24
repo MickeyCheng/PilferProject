@@ -2,12 +2,17 @@
 package main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 public class frmInsurance extends javax.swing.JFrame {
 DbConnection DbConn = new DbConnection();
@@ -22,6 +27,11 @@ DbConnection DbConn = new DbConnection();
             public void actionPerformed(ActionEvent e) {txtName.setText(cmbName.getSelectedItem().toString());
             FillScheme();}
         });
+        try {
+        setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
+    } catch (IOException ex) {
+        Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
     private void FillScheme(){
         cmbScheme.removeAllItems();

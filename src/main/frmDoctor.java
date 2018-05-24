@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.IOException;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import java.sql.ResultSet;
@@ -17,6 +18,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.event.DocumentEvent;
@@ -104,6 +108,11 @@ Date todayDate = new Date();
             @Override
             public void changedUpdate(DocumentEvent e) {ListenICD();}
         });
+        try {
+        setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
+    } catch (IOException ex) {
+        Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
     private void FillComboDoctor(){
         cmbDoctor.removeAllItems();

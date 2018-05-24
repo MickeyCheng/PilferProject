@@ -1,7 +1,12 @@
 package main;
 
 import java.awt.Window;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +19,11 @@ public class frmMain extends javax.swing.JFrame {
         initComponents();
         setExtendedState(frmMain.MAXIMIZED_BOTH);
         GrantAccess();
+        try {
+        setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
+    } catch (IOException ex) {
+        Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 //    private void CheckAccessLevel(){
 //        if (!DbConn.LoggedUserCategory.equals("Doctor") && !DbConn.LoggedUserAdmin.equals("Y")){

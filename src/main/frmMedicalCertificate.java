@@ -1,6 +1,7 @@
 
 package main;
 import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +10,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import net.proteanit.sql.DbUtils;
@@ -38,6 +42,11 @@ DbConnection DbConn = new DbConnection();
             @Override
             public void changedUpdate(DocumentEvent e) {ListenSearch();}
         });
+        try {
+        setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
+    } catch (IOException ex) {
+        Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
     private void ListenSearch(){
         try{

@@ -1,5 +1,10 @@
 package main;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 public class frmLogin extends javax.swing.JFrame {
 DbConnection DbConn = new DbConnection();
@@ -9,6 +14,11 @@ DbConnection DbConn = new DbConnection();
         DbConn.DoConnect();
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(btnLogin);
+     try {
+        setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
+    } catch (IOException ex) {
+        Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
     /**
@@ -26,6 +36,7 @@ DbConnection DbConn = new DbConnection();
         jLabel1 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,10 +66,14 @@ DbConnection DbConn = new DbConnection();
         });
         jPanel2.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 180, 50));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 300, 210));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 300, 210));
+
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/EsMiniLogo.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 120, 100));
 
         lblBackground.setBackground(new java.awt.Color(102, 102, 102));
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loginBG2.jpg"))); // NOI18N
+        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loginBG3.jpg"))); // NOI18N
         getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 10, 800, 350));
 
         pack();
@@ -129,6 +144,7 @@ DbConnection DbConn = new DbConnection();
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JPasswordField txtPassword;

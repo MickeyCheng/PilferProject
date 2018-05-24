@@ -1,5 +1,7 @@
 
 package main;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +9,9 @@ import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import net.proteanit.sql.DbUtils;
 
 public class frmTreatmentMaster extends javax.swing.JFrame {
@@ -20,6 +25,11 @@ boolean add,edit;
         radYes.setSelected(true);
         setDefaultCloseOperation(frmTreatmentMaster.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        try {
+        setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
+    } catch (IOException ex) {
+        Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
     private void SetHeader(){
        tblTreatment.getColumnModel().getColumn(0).setHeaderValue("ID");

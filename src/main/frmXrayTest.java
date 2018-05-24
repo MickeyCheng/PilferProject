@@ -1,4 +1,6 @@
 package main;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +9,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 public class frmXrayTest extends javax.swing.JFrame {
 ResultSet rs;
@@ -22,6 +27,11 @@ DbConnection DbConn = new DbConnection();
         fillCombo();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(frmXrayTest.DISPOSE_ON_CLOSE);
+        try {
+        setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
+    } catch (IOException ex) {
+        Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
     private void fillCombo(){
         cmbXrayStatus.removeAllItems();

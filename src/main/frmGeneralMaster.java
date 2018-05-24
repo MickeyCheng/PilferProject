@@ -1,5 +1,7 @@
 
 package main;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +9,9 @@ import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 public class frmGeneralMaster extends javax.swing.JFrame {
 DbConnection DbConn = new DbConnection();
 String CheckRecord;
@@ -39,6 +44,11 @@ Date todayDate = new Date();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+        try {
+        setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
+    } catch (IOException ex) {
+        Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
     
     /**

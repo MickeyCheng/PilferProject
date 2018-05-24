@@ -1,5 +1,7 @@
 
 package main;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +9,9 @@ import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import net.proteanit.sql.DbUtils;
 
 public class frmICDMaster extends javax.swing.JFrame {
@@ -21,6 +26,11 @@ boolean add,edit;
         tblTreatment.setAutoCreateRowSorter(true);
         setDefaultCloseOperation(frmICDMaster.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        try {
+        setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
+    } catch (IOException ex) {
+        Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
     private void FillTable(){
         try{

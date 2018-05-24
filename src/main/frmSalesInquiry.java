@@ -1,6 +1,7 @@
 
 package main;
 import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import net.proteanit.sql.DbUtils;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -31,6 +35,11 @@ String GetApptID,GetBillStatus;
         FillCurrentDate();
         setDefaultCloseOperation(frmSalesInquiry.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        try {
+        setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
+    } catch (IOException ex) {
+        Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
     private void LoadToday(){
         dateFrom.setDate(todayDate);
