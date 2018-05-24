@@ -38,12 +38,12 @@ DbConnection DbConn = new DbConnection();
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("USER ID:");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 80, 40));
-        jPanel2.add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 210, 40));
+        jPanel2.add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 180, 40));
 
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("PASSWORD:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 80, 40));
-        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 210, 40));
+        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 180, 40));
 
         btnLogin.setBackground(new java.awt.Color(0, 153, 0));
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -53,12 +53,12 @@ DbConnection DbConn = new DbConnection();
                 btnLoginActionPerformed(evt);
             }
         });
-        jPanel2.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 210, 50));
+        jPanel2.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 180, 50));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 350, 210));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 300, 210));
 
         lblBackground.setBackground(new java.awt.Color(102, 102, 102));
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loginBG.jpg"))); // NOI18N
+        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loginBG2.jpg"))); // NOI18N
         getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 10, 800, 350));
 
         pack();
@@ -76,6 +76,7 @@ DbConnection DbConn = new DbConnection();
                 DbConn.LoggedUserCategory = DbConn.rs.getString("um_category");
                 DbConn.LoggedUserAdmin = DbConn.rs.getString("um_administrator");
                 JOptionPane.showMessageDialog(this, "Welcome " + DbConn.LoggedUserName);
+                DbConn.CheckUserAccess();
                 frmMain obj = new frmMain();
                 obj.setVisible(true);
                 this.dispose();

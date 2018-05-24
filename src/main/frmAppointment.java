@@ -19,6 +19,7 @@ import org.joda.time.LocalTime;
 public class frmAppointment extends javax.swing.JFrame {
 boolean addRegister,editRegister;
 public static int getMaxPID, getMaxApptID,getApptNumber,getApptPID;
+public static String GetName;
 SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
 DateTimeFormatter jodaTime = DateTimeFormat.forPattern("hh:mm a");
 DbConnection DbConn = new DbConnection();
@@ -622,6 +623,7 @@ DbConnection DbConn = new DbConnection();
             if (DbConn.rs.next()){
                 getApptNumber = Integer.parseInt(tblDoctor1.getValueAt(ba, 5).toString());
                 getApptPID = DbConn.rs.getInt("ap_pid");
+                GetName = DbConn.rs.getString("ap_name");
             }
             DbConn.pstmt.close();
         }catch(SQLException e){
@@ -651,6 +653,7 @@ DbConnection DbConn = new DbConnection();
             if (DbConn.rs.next()){
                 getApptNumber = Integer.parseInt(tblDoctor2.getValueAt(ba, 5).toString());
                 getApptPID = DbConn.rs.getInt("ap_pid");
+                GetName = DbConn.rs.getString("ap_name");
             }
             DbConn.pstmt.close();
         }catch(SQLException e){

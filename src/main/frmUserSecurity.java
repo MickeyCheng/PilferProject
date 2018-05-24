@@ -15,7 +15,7 @@ String GetCategory,GetAdmin,GetUserId;
 String checkExist = "insert";
 String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit,ApptDelete,ApptPrint,DocView,DocInsert,
         DocEdit,DocDelete,DocPrint,BillView,BillProcess,BillPrint,BillInvoiceGen,InqPatient,InqAppt,InqSales,InqInvoice,
-        MasterGen,MasterUser,MasterSecurity,MasterDrug,MasterTreatment,MasterICD,MasterInsurance;
+        MasterGen,MasterUser,MasterSecurity,MasterDrug,MasterTreatment,MasterICD,MasterInsurance,ReportMedCert;
     public frmUserSecurity() {
         initComponents();
         DbConn.DoConnect();
@@ -25,12 +25,116 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
         cmbUserName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                CheckAccess();
                 CheckDoctor();
                 CheckAdmin();
             }
         });
     }
-
+    private void CheckAccess(){
+        //registration
+        DbConn.CheckUserAccess();
+        if (DbConn.RegViewDb.equals("Y")){
+            chkRegView.setSelected(true);
+        }
+        if (DbConn.RegDeleteDb.equals("Y")){
+            chkRegDelete.setSelected(true);
+        }
+        if (DbConn.RegInsertDb.equals("Y")){
+            chkRegInsert.setSelected(true);
+        }
+        if (DbConn.RegPrintDb.equals("Y")){
+            chkRegPrint.setSelected(true);
+        }
+        if (DbConn.RegEditDb.equals("Y")){
+            chkRegEdit.setSelected(true);
+        }
+        
+        //doctor
+        if (DbConn.DocViewDb.equals("Y")){
+            chkDoctorView.setSelected(true);
+        }
+        if (DbConn.DocDeleteDb.equals("Y")){
+            chkDoctorDelete.setSelected(true);
+        }
+        if (DbConn.DocEditDb.equals("Y")){
+            chkDoctorEdit.setSelected(true);
+        }
+        if (DbConn.DocInsertDb.equals("Y")){
+            chkDoctorInsert.setSelected(true);
+        }
+        if (DbConn.DocPrintDb.equals("Y")){
+            chkDoctorPrint.setSelected(true);
+        }
+        //appointment
+        if (DbConn.ApptPrintDb.equals("Y")){
+            chkApptPrint.setSelected(true);
+        }
+        if (DbConn.ApptDeleteDb.equals("Y")){
+            chkApptDelete.setSelected(true);
+        }
+        if (DbConn.ApptEditDb.equals("Y")){
+            chkApptEdit.setSelected(true);
+        }
+        if (DbConn.ApptInsertDb.equals("Y")){
+            chkApptInsert.setSelected(true);
+        }
+        if (DbConn.ApptViewDb.equals("Y")){
+            chkApptView.setSelected(true);
+        }
+        //bill
+        if (DbConn.BillInvoiceGenDb.equals("Y")){
+            chkBillingInvoice.setSelected(true);
+        }
+        if (DbConn.BillPrintDb.equals("Y")){
+            chkBillingPrint.setSelected(true);
+        }
+        if (DbConn.BillProcessDb.equals("Y")){
+            chkBillingProcess.setSelected(true);
+        }
+        if (DbConn.BillViewDb.equals("Y")){
+            chkBillingView.setSelected(true);
+        }
+        //inquiry
+        if (DbConn.InqApptDb.equals("Y")){
+            chkInqAppointment.setSelected(true);
+        }
+        if (DbConn.InqInvoiceDb.equals("Y")){
+            chkInqInvoice.setSelected(true);
+        }
+        if (DbConn.InqPatientDb.equals("Y")){
+            chkInqPatient.setSelected(true);
+        }
+        if (DbConn.InqSalesDb.equals("Y")){
+            chkInqSales.setSelected(true);
+        }
+        //master
+        if (DbConn.MasterDrugDb.equals("Y")){
+            chkMastersDrug.setSelected(true);
+        }
+        if (DbConn.MasterGenDb.equals("Y")){
+            chkMastersGeneral.setSelected(true);
+        }
+        if (DbConn.MasterICDDb.equals("Y")){
+            chkMastersICD.setSelected(true);
+        }
+        if (DbConn.MasterInsuranceDb.equals("Y")){
+            chkMastersInsurance.setSelected(true);
+        }
+        if (DbConn.MasterTreatmentDb.equals("Y")){
+            chkMastersTreatment.setSelected(true);
+        }
+        if (DbConn.MasterUserDb.equals("Y")){
+            chkMastersUser.setSelected(true);
+        }
+        if (DbConn.MasterSecurityDb.equals("Y")){
+            chkMastersUserSecurity.setSelected(true);
+        }
+        //reports
+        if (DbConn.ReportMedCertDb.equals("Y")){
+            chkReportMedCert.setSelected(true);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,6 +197,9 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
         chkBillingPrint = new javax.swing.JCheckBox();
         btnSave = new javax.swing.JButton();
         chkMastersUserSecurity = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
+        chkReportsAll = new javax.swing.JCheckBox();
+        chkReportMedCert = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -317,7 +424,7 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Masters");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 160, 40));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 160, 40));
 
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, 20, 230));
@@ -340,11 +447,33 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
                 btnSaveActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, -1, 70));
+        jPanel2.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 450, -1, 70));
 
         chkMastersUserSecurity.setForeground(new java.awt.Color(0, 0, 0));
         chkMastersUserSecurity.setText("User Security");
         jPanel2.add(chkMastersUserSecurity, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, -1, -1));
+
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Reports");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 290, 160, 40));
+
+        chkReportsAll.setForeground(new java.awt.Color(0, 0, 0));
+        chkReportsAll.setText("All");
+        chkReportsAll.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                chkReportsAllMouseReleased(evt);
+            }
+        });
+        chkReportsAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkReportsAllActionPerformed(evt);
+            }
+        });
+        jPanel2.add(chkReportsAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, -1, -1));
+
+        chkReportMedCert.setForeground(new java.awt.Color(0, 0, 0));
+        chkReportMedCert.setText("Medical Certificate");
+        jPanel2.add(chkReportMedCert, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 340, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 770, 590));
 
@@ -789,6 +918,18 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
             }
         }
     }
+    private void CheckReports(){
+        if (chkReportsAll.isSelected()){
+            ReportMedCert = "Y";
+        }
+        else{
+            if (chkReportMedCert.isSelected()){
+                ReportMedCert = "Y";
+            }else{
+                ReportMedCert = "N";
+            }
+        }
+    }
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         ApptCheckBox();
         RegCheckBox();
@@ -796,14 +937,15 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
         BillCheckBox();
         InquiryCheckBox();
         MasterCheckBox();
+        CheckReports();
             try{
                 DbConn.SQLQuery = "update tblusersecurity set us_regview=?,us_reginsert=?,us_regedit=?,us_regdelete=?,us_regprint=?,"
                         + "us_apptview=?,us_apptinsert=?,us_apptedit=?,us_apptdelete=?,us_apptprint=?,"
                         + "us_docview=?,us_docinsert=?,us_docedit=?,us_docdelete=?,us_docprint=?,"
                         + "us_billview=?,us_billprocess=?,us_billprint=?,us_billinvoicegen=?,"
                         + "us_inqpatient=?,us_inqappointment=?,us_inqsales=?,us_inqinvoice=?,"
-                        + "us_mastergen=?,us_masteruser=?,us_mastersecurity=?,us_masterdrug=?,us_mastertreatment=?,us_masterinsurance=?,us_mastericd=?"
-                        + "where us_name= ?";
+                        + "us_mastergen=?,us_masteruser=?,us_mastersecurity=?,us_masterdrug=?,us_mastertreatment=?,us_masterinsurance=?,us_mastericd=?,"
+                        + "us_reportmedcert=? where us_name= ?";
                 DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
                 DbConn.pstmt.setString(1, RegView);
                 DbConn.pstmt.setString(2, RegInsert);
@@ -835,13 +977,22 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
                 DbConn.pstmt.setString(28, MasterTreatment);
                 DbConn.pstmt.setString(29, MasterInsurance);
                 DbConn.pstmt.setString(30, MasterICD);
-                DbConn.pstmt.setString(31, cmbUserName.getSelectedItem().toString());
+                DbConn.pstmt.setString(31,ReportMedCert);
+                DbConn.pstmt.setString(32, cmbUserName.getSelectedItem().toString());
                 DbConn.pstmt.execute();
                 JOptionPane.showMessageDialog(this, "Acccess Level Saved");
             }catch(SQLException e){
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void chkReportsAllMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkReportsAllMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkReportsAllMouseReleased
+
+    private void chkReportsAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkReportsAllActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkReportsAllActionPerformed
 
     /**
      * @param args the command line arguments
@@ -916,6 +1067,8 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
     private javax.swing.JCheckBox chkRegInsert;
     private javax.swing.JCheckBox chkRegPrint;
     private javax.swing.JCheckBox chkRegView;
+    private javax.swing.JCheckBox chkReportMedCert;
+    private javax.swing.JCheckBox chkReportsAll;
     private javax.swing.JComboBox<String> cmbUserName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -924,6 +1077,7 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

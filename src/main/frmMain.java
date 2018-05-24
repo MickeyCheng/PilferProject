@@ -12,20 +12,78 @@ public class frmMain extends javax.swing.JFrame {
     DbConnection DbConn = new DbConnection();
     public frmMain() {
         initComponents();
-//        DbConn.DoConnect();
         setExtendedState(frmMain.MAXIMIZED_BOTH);
-        CheckAccessLevel();
+        GrantAccess();
     }
-    private void CheckAccessLevel(){
-        if (!DbConn.LoggedUserCategory.equals("Doctor") && !DbConn.LoggedUserAdmin.equals("Y")){
-            mnuMedCert.setEnabled(false);
+//    private void CheckAccessLevel(){
+//        if (!DbConn.LoggedUserCategory.equals("Doctor") && !DbConn.LoggedUserAdmin.equals("Y")){
+//            mnuMedCert.setEnabled(false);
+//            btnDoctor.setEnabled(false);
+//        }
+//        if (!DbConn.LoggedUserAdmin.equals("Y")){
+//            mnuSalesInq.setEnabled(false);
+//            mnuGenMaster.setEnabled(false);
+//            mnuUserMaster.setEnabled(false);
+//            mnuUserSecMaster.setEnabled(false);
+//        }
+//    }
+    private void GrantAccess(){
+        //registration
+        if (DbConn.RegViewDb.equals("N")){
+            btnRegistration.setEnabled(false);
+        }
+        
+        //doctor
+        if (DbConn.DocViewDb.equals("N")){
             btnDoctor.setEnabled(false);
         }
-        if (!DbConn.LoggedUserAdmin.equals("Y")){
+        //appointment
+        if (DbConn.ApptViewDb.equals("N")){
+            btnAppointment.setEnabled(false);
+        }
+        
+        //bill
+        if (DbConn.BillInvoiceGenDb.equals("N")){
+            mnuInvoiceReceipt.setEnabled(false);
+        }
+        //inquiry
+        if (DbConn.InqApptDb.equals("N")){
+            mnuApptInquiry.setEnabled(false);
+        }
+        if (DbConn.InqInvoiceDb.equals("N")){
+            mnuInvoiceInq.setEnabled(false);
+        }
+        if (DbConn.InqPatientDb.equals("N")){
+            mnuPatientInquiry.setEnabled(false);
+        }
+        if (DbConn.InqSalesDb.equals("N")){
             mnuSalesInq.setEnabled(false);
+        }
+        //master
+        if (DbConn.MasterGenDb.equals("N")){
             mnuGenMaster.setEnabled(false);
+        }
+        if(DbConn.MasterUserDb.equals("N")){
             mnuUserMaster.setEnabled(false);
+        }
+        if (DbConn.MasterSecurityDb.equals("N")){
             mnuUserSecMaster.setEnabled(false);
+        }
+        if (DbConn.MasterDrugDb.equals("N")){
+            mnuDrugMaster.setEnabled(false);
+        }
+        if(DbConn.MasterTreatmentDb.equals("N")){
+            mnuTreatmentMaster.setEnabled(false);
+        }
+        if (DbConn.MasterInsuranceDb.equals("N")){
+            mnuInsuranceMaster.setEnabled(false);
+        }
+        if (DbConn.MasterICDDb.equals("N")){
+            mnuICDMaster.setEnabled(false);
+        }
+        //reports
+        if (DbConn.ReportMedCertDb.equals("N")){
+            mnuMedCert.setEnabled(false);
         }
     }
     /**
@@ -38,12 +96,6 @@ public class frmMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
         btnRegistration = new javax.swing.JButton();
         btnAppointment = new javax.swing.JButton();
         btnDoctor = new javax.swing.JButton();
@@ -74,30 +126,6 @@ public class frmMain extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(214, 214, 194));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel5.setBackground(new java.awt.Color(0, 0, 102));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 120));
-
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 220, 140));
-
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel3.setBackground(new java.awt.Color(0, 102, 0));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 120));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 220, 140));
-
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel7.setBackground(new java.awt.Color(102, 0, 0));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 120));
-
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, 220, 140));
 
         btnRegistration.setBackground(new java.awt.Color(255, 255, 255));
         btnRegistration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/registrationButtonMain.png"))); // NOI18N
@@ -138,6 +166,7 @@ public class frmMain extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText("Log Out");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +175,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText("Exit");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +191,7 @@ public class frmMain extends javax.swing.JFrame {
 
         jMenu3.setText("Billing");
 
+        mnuInvoiceReceipt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuInvoiceReceipt.setText("Invoice Generate");
         mnuInvoiceReceipt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,6 +204,7 @@ public class frmMain extends javax.swing.JFrame {
 
         mnuPatientInquiry.setText("Inquiry");
 
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem7.setText("Patient Inquiry");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +213,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         mnuPatientInquiry.add(jMenuItem7);
 
+        mnuApptInquiry.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuApptInquiry.setText("Appointment Inquiry");
         mnuApptInquiry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,6 +222,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         mnuPatientInquiry.add(mnuApptInquiry);
 
+        mnuSalesInq.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuSalesInq.setText("Sales Inquiry");
         mnuSalesInq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,6 +231,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         mnuPatientInquiry.add(mnuSalesInq);
 
+        mnuInvoiceInq.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuInvoiceInq.setText("Invoice Inquiry");
         mnuInvoiceInq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,6 +244,7 @@ public class frmMain extends javax.swing.JFrame {
 
         jMenu4.setText("Reports");
 
+        mnuMedCert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuMedCert.setText("Medical Certificate");
         mnuMedCert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,6 +257,7 @@ public class frmMain extends javax.swing.JFrame {
 
         jMenu5.setText("Master");
 
+        mnuGenMaster.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuGenMaster.setText("General Master");
         mnuGenMaster.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,6 +266,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jMenu5.add(mnuGenMaster);
 
+        mnuUserMaster.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuUserMaster.setText("User Master");
         mnuUserMaster.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,6 +275,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jMenu5.add(mnuUserMaster);
 
+        mnuUserSecMaster.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuUserSecMaster.setText("User Security");
         mnuUserSecMaster.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,6 +284,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jMenu5.add(mnuUserSecMaster);
 
+        mnuDrugMaster.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuDrugMaster.setText("Drug Master");
         mnuDrugMaster.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,6 +293,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jMenu5.add(mnuDrugMaster);
 
+        mnuTreatmentMaster.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuTreatmentMaster.setText("Treatment Master");
         mnuTreatmentMaster.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,6 +302,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jMenu5.add(mnuTreatmentMaster);
 
+        mnuInsuranceMaster.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuInsuranceMaster.setText("Insurance Master");
         mnuInsuranceMaster.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,6 +311,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jMenu5.add(mnuInsuranceMaster);
 
+        mnuICDMaster.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuICDMaster.setText("ICD 10 Master");
         mnuICDMaster.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -334,7 +377,8 @@ public class frmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuSalesInqActionPerformed
 
     private void mnuInvoiceInqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInvoiceInqActionPerformed
-
+        frmInvoiceInquiry obj = new frmInvoiceInquiry();
+        obj.setVisible(true);
     }//GEN-LAST:event_mnuInvoiceInqActionPerformed
 
     private void mnuGenMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGenMasterActionPerformed
@@ -450,12 +494,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JMenuItem mnuApptInquiry;
     private javax.swing.JMenuItem mnuDrugMaster;
     private javax.swing.JMenuItem mnuGenMaster;

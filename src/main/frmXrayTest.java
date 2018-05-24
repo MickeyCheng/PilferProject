@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class frmXrayTest extends javax.swing.JFrame {
 ResultSet rs;
@@ -108,15 +109,18 @@ DbConnection DbConn = new DbConnection();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Date todayDate = new Date();
         try{
-            pstmt = conn.prepareStatement("INSERT into tblPatientXrayTest (xt_pid,xt_apptNumber,xt_status) "
-                + "values (?,?,?)");
-            pstmt.setInt(1, frmAppointment.getApptPID);
-            pstmt.setInt(2, frmAppointment.getApptNumber);
-            pstmt.setString(3, cmbXrayStatus.getSelectedItem().toString());
-            pstmt.execute();
-            pstmt.close();
-            JOptionPane.showMessageDialog(this, "VITAL SIGNS RECORDED");
+            DbConn.pstmt = DbConn.conn.prepareStatement("INSERT into tblxraytest (xt_pid,xt_apptid,xt_name,xt_date,xt_status) "
+                + "values (?,?,?,?,?)");
+            DbConn.pstmt.setInt(1, frmAppointment.getApptPID);
+            DbConn.pstmt.setInt(2, frmAppointment.getApptNumber);
+            DbConn.pstmt.setString(3, frmAppointment.GetName);
+            DbConn.pstmt.setString(4, DbConn.sdfDate.format(todayDate));
+            DbConn.pstmt.setString(5, cmbXrayStatus.getSelectedItem().toString());
+            DbConn.pstmt.execute();
+            DbConn.pstmt.close();
+            JOptionPane.showMessageDialog(this, "XRAY RECORDED");
             this.dispose();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());

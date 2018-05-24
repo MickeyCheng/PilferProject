@@ -308,8 +308,8 @@ boolean add,edit;
                         + "us_docview,us_docinsert,us_docedit,us_docdelete,us_docprint,"
                         + "us_billview,us_billprocess,us_billprint,us_billinvoicegen,"
                         + "us_inqpatient,us_inqappointment,us_inqsales,us_inqinvoice,"
-                        + "us_mastergen,us_masteruser,us_mastersecurity,us_masterdrug,us_mastertreatment,us_masterinsurance,us_mastericd) "
-                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        + "us_mastergen,us_masteruser,us_mastersecurity,us_masterdrug,us_mastertreatment,us_masterinsurance,us_mastericd,us_reportmedcert) "
+                        + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
                 DbConn.pstmt.setString(1, txtUserId.getText());
                 DbConn.pstmt.setString(2, txtAccountName.getText());
@@ -343,6 +343,7 @@ boolean add,edit;
                 DbConn.pstmt.setString(30, "N");
                 DbConn.pstmt.setString(31, "N");
                 DbConn.pstmt.setString(32, "N");
+                DbConn.pstmt.setString(33, "N");
                 DbConn.pstmt.execute();
             }catch(SQLException e){
                 JOptionPane.showMessageDialog(this, e.getMessage());
