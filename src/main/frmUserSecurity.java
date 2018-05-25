@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import static main.DbConnection.LoggedUserName;
 public class frmUserSecurity extends javax.swing.JFrame {
 DbConnection DbConn = new DbConnection();
 String GetCategory,GetAdmin,GetUserId;
@@ -40,109 +41,247 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
     } catch (IOException ex) {
         Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
     }
+    }public void CheckUserAccessLocal(){
+        try{
+            DbConn.pstmt = DbConn.conn.prepareStatement("Select * from tblusersecurity where us_name =?");
+            DbConn.pstmt.setString(1, cmbUserName.getSelectedItem().toString());
+            DbConn.rs = DbConn.pstmt.executeQuery();
+            if (DbConn.rs.next()){
+                RegView = DbConn.rs.getString("us_regview");
+                RegInsert = DbConn.rs.getString("us_reginsert");
+                RegEdit= DbConn.rs.getString("us_regedit");
+                RegDelete = DbConn.rs.getString("us_regdelete");
+                RegPrint= DbConn.rs.getString("us_regprint");
+                
+                ApptView= DbConn.rs.getString("us_apptview");
+                ApptInsert = DbConn.rs.getString("us_apptinsert");
+                ApptEdit = DbConn.rs.getString("us_apptedit");
+                ApptDelete = DbConn.rs.getString("us_apptdelete");
+                ApptPrint = DbConn.rs.getString("us_apptprint");
+                
+                DocView = DbConn.rs.getString("us_docview");
+                DocInsert = DbConn.rs.getString("us_docinsert");
+                DocEdit= DbConn.rs.getString("us_docedit");
+                DocDelete = DbConn.rs.getString("us_docdelete");
+                DocPrint = DbConn.rs.getString("us_docprint");
+                
+                BillView = DbConn.rs.getString("us_billview");
+                BillProcess = DbConn.rs.getString("us_billprocess");
+                BillPrint = DbConn.rs.getString("us_billprint");
+                BillInvoiceGen = DbConn.rs.getString("us_billinvoicegen");
+                
+                InqPatient = DbConn.rs.getString("us_inqpatient");
+                InqAppt = DbConn.rs.getString("us_inqappointment");
+                InqSales = DbConn.rs.getString("us_inqsales");
+                InqInvoice = DbConn.rs.getString("us_inqinvoice");
+                
+                MasterGen = DbConn.rs.getString("us_mastergen");
+                MasterUser = DbConn.rs.getString("us_masteruser");
+                MasterSecurity = DbConn.rs.getString("us_mastersecurity");
+                MasterDrug = DbConn.rs.getString("us_masterdrug");
+                MasterTreatment = DbConn.rs.getString("us_mastertreatment");
+                MasterInsurance = DbConn.rs.getString("us_masterinsurance");
+                MasterICD = DbConn.rs.getString("us_mastericd");
+                ReportMedCert = DbConn.rs.getString("us_reportmedcert");
+            }
+            DbConn.pstmt.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
     private void CheckAccess(){
+        CheckUserAccessLocal();
         //registration
-        DbConn.CheckUserAccess();
-        if (DbConn.RegViewDb.equals("Y")){
+        if (RegView.equals("Y")){
             chkRegView.setSelected(true);
+        }else{
+            chkRegView.setSelected(false);
         }
-        if (DbConn.RegDeleteDb.equals("Y")){
+        
+        if (RegDelete.equals("Y")){
             chkRegDelete.setSelected(true);
+        }else{
+            chkRegDelete.setSelected(false);
         }
-        if (DbConn.RegInsertDb.equals("Y")){
+        if (RegInsert.equals("Y")){
             chkRegInsert.setSelected(true);
+        }else{
+            chkRegInsert.setSelected(false);        
         }
-        if (DbConn.RegPrintDb.equals("Y")){
+        if (RegPrint.equals("Y")){
             chkRegPrint.setSelected(true);
+        }else{
+            chkRegPrint.setSelected(false);
+        
         }
-        if (DbConn.RegEditDb.equals("Y")){
+        if (RegEdit.equals("Y")){
             chkRegEdit.setSelected(true);
+        }else{
+            chkRegEdit.setSelected(false);
+        
         }
         
         //doctor
-        if (DbConn.DocViewDb.equals("Y")){
+        if (DocView.equals("Y")){
             chkDoctorView.setSelected(true);
+        }else{
+            chkDoctorView.setSelected(false);
+        
         }
-        if (DbConn.DocDeleteDb.equals("Y")){
+        if (DocDelete.equals("Y")){
             chkDoctorDelete.setSelected(true);
+        }else{
+            chkDoctorDelete.setSelected(false);
+        
         }
-        if (DbConn.DocEditDb.equals("Y")){
+        if (DocEdit.equals("Y")){
             chkDoctorEdit.setSelected(true);
+        }else{
+            chkDoctorEdit.setSelected(false);
+        
         }
-        if (DbConn.DocInsertDb.equals("Y")){
+        if (DocInsert.equals("Y")){
             chkDoctorInsert.setSelected(true);
+        }else{
+            chkDoctorInsert.setSelected(false);
+        
         }
-        if (DbConn.DocPrintDb.equals("Y")){
+        if (DocPrint.equals("Y")){
             chkDoctorPrint.setSelected(true);
+        }else{
+            chkDoctorPrint.setSelected(false);
+        
         }
         //appointment
-        if (DbConn.ApptPrintDb.equals("Y")){
+        if (ApptPrint.equals("Y")){
             chkApptPrint.setSelected(true);
+        }else{
+            chkApptPrint.setSelected(false);
+        
         }
-        if (DbConn.ApptDeleteDb.equals("Y")){
+        if (ApptDelete.equals("Y")){
             chkApptDelete.setSelected(true);
+        }else{
+            chkApptDelete.setSelected(false);
+        
         }
-        if (DbConn.ApptEditDb.equals("Y")){
+        if (ApptEdit.equals("Y")){
             chkApptEdit.setSelected(true);
+        }else{
+            chkApptEdit.setSelected(false);
+        
         }
-        if (DbConn.ApptInsertDb.equals("Y")){
+        if (ApptInsert.equals("Y")){
             chkApptInsert.setSelected(true);
+        }else{
+            chkApptInsert.setSelected(false);
+        
         }
-        if (DbConn.ApptViewDb.equals("Y")){
+        if (ApptView.equals("Y")){
             chkApptView.setSelected(true);
+        }else{
+            chkApptView.setSelected(false);
+        
         }
         //bill
-        if (DbConn.BillInvoiceGenDb.equals("Y")){
+        if (BillInvoiceGen.equals("Y")){
             chkBillingInvoice.setSelected(true);
+        }else{
+            chkBillingInvoice.setSelected(false);
+        
         }
-        if (DbConn.BillPrintDb.equals("Y")){
+        if (BillPrint.equals("Y")){
             chkBillingPrint.setSelected(true);
+        }else{
+            chkBillingPrint.setSelected(false);
+        
         }
-        if (DbConn.BillProcessDb.equals("Y")){
+        if (BillProcess.equals("Y")){
             chkBillingProcess.setSelected(true);
+        }else{
+            chkBillingProcess.setSelected(false);
+        
         }
-        if (DbConn.BillViewDb.equals("Y")){
+        if (BillView.equals("Y")){
             chkBillingView.setSelected(true);
+        }else{
+            chkBillingView.setSelected(false);
+        
         }
         //inquiry
-        if (DbConn.InqApptDb.equals("Y")){
+        if (InqAppt.equals("Y")){
             chkInqAppointment.setSelected(true);
+        }else{
+            chkInqAppointment.setSelected(false);
+        
         }
-        if (DbConn.InqInvoiceDb.equals("Y")){
+        if (InqInvoice.equals("Y")){
             chkInqInvoice.setSelected(true);
+        }else{
+            chkInqInvoice.setSelected(false);
+        
         }
-        if (DbConn.InqPatientDb.equals("Y")){
+        if (InqPatient.equals("Y")){
             chkInqPatient.setSelected(true);
+        }else{
+            chkInqPatient.setSelected(false);
+        
         }
-        if (DbConn.InqSalesDb.equals("Y")){
+        if (InqSales.equals("Y")){
             chkInqSales.setSelected(true);
+        }else{
+            chkInqSales.setSelected(false);
+        
         }
         //master
-        if (DbConn.MasterDrugDb.equals("Y")){
+        if (MasterDrug.equals("Y")){
             chkMastersDrug.setSelected(true);
+        }else{
+            chkMastersDrug.setSelected(false);
+        
         }
-        if (DbConn.MasterGenDb.equals("Y")){
+        if (MasterGen.equals("Y")){
             chkMastersGeneral.setSelected(true);
+        }else{
+            chkMastersGeneral.setSelected(false);
+        
         }
-        if (DbConn.MasterICDDb.equals("Y")){
+        if (MasterICD.equals("Y")){
             chkMastersICD.setSelected(true);
+        }else{
+            chkMastersICD.setSelected(false);
+        
         }
-        if (DbConn.MasterInsuranceDb.equals("Y")){
+        if (MasterInsurance.equals("Y")){
             chkMastersInsurance.setSelected(true);
+        }else{
+            chkMastersInsurance.setSelected(false);
+        
         }
-        if (DbConn.MasterTreatmentDb.equals("Y")){
+        if (MasterTreatment.equals("Y")){
             chkMastersTreatment.setSelected(true);
+        }else{
+            chkMastersTreatment.setSelected(false);
+        
         }
-        if (DbConn.MasterUserDb.equals("Y")){
+        if (MasterUser.equals("Y")){
             chkMastersUser.setSelected(true);
+        }else{
+            chkMastersUser.setSelected(false);
+        
         }
-        if (DbConn.MasterSecurityDb.equals("Y")){
+        if (MasterSecurity.equals("Y")){
             chkMastersUserSecurity.setSelected(true);
+        }else{
+            chkMastersUserSecurity.setSelected(false);
+        
         }
         //reports
-        if (DbConn.ReportMedCertDb.equals("Y")){
+        if (ReportMedCert.equals("Y")){
             chkReportMedCert.setSelected(true);
+        }else{
+            chkReportMedCert.setSelected(false);
+        
         }
     }
     /**

@@ -32,6 +32,8 @@ DbConnection DbConn = new DbConnection();
         initComponents();
         DbConn.DoConnect();
         FillTable();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(frmMedicalCertificate.DISPOSE_ON_CLOSE);
         txtSearch.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {ListenSearch();}

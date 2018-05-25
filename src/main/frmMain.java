@@ -17,7 +17,8 @@ public class frmMain extends javax.swing.JFrame {
     DbConnection DbConn = new DbConnection();
     public frmMain() {
         initComponents();
-        setExtendedState(frmMain.MAXIMIZED_BOTH);
+//        setExtendedState(frmMain.MAXIMIZED_BOTH);
+        setResizable(false);
         GrantAccess();
         try {
         setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
@@ -109,6 +110,9 @@ public class frmMain extends javax.swing.JFrame {
         btnRegistration = new javax.swing.JButton();
         btnAppointment = new javax.swing.JButton();
         btnDoctor = new javax.swing.JButton();
+        btnRadiology = new javax.swing.JButton();
+        btnLaboratory = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -131,6 +135,8 @@ public class frmMain extends javax.swing.JFrame {
         mnuTreatmentMaster = new javax.swing.JMenuItem();
         mnuInsuranceMaster = new javax.swing.JMenuItem();
         mnuICDMaster = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,7 +166,7 @@ public class frmMain extends javax.swing.JFrame {
                 btnAppointmentActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 220, 240));
+        jPanel1.add(btnAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 220, 240));
 
         btnDoctor.setBackground(new java.awt.Color(255, 255, 255));
         btnDoctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/DoctorButtonMain.png"))); // NOI18N
@@ -172,7 +178,34 @@ public class frmMain extends javax.swing.JFrame {
                 btnDoctorActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 220, 240));
+        jPanel1.add(btnDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, 220, 240));
+
+        btnRadiology.setBackground(new java.awt.Color(255, 255, 255));
+        btnRadiology.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/RadiologyMain.png"))); // NOI18N
+        btnRadiology.setText("Radiology");
+        btnRadiology.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRadiology.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnRadiology.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRadiologyActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRadiology, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 20, 220, 240));
+
+        btnLaboratory.setBackground(new java.awt.Color(255, 255, 255));
+        btnLaboratory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LaboratoryMain.png"))); // NOI18N
+        btnLaboratory.setText("Laboratory");
+        btnLaboratory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLaboratory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLaboratory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaboratoryActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLaboratory, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, 220, 240));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mainBG.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1357, 725));
 
         jMenu1.setText("File");
 
@@ -332,6 +365,18 @@ public class frmMain extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu6.setText("Help");
+
+        jMenuItem3.setText("About");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu6);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -340,14 +385,14 @@ public class frmMain extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1357, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -422,19 +467,21 @@ public class frmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuInsuranceMasterActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        int itemSelect = JOptionPane.showConfirmDialog(this, "Are you sure you want to log out?", "ES Solutions",JOptionPane.YES_NO_OPTION);
+        if (itemSelect == JOptionPane.YES_OPTION){
         
-        
-        Window win[] = Window.getWindows();
-        for (int i=0;i<win.length;i++){
-            win[i].dispose();
+            Window win[] = Window.getWindows();
+            for (int i=0;i<win.length;i++){
+                win[i].dispose();
+            }
+            frmLogin obj = new frmLogin();
+            obj.setVisible(true);
+            this.dispose();
         }
-        frmLogin obj = new frmLogin();
-        obj.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        int selectExit = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?","Exit",JOptionPane.YES_NO_OPTION);
+        int selectExit = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?","ES Solutions",JOptionPane.YES_NO_OPTION);
         if (selectExit == JOptionPane.YES_OPTION){
             System.exit(0);
         }
@@ -454,6 +501,18 @@ public class frmMain extends javax.swing.JFrame {
         frmUserSecurity obj = new frmUserSecurity();
         obj.setVisible(true);
     }//GEN-LAST:event_mnuUserSecMasterActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        JOptionPane.showMessageDialog(this, "This software is developed by Joefrey Bartolome for ES Solutions. \n For questions, email me at info@whutthetech.com.","About",JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void btnRadiologyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRadiologyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRadiologyActionPerformed
+
+    private void btnLaboratoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaboratoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLaboratoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -493,15 +552,20 @@ public class frmMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAppointment;
     private javax.swing.JButton btnDoctor;
+    private javax.swing.JButton btnLaboratory;
+    private javax.swing.JButton btnRadiology;
     private javax.swing.JButton btnRegistration;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem mnuApptInquiry;

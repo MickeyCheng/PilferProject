@@ -51,10 +51,9 @@ boolean add,edit;
         tblUserMaster.getColumnModel().getColumn(0).setHeaderValue("ID");
         tblUserMaster.getColumnModel().getColumn(1).setHeaderValue("Name");
         tblUserMaster.getColumnModel().getColumn(2).setHeaderValue("Password");
-        tblUserMaster.getColumnModel().getColumn(3).setHeaderValue("Position");
-        tblUserMaster.getColumnModel().getColumn(4).setHeaderValue("Admin Rights");
-        tblUserMaster.getColumnModel().getColumn(5).setHeaderValue("Status");
-        tblUserMaster.getColumnModel().getColumn(6).setHeaderValue("Category");
+        tblUserMaster.getColumnModel().getColumn(3).setHeaderValue("Admin Rights");
+        tblUserMaster.getColumnModel().getColumn(4).setHeaderValue("Status");
+        tblUserMaster.getColumnModel().getColumn(5).setHeaderValue("Category");
     }
     private void FillTable(){
         try{
