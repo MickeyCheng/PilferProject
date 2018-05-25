@@ -23,6 +23,8 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -55,12 +57,10 @@ Date todayDate = new Date();
         FillMedicine();
         FillICD();
         FillComboDays();
+        LoadTableSummaryHeader();
         setDefaultCloseOperation(frmDoctor.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        tblMedicineTable.setAutoResizeMode(tblMedicineTable.AUTO_RESIZE_OFF);
-        tblMedicineTable.setAutoscrolls(true);
-        tblHistory.setAutoResizeMode(tblMedicineTable.AUTO_RESIZE_OFF);
-        tblHistory.setAutoscrolls(true);
+        SetTablesAutoScroll();
         lblDoctor.setText(DbConn.LoggedUserName);
         txtAreaNotesHistory.setEditable(false);
         txtAreaDiagnosisHistory.setEditable(false);
@@ -70,6 +70,10 @@ Date todayDate = new Date();
         if (DbConnection.LoggedUserAdmin.equals("Y")){
             cmbDoctor.setVisible(true);
         }
+        tabbedDoctor.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {LoadSummary();}
+        });
         cmbDoctor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {FillAdminDoctorChange();}
@@ -113,6 +117,62 @@ Date todayDate = new Date();
     } catch (IOException ex) {
         Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
     }
+    }
+    private void SetTablesAutoScroll(){
+        tblMedicineTable.setAutoResizeMode(tblMedicineTable.AUTO_RESIZE_OFF);
+        tblMedicineTable.setAutoscrolls(true);
+        tblHistory.setAutoResizeMode(tblMedicineTable.AUTO_RESIZE_OFF);
+        tblHistory.setAutoscrolls(true);
+        tblTreatmentSummary.setAutoResizeMode(tblTreatmentSummary.AUTO_RESIZE_OFF);
+        tblTreatmentSummary.setAutoscrolls(true);
+        tblPrescriptionSummary.setAutoResizeMode(tblPrescriptionSummary.AUTO_RESIZE_OFF);
+        tblPrescriptionSummary.setAutoscrolls(true);
+        tblHistorySummary.setAutoResizeMode(tblHistorySummary.AUTO_RESIZE_OFF);
+        tblHistorySummary.setAutoscrolls(true);
+    }
+    private void LoadTableSummaryHeader(){
+        //treatment
+        tblTreatmentSummary.getColumnModel().getColumn(0).setHeaderValue("CODE");
+        tblTreatmentSummary.getColumnModel().getColumn(1).setHeaderValue("DESCRIPTION");
+        tblTreatmentSummary.getColumnModel().getColumn(2).setHeaderValue("PRICE");
+        tblTreatmentSummary.getColumnModel().getColumn(3).setHeaderValue("QTY");
+        tblTreatmentSummary.getColumnModel().getColumn(4).setHeaderValue("VALUE");
+        int treatRow=0;
+        while (treatRow != tblTreatmentSummary.getColumnCount()){
+            tblTreatmentSummary.getColumnModel().getColumn(treatRow).setPreferredWidth(100);
+            treatRow++;
+        }
+        
+        //medicine
+        tblPrescriptionSummary.getColumnModel().getColumn(0).setHeaderValue("CODE");
+        tblPrescriptionSummary.getColumnModel().getColumn(1).setHeaderValue("NAME");
+        tblPrescriptionSummary.getColumnModel().getColumn(2).setHeaderValue("QTY");
+        tblPrescriptionSummary.getColumnModel().getColumn(3).setHeaderValue("DAYS");
+        tblPrescriptionSummary.getColumnModel().getColumn(4).setHeaderValue("ROUTE");
+        tblPrescriptionSummary.getColumnModel().getColumn(5).setHeaderValue("SIGNA");
+        tblPrescriptionSummary.getColumnModel().getColumn(6).setHeaderValue("DOSE");
+        tblPrescriptionSummary.getColumnModel().getColumn(7).setHeaderValue("INSTRUCTIONS");
+        tblPrescriptionSummary.getColumnModel().getColumn(8).setHeaderValue("COMMENTS");
+        tblPrescriptionSummary.getColumnModel().getColumn(9).setHeaderValue("VALUE");
+        int treatMed=0;
+        while (treatMed != tblPrescriptionSummary.getColumnCount()){
+            tblPrescriptionSummary.getColumnModel().getColumn(treatMed).setPreferredWidth(100);
+            treatMed++;
+        }
+        //History
+        tblHistorySummary.getColumnModel().getColumn(0).setHeaderValue("DIAGNOSIS");
+        tblHistorySummary.getColumnModel().getColumn(1).setHeaderValue("SUBJECTIVE");
+        tblHistorySummary.getColumnModel().getColumn(2).setHeaderValue("PRESENTATION");
+        tblHistorySummary.getColumnModel().getColumn(3).setHeaderValue("P.HISTORY");
+        tblHistorySummary.getColumnModel().getColumn(4).setHeaderValue("HABITS");
+        tblHistorySummary.getColumnModel().getColumn(5).setHeaderValue("F.HISTORY");
+        tblHistorySummary.getColumnModel().getColumn(6).setHeaderValue("ALLERGIES");
+        tblHistorySummary.getColumnModel().getColumn(7).setHeaderValue("PLANNING");
+        int treatHistory=0;
+        while (treatHistory != tblHistorySummary.getColumnCount()){
+            tblHistorySummary.getColumnModel().getColumn(treatHistory).setPreferredWidth(100);
+            treatHistory++;
+        }
     }
     private void FillComboDoctor(){
         cmbDoctor.removeAllItems();
@@ -178,9 +238,6 @@ Date todayDate = new Date();
             cmbMedCert.addItem(String.valueOf(i));
             i++;
         }
-    }
-    private void LoadCheckListMedicineTable(){
-//        table.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(myComboBox));
     }
     private void fillRoute(){
         
@@ -311,7 +368,7 @@ Date todayDate = new Date();
         tblAppointment = new javax.swing.JTable();
         dateAppointment = new com.toedter.calendar.JDateChooser();
         cmbDoctor = new javax.swing.JComboBox<>();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabbedDoctor = new javax.swing.JTabbedPane();
         TabTreatments = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -411,7 +468,7 @@ Date todayDate = new Date();
         tblICDSearch = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jSeparator7 = new javax.swing.JSeparator();
-        jPanel10 = new javax.swing.JPanel();
+        panelSummary = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
@@ -506,8 +563,13 @@ Date todayDate = new Date();
         jPanel3.getAccessibleContext().setAccessibleName("");
         jPanel3.getAccessibleContext().setAccessibleDescription("");
 
-        jTabbedPane1.setBackground(new java.awt.Color(214, 214, 194));
-        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
+        tabbedDoctor.setBackground(new java.awt.Color(214, 214, 194));
+        tabbedDoctor.setForeground(new java.awt.Color(0, 0, 0));
+        tabbedDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabbedDoctorMouseClicked(evt);
+            }
+        });
 
         TabTreatments.setBackground(new java.awt.Color(214, 214, 194));
         TabTreatments.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -567,7 +629,7 @@ Date todayDate = new Date();
         TabTreatments.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 140, 20));
         TabTreatments.add(txtTreatment, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 750, -1));
 
-        jTabbedPane1.addTab("Treatments", TabTreatments);
+        tabbedDoctor.addTab("Treatments", TabTreatments);
 
         TabNotes.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -598,7 +660,7 @@ Date todayDate = new Date();
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Notes", TabNotes);
+        tabbedDoctor.addTab("Notes", TabNotes);
 
         TabHistory.setBackground(new java.awt.Color(214, 214, 194));
         TabHistory.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -709,7 +771,7 @@ Date todayDate = new Date();
 
         TabHistory.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 920, 530));
 
-        jTabbedPane1.addTab("Patient History", TabHistory);
+        tabbedDoctor.addTab("Patient History", TabHistory);
 
         jPanel5.setBackground(new java.awt.Color(214, 214, 194));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -821,7 +883,7 @@ Date todayDate = new Date();
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Prescription and Medical Certificate", TabPrescription);
+        tabbedDoctor.addTab("Prescription and Medical Certificate", TabPrescription);
 
         TabVitalAndCC.setBackground(new java.awt.Color(214, 214, 194));
         TabVitalAndCC.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -962,10 +1024,15 @@ Date todayDate = new Date();
 
         TabVitalAndCC.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 920, 530));
 
-        jTabbedPane1.addTab("Vital Signs, Chief Complains & ICD", TabVitalAndCC);
+        tabbedDoctor.addTab("Vital Signs, Chief Complains & ICD", TabVitalAndCC);
 
-        jPanel10.setBackground(new java.awt.Color(214, 214, 194));
-        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelSummary.setBackground(new java.awt.Color(214, 214, 194));
+        panelSummary.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelSummaryMouseClicked(evt);
+            }
+        });
+        panelSummary.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel11.setBackground(new java.awt.Color(214, 214, 194));
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -976,13 +1043,10 @@ Date todayDate = new Date();
         tblTreatmentSummary.setBackground(new java.awt.Color(214, 214, 194));
         tblTreatmentSummary.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
         jScrollPane10.setViewportView(tblTreatmentSummary);
@@ -1005,13 +1069,10 @@ Date todayDate = new Date();
         tblPrescriptionSummary.setBackground(new java.awt.Color(214, 214, 194));
         tblPrescriptionSummary.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10"
             }
         ));
         jScrollPane11.setViewportView(tblPrescriptionSummary);
@@ -1035,7 +1096,7 @@ Date todayDate = new Date();
         });
         jPanel11.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 300, 50));
 
-        jPanel10.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 430, 540));
+        panelSummary.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 430, 540));
 
         jPanel14.setBackground(new java.awt.Color(214, 214, 194));
         jPanel14.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
@@ -1044,13 +1105,10 @@ Date todayDate = new Date();
         tblHistorySummary.setBackground(new java.awt.Color(214, 214, 194));
         tblHistorySummary.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
             }
         ));
         jScrollPane9.setViewportView(tblHistorySummary);
@@ -1081,12 +1139,12 @@ Date todayDate = new Date();
         jLabel33.setText("Notes:");
         jPanel14.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
-        jPanel10.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 480, 540));
+        panelSummary.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 480, 540));
 
-        jTabbedPane1.addTab("Summary", jPanel10);
+        tabbedDoctor.addTab("Summary", panelSummary);
 
-        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 940, 580));
-        jTabbedPane1.getAccessibleContext().setAccessibleName("");
+        jPanel1.add(tabbedDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 940, 580));
+        tabbedDoctor.getAccessibleContext().setAccessibleName("");
 
         jPanel9.setBackground(new java.awt.Color(214, 214, 194));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1183,6 +1241,8 @@ Date todayDate = new Date();
             LoadTreatment();
             LoadMedicine();
             LoadHistory();
+            LoadSummary();
+            LoadTableSummaryHeader();
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Please check that you have chosen the correct patient.");
         }
@@ -1289,7 +1349,8 @@ Date todayDate = new Date();
 
     private void btnAddICDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddICDActionPerformed
         DefaultTableModel modelICD = (DefaultTableModel)tblICDShow.getModel();
-        Object[] addIcd = {tblICDSearch.getValueAt(0, 0),tblICDSearch.getValueAt(0, 1)};
+        int row = tblICDSearch.getSelectedRow();   
+        Object[] addIcd = {tblICDSearch.getValueAt(row, 0),tblICDSearch.getValueAt(row, 1)};
         modelICD.addRow(addIcd);
     }//GEN-LAST:event_btnAddICDActionPerformed
 
@@ -1361,6 +1422,53 @@ Date todayDate = new Date();
     private void tblMedicineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMedicineMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblMedicineMouseClicked
+
+    private void tabbedDoctorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabbedDoctorMouseClicked
+        
+    }//GEN-LAST:event_tabbedDoctorMouseClicked
+    private void LoadSummary(){
+        int rowTreatment =0,rowMedicine=0;
+        //treatment
+        if (tblTreatmentService.getRowCount() <=0){
+            return;
+        }else{
+            DefaultTableModel modelTreatment = (DefaultTableModel)tblTreatmentSummary.getModel();
+            modelTreatment.setRowCount(0);
+            while (rowTreatment!=tblTreatmentService.getRowCount()){
+                Object[] addTreatmentSummary= {tblTreatmentService.getValueAt(rowTreatment, 0).toString(),tblTreatmentService.getValueAt(rowTreatment, 1).toString(),
+                tblTreatmentService.getValueAt(rowTreatment, 2).toString(),tblTreatmentService.getValueAt(rowTreatment, 3).toString(),
+                tblTreatmentService.getValueAt(rowTreatment, 4).toString()};
+                modelTreatment.addRow(addTreatmentSummary);
+                rowTreatment++;
+            }
+        }
+        //medicine
+        if (tblMedicineTable.getRowCount() <=0){
+            return;
+        }else{
+            DefaultTableModel modelmedicine= (DefaultTableModel)tblPrescriptionSummary.getModel();
+            modelmedicine.setRowCount(0);
+            while (rowMedicine!=tblMedicineTable.getRowCount()){
+                Object[] addMedicine= {tblMedicineTable.getValueAt(rowMedicine, 0).toString(),tblMedicineTable.getValueAt(rowMedicine, 1).toString(),
+                tblMedicineTable.getValueAt(rowMedicine, 2).toString(),tblMedicineTable.getValueAt(rowMedicine, 3).toString(),
+                tblMedicineTable.getValueAt(rowMedicine, 4).toString(),tblMedicineTable.getValueAt(rowMedicine, 5).toString(),tblMedicineTable.getValueAt(rowMedicine, 6).toString(),
+                tblMedicineTable.getValueAt(rowMedicine, 7).toString()};
+                modelmedicine.addRow(addMedicine);
+                rowMedicine++;
+            }
+        }
+        //history
+        DefaultTableModel modelHistory = (DefaultTableModel)tblHistorySummary.getModel();
+        modelHistory.setRowCount(0);
+        Object[] addHistory= {txtAreaDiagnosisHistory.getText(),txtAreaSubjective.getText(),txtAreaPresentation.getText(),
+        txtAreaPastHistory.getText(),txtAreaHabits.getText(),txtAreaFamilyHistory.getText(),txtAreaAllergies.getText(),
+        txtAreaPlanning.getText()};
+        modelHistory.addRow(addHistory);
+ 
+    }
+    private void panelSummaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSummaryMouseClicked
+
+    }//GEN-LAST:event_panelSummaryMouseClicked
     private void UpdateAppointment(){
         try{
             DbConn.pstmt = DbConn.conn.prepareStatement("Update tblappointment set ap_billed=? where ap_apptnumber =?");
@@ -1379,6 +1487,10 @@ Date todayDate = new Date();
             int rowCount=0;
             while (rowCount != tblICDShow.getRowCount()){
                 try{
+//        check1 = tblICDShow.getValueAt(rowCount,0).toString();
+//        check2 = tblICDShow.getValueAt(rowCount,1).toString();
+//        check3 = tblICDSearch.getValueAt(rowCount,0).toString();
+//        check4 = tblICDSearch.getValueAt(rowCount,0).toString();
                     DbConn.SQLQuery = "Insert into tblpatienticdcodes (pi_pid,pi_apptid,pi_patientname,pi_code,pi_description,pi_doctor) "
                             + "values (?,?,?,?,?,?)";
                     DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
@@ -1640,7 +1752,6 @@ Date todayDate = new Date();
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
@@ -1684,12 +1795,13 @@ Date todayDate = new Date();
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblApptID;
     private javax.swing.JLabel lblCurrentDoctor;
     private javax.swing.JLabel lblDoctor;
     private javax.swing.JLabel lblPID;
     private javax.swing.JLabel lblPatientName;
+    private javax.swing.JPanel panelSummary;
+    private javax.swing.JTabbedPane tabbedDoctor;
     private javax.swing.JTable tblAppointment;
     private javax.swing.JTable tblHistory;
     private javax.swing.JTable tblHistorySummary;
