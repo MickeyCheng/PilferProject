@@ -1,5 +1,7 @@
 
 package main;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -27,6 +29,16 @@ DbConnection DbConn = new DbConnection();
         fillTable();
         setDefaultCloseOperation(frmRegistration.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e){
+                    DbConn.RegForm = false;
+                }
+                @Override
+                public void windowClosing(WindowEvent e){
+                    DbConn.RegForm = false;
+                }
+        });
         txtSearch.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {SearchPatient();}

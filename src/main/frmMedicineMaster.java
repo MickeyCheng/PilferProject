@@ -1,5 +1,7 @@
 
 package main;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -28,6 +30,12 @@ boolean add,edit;
         tblMedicine.setAutoResizeMode(tblMedicine.AUTO_RESIZE_OFF);
         tblMedicine.setAutoscrolls(true);
         SetWidth();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                DbConn.MasterDrugForm = false;
+            }
+        });
         try {
         setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
     } catch (IOException ex) {

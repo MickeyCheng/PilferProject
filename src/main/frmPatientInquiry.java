@@ -1,5 +1,7 @@
 
 package main;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -27,6 +29,12 @@ DbConnection DbConn = new DbConnection();
         setLocationRelativeTo(null);
         tblPatient.setAutoscrolls(true);
         tblPatient.setAutoResizeMode(tblPatient.AUTO_RESIZE_OFF);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                DbConn.InqPatientForm = false;
+            }
+        });
         txtSearch.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {ListenSearch();}

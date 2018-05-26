@@ -2,6 +2,8 @@
 package main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
@@ -49,6 +51,7 @@ Date todayDate = new Date();
     public frmDoctor() {
         initComponents();
         DbConn.DoConnect();
+        lblApptID.setVisible(false);
         setLocationRelativeTo(null);
         setExtendedState(frmDoctor.MAXIMIZED_BOTH);
         setDate();
@@ -70,9 +73,19 @@ Date todayDate = new Date();
         if (DbConnection.LoggedUserAdmin.equals("Y")){
             cmbDoctor.setVisible(true);
         }
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                DbConn.DoctorForm = false;
+            }
+        });
         tabbedDoctor.addChangeListener(new ChangeListener() {
             @Override
-            public void stateChanged(ChangeEvent e) {LoadSummary();}
+            public void stateChanged(ChangeEvent e) {
+                LoadSummaryHistory();
+                LoadSummaryMedicine();
+                LoadSummaryTreatment();
+            }
         });
         cmbDoctor.addActionListener(new ActionListener() {
             @Override
@@ -357,11 +370,17 @@ Date todayDate = new Date();
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        lblAge = new javax.swing.JLabel();
         lblPatientName = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         lblPID = new javax.swing.JLabel();
         lblApptID = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        lblBirthday = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -502,9 +521,9 @@ Date todayDate = new Date();
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("PID:");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+        lblAge.setForeground(new java.awt.Color(0, 0, 0));
+        lblAge.setText("Age");
+        jPanel2.add(lblAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 210, -1));
 
         lblPatientName.setForeground(new java.awt.Color(0, 0, 0));
         lblPatientName.setText("Patient Name");
@@ -516,11 +535,35 @@ Date todayDate = new Date();
 
         lblPID.setForeground(new java.awt.Color(0, 0, 0));
         lblPID.setText("Patient Id");
-        jPanel2.add(lblPID, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 110, -1));
+        jPanel2.add(lblPID, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 110, -1));
 
         lblApptID.setForeground(new java.awt.Color(0, 0, 0));
         lblApptID.setText("apptid");
-        jPanel2.add(lblApptID, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
+        jPanel2.add(lblApptID, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        jLabel35.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel35.setText("PID:");
+        jPanel2.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        jLabel36.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel36.setText("Age:");
+        jPanel2.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, -1));
+
+        jLabel37.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel37.setText("Gender:");
+        jPanel2.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, -1, -1));
+
+        lblGender.setForeground(new java.awt.Color(0, 0, 0));
+        lblGender.setText("Gender");
+        jPanel2.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 210, -1));
+
+        jLabel39.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel39.setText("DOB:");
+        jPanel2.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, -1, -1));
+
+        lblBirthday.setForeground(new java.awt.Color(0, 0, 0));
+        lblBirthday.setText("Birthday");
+        jPanel2.add(lblBirthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 210, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1040, 70));
 
@@ -1024,7 +1067,7 @@ Date todayDate = new Date();
 
         TabVitalAndCC.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 920, 530));
 
-        tabbedDoctor.addTab("Vital Signs, Chief Complains & ICD", TabVitalAndCC);
+        tabbedDoctor.addTab("Vital Signs, Chief Complaint & ICD", TabVitalAndCC);
 
         panelSummary.setBackground(new java.awt.Color(214, 214, 194));
         panelSummary.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1227,21 +1270,41 @@ Date todayDate = new Date();
     private void txtBloodSugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBloodSugarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBloodSugarActionPerformed
-
+    private void LoadPatientDetails(){
+//        try{
+//            DbConn.pstmt = DbConn.conn.prepareStatement("Select * from tblpatientdetails where pd_pid=?");
+//            DbConn.pstmt.setString(1, tblAppointment.getValueAt(ERROR, NORMAL));
+//        }catch(SQLException e){
+//            JOptionPane.showMessageDialog(this, "Load Patient Details");
+//        } 
+    }
     private void tblAppointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAppointmentMouseClicked
         try{
             int row = tblAppointment.getSelectedRow();
             int ba = tblAppointment.convertRowIndexToModel(row);
-            lblApptID.setText(tblAppointment.getValueAt(ba, 3).toString());
-            lblPID.setText(tblAppointment.getValueAt(ba, 2).toString());
-            lblPatientName.setText(tblAppointment.getValueAt(ba, 1).toString());
+            try{
+                DbConn.pstmt = DbConn.conn.prepareStatement("Select * from tblpatientdetails where pd_pid=?");
+                DbConn.pstmt.setString(1, tblAppointment.getValueAt(ba, 2).toString());
+                DbConn.rs = DbConn.pstmt.executeQuery();
+                if (DbConn.rs.next()){
+                    lblApptID.setText(tblAppointment.getValueAt(ba, 3).toString());
+                    lblPID.setText(DbConn.rs.getString("pd_pid"));
+                    lblPatientName.setText(DbConn.rs.getString("pd_name"));
+                    lblBirthday.setText(DbConn.rs.getString("pd_dob"));
+                    lblGender.setText(DbConn.rs.getString("pd_gender"));
+                }
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(this, "Load Patient Details");
+            } 
             fillVitalsAndCC();
             SetApptHeader();
             FillHistory();
             LoadTreatment();
             LoadMedicine();
             LoadHistory();
-            LoadSummary();
+            LoadSummaryHistory();
+            LoadSummaryMedicine();
+            LoadSummaryTreatment();
             LoadTableSummaryHeader();
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Please check that you have chosen the correct patient.");
@@ -1426,22 +1489,18 @@ Date todayDate = new Date();
     private void tabbedDoctorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabbedDoctorMouseClicked
         
     }//GEN-LAST:event_tabbedDoctorMouseClicked
-    private void LoadSummary(){
-        int rowTreatment =0,rowMedicine=0;
-        //treatment
-        if (tblTreatmentService.getRowCount() <=0){
-            return;
-        }else{
-            DefaultTableModel modelTreatment = (DefaultTableModel)tblTreatmentSummary.getModel();
-            modelTreatment.setRowCount(0);
-            while (rowTreatment!=tblTreatmentService.getRowCount()){
-                Object[] addTreatmentSummary= {tblTreatmentService.getValueAt(rowTreatment, 0).toString(),tblTreatmentService.getValueAt(rowTreatment, 1).toString(),
-                tblTreatmentService.getValueAt(rowTreatment, 2).toString(),tblTreatmentService.getValueAt(rowTreatment, 3).toString(),
-                tblTreatmentService.getValueAt(rowTreatment, 4).toString()};
-                modelTreatment.addRow(addTreatmentSummary);
-                rowTreatment++;
-            }
-        }
+    private void LoadSummaryHistory(){
+    //history
+        DefaultTableModel modelHistory = (DefaultTableModel)tblHistorySummary.getModel();
+        modelHistory.setRowCount(0);
+        Object[] addHistory= {txtAreaDiagnosisHistory.getText(),txtAreaSubjective.getText(),txtAreaPresentation.getText(),
+        txtAreaPastHistory.getText(),txtAreaHabits.getText(),txtAreaFamilyHistory.getText(),txtAreaAllergies.getText(),
+        txtAreaPlanning.getText()};
+        modelHistory.addRow(addHistory);
+ 
+    }
+    private void LoadSummaryMedicine(){
+        int rowMedicine=0;
         //medicine
         if (tblMedicineTable.getRowCount() <=0){
             return;
@@ -1457,14 +1516,23 @@ Date todayDate = new Date();
                 rowMedicine++;
             }
         }
-        //history
-        DefaultTableModel modelHistory = (DefaultTableModel)tblHistorySummary.getModel();
-        modelHistory.setRowCount(0);
-        Object[] addHistory= {txtAreaDiagnosisHistory.getText(),txtAreaSubjective.getText(),txtAreaPresentation.getText(),
-        txtAreaPastHistory.getText(),txtAreaHabits.getText(),txtAreaFamilyHistory.getText(),txtAreaAllergies.getText(),
-        txtAreaPlanning.getText()};
-        modelHistory.addRow(addHistory);
- 
+    }
+    private void LoadSummaryTreatment(){
+        int rowTreatment =0;
+        //treatment
+        if (tblTreatmentService.getRowCount() <=0){
+            return;
+        }else{
+            DefaultTableModel modelTreatment = (DefaultTableModel)tblTreatmentSummary.getModel();
+            modelTreatment.setRowCount(0);
+            while (rowTreatment!=tblTreatmentService.getRowCount()){
+                Object[] addTreatmentSummary= {tblTreatmentService.getValueAt(rowTreatment, 0).toString(),tblTreatmentService.getValueAt(rowTreatment, 1).toString(),
+                tblTreatmentService.getValueAt(rowTreatment, 2).toString(),tblTreatmentService.getValueAt(rowTreatment, 3).toString(),
+                tblTreatmentService.getValueAt(rowTreatment, 4).toString()};
+                modelTreatment.addRow(addTreatmentSummary);
+                rowTreatment++;
+            }
+        }
     }
     private void panelSummaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSummaryMouseClicked
 
@@ -1722,7 +1790,6 @@ Date todayDate = new Date();
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -1745,6 +1812,10 @@ Date todayDate = new Date();
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1795,9 +1866,12 @@ Date todayDate = new Date();
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblApptID;
+    private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblCurrentDoctor;
     private javax.swing.JLabel lblDoctor;
+    private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblPID;
     private javax.swing.JLabel lblPatientName;
     private javax.swing.JPanel panelSummary;

@@ -56,12 +56,12 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="mnuPatientInquiry">
+        <Menu class="javax.swing.JMenu" name="MainPatient">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inquiry"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
+            <MenuItem class="javax.swing.JMenuItem" name="mnuPatientInquiry">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Alt+P"/>
@@ -69,7 +69,7 @@
                 <Property name="text" type="java.lang.String" value="Patient Inquiry"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuPatientInquiryActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuApptInquiry">
@@ -328,7 +328,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/DoctorButtonMain.png"/>
+              <Image iconType="3" name="/images/DoctorButtonMain2.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Doctor"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -388,7 +388,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/mainBG.jpg"/>
+              <Image iconType="3" name="/images/mainBG3.jpg"/>
             </Property>
           </Properties>
           <Constraints>

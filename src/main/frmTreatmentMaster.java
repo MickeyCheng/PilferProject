@@ -1,5 +1,7 @@
 
 package main;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -25,6 +27,12 @@ boolean add,edit;
         radYes.setSelected(true);
         setDefaultCloseOperation(frmTreatmentMaster.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                DbConn.MasterTreatmentForm = false;
+            }
+        });
         try {
         setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
     } catch (IOException ex) {

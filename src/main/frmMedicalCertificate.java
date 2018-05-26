@@ -1,5 +1,7 @@
 
 package main;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -34,6 +36,12 @@ DbConnection DbConn = new DbConnection();
         FillTable();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(frmMedicalCertificate.DISPOSE_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                DbConn.MedCertForm = false;
+            }
+        });
         txtSearch.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {ListenSearch();}

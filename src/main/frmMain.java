@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.EventQueue;
 import java.awt.Window;
 import java.io.File;
 import java.io.IOException;
@@ -65,7 +66,7 @@ public class frmMain extends javax.swing.JFrame {
             mnuInvoiceInq.setEnabled(false);
         }
         if (DbConn.InqPatientDb.equals("N")){
-            mnuPatientInquiry.setEnabled(false);
+            MainPatient.setEnabled(false);
         }
         if (DbConn.InqSalesDb.equals("N")){
             mnuSalesInq.setEnabled(false);
@@ -120,8 +121,8 @@ public class frmMain extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         mnuInvoiceReceipt = new javax.swing.JMenuItem();
-        mnuPatientInquiry = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        MainPatient = new javax.swing.JMenu();
+        mnuPatientInquiry = new javax.swing.JMenuItem();
         mnuApptInquiry = new javax.swing.JMenuItem();
         mnuSalesInq = new javax.swing.JMenuItem();
         mnuInvoiceInq = new javax.swing.JMenuItem();
@@ -169,7 +170,7 @@ public class frmMain extends javax.swing.JFrame {
         jPanel1.add(btnAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 220, 240));
 
         btnDoctor.setBackground(new java.awt.Color(255, 255, 255));
-        btnDoctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/DoctorButtonMain.png"))); // NOI18N
+        btnDoctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/DoctorButtonMain2.png"))); // NOI18N
         btnDoctor.setText("Doctor");
         btnDoctor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDoctor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -204,7 +205,7 @@ public class frmMain extends javax.swing.JFrame {
         });
         jPanel1.add(btnLaboratory, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, 220, 240));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mainBG.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mainBG3.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1357, 725));
 
         jMenu1.setText("File");
@@ -245,16 +246,16 @@ public class frmMain extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        mnuPatientInquiry.setText("Inquiry");
+        MainPatient.setText("Inquiry");
 
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem7.setText("Patient Inquiry");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        mnuPatientInquiry.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        mnuPatientInquiry.setText("Patient Inquiry");
+        mnuPatientInquiry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                mnuPatientInquiryActionPerformed(evt);
             }
         });
-        mnuPatientInquiry.add(jMenuItem7);
+        MainPatient.add(mnuPatientInquiry);
 
         mnuApptInquiry.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuApptInquiry.setText("Appointment Inquiry");
@@ -263,7 +264,7 @@ public class frmMain extends javax.swing.JFrame {
                 mnuApptInquiryActionPerformed(evt);
             }
         });
-        mnuPatientInquiry.add(mnuApptInquiry);
+        MainPatient.add(mnuApptInquiry);
 
         mnuSalesInq.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuSalesInq.setText("Sales Inquiry");
@@ -272,7 +273,7 @@ public class frmMain extends javax.swing.JFrame {
                 mnuSalesInqActionPerformed(evt);
             }
         });
-        mnuPatientInquiry.add(mnuSalesInq);
+        MainPatient.add(mnuSalesInq);
 
         mnuInvoiceInq.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mnuInvoiceInq.setText("Invoice Inquiry");
@@ -281,9 +282,9 @@ public class frmMain extends javax.swing.JFrame {
                 mnuInvoiceInqActionPerformed(evt);
             }
         });
-        mnuPatientInquiry.add(mnuInvoiceInq);
+        MainPatient.add(mnuInvoiceInq);
 
-        jMenuBar1.add(mnuPatientInquiry);
+        jMenuBar1.add(MainPatient);
 
         jMenu4.setText("Reports");
 
@@ -400,70 +401,136 @@ public class frmMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrationActionPerformed
+        
         frmRegistration obj = new frmRegistration();
+        if (DbConn.RegForm !=true){
             obj.setVisible(true);
+            DbConn.RegForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_btnRegistrationActionPerformed
 
     private void btnAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAppointmentActionPerformed
 
         frmAppointment obj = new frmAppointment();
+        if (DbConn.ApptForm !=true){
             obj.setVisible(true);
+            DbConn.ApptForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_btnAppointmentActionPerformed
 
     private void btnDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorActionPerformed
 
         frmDoctor obj = new frmDoctor();
+        if (DbConn.DoctorForm !=true){
             obj.setVisible(true);
+            DbConn.DoctorForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_btnDoctorActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void mnuPatientInquiryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPatientInquiryActionPerformed
         frmPatientInquiry obj = new frmPatientInquiry();
-        obj.setVisible(true);
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+        if (DbConn.InqPatientForm !=true){
+            obj.setVisible(true);
+            DbConn.InqPatientForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
+    }//GEN-LAST:event_mnuPatientInquiryActionPerformed
 
     private void mnuApptInquiryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuApptInquiryActionPerformed
         frmApptInquiry obj = new frmApptInquiry();
-        obj.setVisible(true);
+        if (DbConn.InqApptForm !=true){
+            obj.setVisible(true);
+            DbConn.InqApptForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_mnuApptInquiryActionPerformed
 
     private void mnuSalesInqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSalesInqActionPerformed
         frmSalesInquiry obj = new frmSalesInquiry();
-        obj.setVisible(true);
+        if (DbConn.InqSalesForm !=true){
+            obj.setVisible(true);
+            DbConn.InqSalesForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_mnuSalesInqActionPerformed
 
     private void mnuInvoiceInqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInvoiceInqActionPerformed
         frmInvoiceInquiry obj = new frmInvoiceInquiry();
-        obj.setVisible(true);
+        if (DbConn.InqInvoiceForm !=true){
+            obj.setVisible(true);
+            DbConn.InqInvoiceForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_mnuInvoiceInqActionPerformed
 
     private void mnuGenMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGenMasterActionPerformed
         frmGeneralMaster obj = new frmGeneralMaster();
-        obj.setVisible(true);
+        if (DbConn.MasterGenForm !=true){
+            obj.setVisible(true);
+            DbConn.MasterGenForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_mnuGenMasterActionPerformed
 
     private void mnuUserMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuUserMasterActionPerformed
         frmUserMaster obj = new frmUserMaster();
-        obj.setVisible(true);
+        if (DbConn.MasterUserForm !=true){
+            obj.setVisible(true);
+            DbConn.MasterUserForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_mnuUserMasterActionPerformed
 
     private void mnuDrugMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDrugMasterActionPerformed
         frmMedicineMaster obj = new frmMedicineMaster();
-        obj.setVisible(true);
+        if (DbConn.MasterDrugForm !=true){
+            obj.setVisible(true);
+            DbConn.MasterDrugForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_mnuDrugMasterActionPerformed
 
     private void mnuTreatmentMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTreatmentMasterActionPerformed
         frmTreatmentMaster obj = new frmTreatmentMaster();
-        obj.setVisible(true);
+        if (DbConn.MasterTreatmentForm !=true){
+            obj.setVisible(true);
+            DbConn.MasterTreatmentForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_mnuTreatmentMasterActionPerformed
 
     private void mnuICDMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuICDMasterActionPerformed
         frmICDMaster obj = new frmICDMaster();
-        obj.setVisible(true);
+        if (DbConn.MasterICDForm !=true){
+            obj.setVisible(true);
+            DbConn.MasterICDForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_mnuICDMasterActionPerformed
 
     private void mnuInsuranceMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInsuranceMasterActionPerformed
         frmInsurance obj = new frmInsurance();
-        obj.setVisible(true);
+        if (DbConn.MasterInsuranceForm !=true){
+            obj.setVisible(true);
+            DbConn.MasterInsuranceForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_mnuInsuranceMasterActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -489,21 +556,36 @@ public class frmMain extends javax.swing.JFrame {
 
     private void mnuMedCertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMedCertActionPerformed
         frmMedicalCertificate obj = new frmMedicalCertificate();
-        obj.setVisible(true);
+        if (DbConn.MedCertForm !=true){
+            obj.setVisible(true);
+            DbConn.MedCertForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_mnuMedCertActionPerformed
 
     private void mnuInvoiceReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInvoiceReceiptActionPerformed
         frmBilling obj = new frmBilling();
-        obj.setVisible(true);
+        if (DbConn.InvGenForm !=true){
+            obj.setVisible(true);
+            DbConn.InvGenForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_mnuInvoiceReceiptActionPerformed
 
     private void mnuUserSecMasterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuUserSecMasterActionPerformed
         frmUserSecurity obj = new frmUserSecurity();
-        obj.setVisible(true);
+        if (DbConn.MasterSecurityForm !=true){
+            obj.setVisible(true);
+            DbConn.MasterSecurityForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_mnuUserSecMasterActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        JOptionPane.showMessageDialog(this, "This software is developed by Joefrey Bartolome for ES Solutions. \n For questions, email me at info@whutthetech.com.","About",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "This software is developed by WhutTheTech. \n For more information, visit us at www.whutthetech.com","Whut The Tech",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void btnRadiologyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRadiologyActionPerformed
@@ -550,6 +632,7 @@ public class frmMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu MainPatient;
     private javax.swing.JButton btnAppointment;
     private javax.swing.JButton btnDoctor;
     private javax.swing.JButton btnLaboratory;
@@ -566,7 +649,6 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem mnuApptInquiry;
     private javax.swing.JMenuItem mnuDrugMaster;
@@ -576,7 +658,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuInvoiceInq;
     private javax.swing.JMenuItem mnuInvoiceReceipt;
     private javax.swing.JMenuItem mnuMedCert;
-    private javax.swing.JMenu mnuPatientInquiry;
+    private javax.swing.JMenuItem mnuPatientInquiry;
     private javax.swing.JMenuItem mnuSalesInq;
     private javax.swing.JMenuItem mnuTreatmentMaster;
     private javax.swing.JMenuItem mnuUserMaster;

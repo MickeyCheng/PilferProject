@@ -1,6 +1,12 @@
 
 package main;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import org.joda.time.format.DateTimeFormat;
@@ -37,6 +43,12 @@ DbConnection DbConn = new DbConnection();
         fillComboDoctor();
         setDefaultCloseOperation(frmAppointment.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                DbConn.ApptForm = false;
+            }
+        });
         txtSearch.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {listenSearchPatient();}
@@ -46,6 +58,26 @@ DbConnection DbConn = new DbConnection();
 
             @Override
             public void changedUpdate(DocumentEvent e) {listenSearchPatient();}
+        });
+        cmbDoctor1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fillTableSchedule();
+                fillTableScheduleSecond();
+            }
+        });
+        cmbDoctor2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fillTableSchedule();
+                fillTableScheduleSecond();
+            }
+        });
+        dateBooked.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) { 
+                fillTableSchedule();
+                fillTableScheduleSecond();   }
         });
         loadDateBooked();
         try {
@@ -515,7 +547,7 @@ DbConnection DbConn = new DbConnection();
     }//GEN-LAST:event_dateAppointmentMouseReleased
 
     private void dateBookedMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dateBookedMouseReleased
-        // TODO add your handling code here:
+              
     }//GEN-LAST:event_dateBookedMouseReleased
 
     private void dateDobMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dateDobMouseReleased
@@ -617,8 +649,13 @@ DbConnection DbConn = new DbConnection();
     }//GEN-LAST:event_btnApptShowActionPerformed
 
     private void btnVitalSignsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVitalSignsActionPerformed
-        frmVitalSigns obs = new frmVitalSigns();
-        obs.setVisible(true);
+        frmVitalSigns obj = new frmVitalSigns();
+        if (DbConn.VitalForm !=true){
+            obj.setVisible(true);
+            DbConn.VitalForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_btnVitalSignsActionPerformed
 
     private void tblDoctor1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDoctor1MouseClicked
@@ -643,12 +680,22 @@ DbConnection DbConn = new DbConnection();
 
     private void btnXrayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXrayActionPerformed
         frmXrayTest obj = new frmXrayTest();
-        obj.setVisible(true);
+        if (DbConn.XrayForm !=true){
+            obj.setVisible(true);
+            DbConn.XrayForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_btnXrayActionPerformed
 
     private void btnChiefComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiefComplaintActionPerformed
         frmChiefComplain obj = new frmChiefComplain();
-        obj.setVisible(true);
+        if (DbConn.ChiefComForm !=true){
+            obj.setVisible(true);
+            DbConn.ChiefComForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened");
+        }
     }//GEN-LAST:event_btnChiefComplaintActionPerformed
 
     private void tblDoctor2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDoctor2MouseClicked

@@ -28,6 +28,9 @@ public class DbConnection
             InqPatientDb,InqApptDb,InqSalesDb,InqInvoiceDb,
             MasterGenDb,MasterUserDb,MasterSecurityDb,MasterDrugDb,MasterTreatmentDb,MasterICDDb,MasterInsuranceDb,
             ReportMedCertDb;
+    public static boolean RegForm,ApptForm,DoctorForm,InvGenForm,InqPatientForm,InqApptForm,InqSalesForm,InqInvoiceForm,
+            MedCertForm,MasterGenForm,MasterUserForm,MasterSecurityForm,MasterDrugForm,MasterTreatmentForm,MasterICDForm,
+            MasterInsuranceForm,XrayForm,VitalForm,ChiefComForm;
     public void GetNextInvoice(){
         try{
             pstmt = conn.prepareStatement("Select * from tblinvoicedetail order by id_number DESC LIMIT 1");

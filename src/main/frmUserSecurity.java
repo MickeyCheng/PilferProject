@@ -3,6 +3,8 @@ package main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -28,6 +30,12 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
         FillComboUsers();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(frmUserSecurity.DISPOSE_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                DbConn.MasterSecurityForm = false;
+            }
+        });
         cmbUserName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

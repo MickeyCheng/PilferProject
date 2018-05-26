@@ -1,5 +1,7 @@
 
 package main;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -24,6 +26,12 @@ SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
         DbConn.DoConnect();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(frmVitalSigns.DISPOSE_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                DbConn.VitalForm = false;
+            }
+        });
         try {
         setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
     } catch (IOException ex) {

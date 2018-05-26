@@ -1,5 +1,7 @@
 
 package main;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
@@ -45,6 +47,12 @@ String GetApptID,GetBillStatus,GetPID,GetDoctor,GetPatientName;
         tblBilling.setAutoResizeMode(tblBilling.AUTO_RESIZE_OFF);
         tblBilling.setAutoscrolls(true);
         tblBilling.setAutoCreateRowSorter(true);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                DbConn.InvGenForm = false;
+            }
+        });
         dateAppointment.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {FillDateChange();}

@@ -1,5 +1,7 @@
 
 package main;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -44,6 +46,12 @@ Date todayDate = new Date();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                DbConn.MasterGenForm = false;
+            }
+        });
         try {
         setIconImage(ImageIO.read(new File("src\\images\\ESSolutionsLogo.jpg")));
     } catch (IOException ex) {

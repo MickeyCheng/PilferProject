@@ -2,6 +2,8 @@
 package main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -22,6 +24,12 @@ DbConnection DbConn = new DbConnection();
         FillCombo();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(frmInsurance.DISPOSE_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                DbConn.MasterInsuranceForm = false;
+            }
+        });
         cmbName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {txtName.setText(cmbName.getSelectedItem().toString());

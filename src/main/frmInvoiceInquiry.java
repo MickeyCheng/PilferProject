@@ -2,6 +2,8 @@ package main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -43,6 +45,12 @@ String GetFromDate,GetToDate;
         tblInvoice.setAutoCreateRowSorter(true);
         tblInvoice.setAutoResizeMode(tblInvoice.AUTO_RESIZE_OFF);
         tblInvoice.setAutoscrolls(true);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                DbConn.InqInvoiceForm = false;
+            }
+        });
         txtSearch.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {ListenSearchTextBox();}
