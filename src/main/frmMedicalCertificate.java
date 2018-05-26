@@ -36,6 +36,8 @@ DbConnection DbConn = new DbConnection();
         FillTable();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(frmMedicalCertificate.DISPOSE_ON_CLOSE);
+        tblMedCert.setAutoscrolls(true);
+        tblMedCert.setAutoResizeMode(tblMedCert.AUTO_RESIZE_OFF);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e){
@@ -58,6 +60,22 @@ DbConnection DbConn = new DbConnection();
         Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
+    private void SetTableHeader(){
+        tblMedCert.getColumnModel().getColumn(0).setHeaderValue("PID");
+        tblMedCert.getColumnModel().getColumn(1).setHeaderValue("APPT ID");
+        tblMedCert.getColumnModel().getColumn(2).setHeaderValue("NAME");
+        tblMedCert.getColumnModel().getColumn(3).setHeaderValue("APPT DATE");
+        tblMedCert.getColumnModel().getColumn(4).setHeaderValue("DISCHARGED");
+        tblMedCert.getColumnModel().getColumn(5).setHeaderValue("DAYS");
+        tblMedCert.getColumnModel().getColumn(6).setHeaderValue("DIAGNOSIS");
+        tblMedCert.getColumnModel().getColumn(7).setHeaderValue("DOCTOR");
+        
+        int i=0;
+        while (i<tblMedCert.getColumnCount()){
+            tblMedCert.getColumnModel().getColumn(i).setPreferredWidth(100);
+            i++;
+        }
+    }
     private void ListenSearch(){
         try{
             DbConn.SQLQuery = "select * from tblmedicalcertificate where mc_patientname like ? or mc_pid like ? ";
@@ -68,6 +86,7 @@ DbConnection DbConn = new DbConnection();
             tblMedCert.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
             tblMedCert.removeColumn(tblMedCert.getColumnModel().getColumn(0));
+            SetTableHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -80,6 +99,7 @@ DbConnection DbConn = new DbConnection();
             tblMedCert.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
             tblMedCert.removeColumn(tblMedCert.getColumnModel().getColumn(0));
+            SetTableHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

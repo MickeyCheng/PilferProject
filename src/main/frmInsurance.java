@@ -186,7 +186,6 @@ DbConnection DbConn = new DbConnection();
             DbConn.pstmt.execute();
             JOptionPane.showMessageDialog(this, "New Insurance Saved");
             DbConn.pstmt.close();
-            this.dispose();
             revalidate();
             repaint();
         }catch(SQLException e){
