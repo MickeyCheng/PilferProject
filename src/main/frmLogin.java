@@ -97,7 +97,7 @@ DbConnection DbConn = new DbConnection();
                 this.dispose();
                 DbConn.pstmt.close();
             }else{
-                JOptionPane.showMessageDialog(this, "Hacker Ka!");
+                JOptionPane.showMessageDialog(this, "Invalid User ID or Password","LOGIN",JOptionPane.WARNING_MESSAGE);
             }
             DbConn.pstmt.close();
         }catch(SQLException e){

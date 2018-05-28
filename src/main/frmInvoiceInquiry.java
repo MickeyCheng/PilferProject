@@ -88,7 +88,7 @@ String GetFromDate,GetToDate;
      private void ListenSearchTextBox(){
         GetDate();
         try{
-            DbConn.SQLQuery = "Select ih_number,ih_date,ih_pid,ih_patientname,ih_subtotal,ih_netamount,ih_doctor from tblInvoiceheader "
+            DbConn.SQLQuery = "Select ih_number,ih_date,ih_pid,ih_patientname,ih_subtotal,ih_netamount,ih_doctor from tblinvoiceheader "
                     + "where ih_pid like ? or ih_patientname like?";
 
             DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
@@ -105,9 +105,9 @@ String GetFromDate,GetToDate;
     private void ListenSearch(){
         GetDate();
         try{
-//            DbConn.SQLQuery = "Select ih_number,ih_date,ih_pid,ih_patientname,ih_subtotal,ih_netamount,ih_doctor from tblInvoiceheader "
+//            DbConn.SQLQuery = "Select ih_number,ih_date,ih_pid,ih_patientname,ih_subtotal,ih_netamount,ih_doctor from tblinvoiceheader "
 //                    + "where ih_date between ? and ? and ih_doctor =? and ih_pid like ? or ih_patientname like?";
- DbConn.SQLQuery = "Select ih_number,ih_date,ih_pid,ih_patientname,ih_subtotal,ih_netamount,ih_doctor from tblInvoiceheader "
+ DbConn.SQLQuery = "Select ih_number,ih_date,ih_pid,ih_patientname,ih_subtotal,ih_netamount,ih_doctor from tblinvoiceheader "
                     + "where ih_date between ? and ? and ih_doctor =?";
             DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
             DbConn.pstmt.setString(1, GetFromDate);
@@ -134,7 +134,7 @@ String GetFromDate,GetToDate;
     private void FillTodayTable(){
         GetDate();
         try{
-            DbConn.SQLQuery = "Select ih_number,ih_date,ih_pid,ih_patientname,ih_subtotal,ih_netamount,ih_doctor from tblInvoiceheader where ih_date between ? and ? order by ih_number ASC";
+            DbConn.SQLQuery = "Select ih_number,ih_date,ih_pid,ih_patientname,ih_subtotal,ih_netamount,ih_doctor from tblinvoiceheader where ih_date between ? and ? order by ih_number ASC";
             DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
             DbConn.pstmt.setString(1, GetFromDate);
             DbConn.pstmt.setString(2, GetToDate);

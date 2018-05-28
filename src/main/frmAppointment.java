@@ -43,6 +43,7 @@ DbConnection DbConn = new DbConnection();
         fillComboDoctor();
         setDefaultCloseOperation(frmAppointment.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        tblPatient.setAutoCreateRowSorter(true);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e){
@@ -92,7 +93,7 @@ DbConnection DbConn = new DbConnection();
     }
     private void listenSearchPatient(){
         try{
-            DbConn.SQLQuery = "Select pd_pid,pd_name,pd_mobile from tblPatientdetails where pd_name like ?";
+            DbConn.SQLQuery = "Select pd_pid,pd_name,pd_mobile from tblpatientdetails where pd_name like ?";
             DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
             DbConn.pstmt.setString(1,"%" + txtSearch.getText()+ "%");
             DbConn.rs = DbConn.pstmt.executeQuery();

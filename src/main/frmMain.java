@@ -19,6 +19,7 @@ public class frmMain extends javax.swing.JFrame {
     public frmMain() {
         initComponents();
 //        setExtendedState(frmMain.MAXIMIZED_BOTH);
+        setLocationRelativeTo(null);
         setResizable(false);
         GrantAccess();
         try {

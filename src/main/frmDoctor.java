@@ -190,7 +190,7 @@ Date todayDate = new Date();
     private void FillComboDoctor(){
         cmbDoctor.removeAllItems();
         try{
-            DbConn.pstmt = DbConn.conn.prepareStatement("Select * from tblUsermaster where um_category =? order by um_name");
+            DbConn.pstmt = DbConn.conn.prepareStatement("Select * from tblusermaster where um_category =? order by um_name");
             DbConn.pstmt.setString(1, "Doctor");
             DbConn.rs = DbConn.pstmt.executeQuery();
             while (DbConn.rs.next()){
@@ -202,6 +202,11 @@ Date todayDate = new Date();
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
+    private void SetMedicineHeader(){
+        tblMedicine.getColumnModel().getColumn(0).setHeaderValue("Code");
+        tblMedicine.getColumnModel().getColumn(1).setHeaderValue("Name");
+        tblMedicine.getColumnModel().getColumn(2).setHeaderValue("Description");
+    }
     private void FillMedicine(){
         try{
             DbConn.SQLQuery= "Select mm_code,mm_name,mm_description from tblmedicinemaster order by mm_name";
@@ -209,12 +214,14 @@ Date todayDate = new Date();
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblMedicine.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
-            tblMedicine.getColumnModel().getColumn(0).setHeaderValue("Code");
-            tblMedicine.getColumnModel().getColumn(1).setHeaderValue("Name");
-            tblMedicine.getColumnModel().getColumn(2).setHeaderValue("Description");
+            SetMedicineHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+    }
+    private void SetICDHeader(){
+        tblICDSearch.getColumnModel().getColumn(0).setHeaderValue("Code");
+        tblICDSearch.getColumnModel().getColumn(1).setHeaderValue("Description");
     }
     private void FillICD(){
         try{
@@ -223,12 +230,15 @@ Date todayDate = new Date();
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblICDSearch.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
-            tblICDSearch.getColumnModel().getColumn(0).setHeaderValue("Code");
-            tblICDSearch.getColumnModel().getColumn(1).setHeaderValue("Description");
-            
+            SetICDHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+    }
+    private void SetTreatmentHeader(){
+        tblTreatment.getColumnModel().getColumn(0).setHeaderValue("Code");
+        tblTreatment.getColumnModel().getColumn(1).setHeaderValue("Description");
+        tblTreatment.getColumnModel().getColumn(2).setHeaderValue("Price");
     }
     private void FillTreatment(){
         try{
@@ -237,9 +247,7 @@ Date todayDate = new Date();
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblTreatment.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
-            tblTreatment.getColumnModel().getColumn(0).setHeaderValue("Code");
-            tblTreatment.getColumnModel().getColumn(1).setHeaderValue("Description");
-            tblTreatment.getColumnModel().getColumn(2).setHeaderValue("Price");
+            SetTreatmentHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -270,12 +278,13 @@ Date todayDate = new Date();
     }
     private void ListenICD(){
         try{
-            DbConn.SQLQuery = "Select * from tblicddetails where ic_code like ? or ic_description like ?";
+            DbConn.SQLQuery = "Select ic_code,ic_description from tblicddetails where ic_code like ? or ic_description like ?";
             DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
             DbConn.pstmt.setString(1, "%" + txtICDSearch.getText() + "%");
             DbConn.pstmt.setString(2, "%" + txtICDSearch.getText() + "%");
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblICDSearch.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
+            SetICDHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -288,6 +297,7 @@ Date todayDate = new Date();
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblMedicine.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
+            SetMedicineHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -300,6 +310,7 @@ Date todayDate = new Date();
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblTreatment.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
+            SetTreatmentHeader();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

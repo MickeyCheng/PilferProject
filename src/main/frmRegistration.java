@@ -12,12 +12,22 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class frmRegistration extends javax.swing.JFrame {
 boolean add,edit;
@@ -27,8 +37,10 @@ DbConnection DbConn = new DbConnection();
         initComponents();
         DbConn.DoConnect();
         fillTable();
+        DisableTexts();
         setDefaultCloseOperation(frmRegistration.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        tblPatient.setAutoCreateRowSorter(true);
         addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e){
@@ -55,6 +67,30 @@ DbConnection DbConn = new DbConnection();
         Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
+    private void DisableTexts(){
+        txtAddress.setEnabled(false);
+        txtDepartment.setEnabled(false);
+        txtMobileNumber.setEnabled(false);
+        txtName.setEnabled(false);
+        txtOccupation.setEnabled(false);
+        txtPosition.setEnabled(false);
+        txtRemarks.setEnabled(false);
+        dateBirth.setEnabled(false);
+        rbMale.setEnabled(false);
+        rbFemale.setEnabled(false);
+    }
+    private void EnableTexts(){
+        txtAddress.setEnabled(true);
+        txtDepartment.setEnabled(true);
+        txtMobileNumber.setEnabled(true);
+        txtName.setEnabled(true);
+        txtOccupation.setEnabled(true);
+        txtPosition.setEnabled(true);
+        txtRemarks.setEnabled(true);
+        dateBirth.setEnabled(true);
+        rbMale.setEnabled(true);
+        rbFemale.setEnabled(true);
+    }
     private void SearchPatient(){
         try{
             DbConn.SQLQuery = "Select pd_pid,pd_name from tblpatientdetails where pd_name like ?";
@@ -69,7 +105,7 @@ DbConnection DbConn = new DbConnection();
     }
     private void fillTable(){
         try{
-            DbConn.pstmt = DbConn.conn.prepareCall("SELECT pd_pid,pd_name from tblpatientdetails order by pd_name");
+            DbConn.pstmt = DbConn.conn.prepareStatement("SELECT pd_pid,pd_name from tblpatientdetails order by pd_name");
             DbConn.rs = DbConn.pstmt.executeQuery();
             tblPatient.setModel(DbUtils.resultSetToTableModel(DbConn.rs));
             DbConn.pstmt.close();
@@ -102,7 +138,7 @@ DbConnection DbConn = new DbConnection();
         txtOccupation = new javax.swing.JTextField();
         txtDepartment = new javax.swing.JTextField();
         txtPosition = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtNationality = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         lblPid = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -117,8 +153,12 @@ DbConnection DbConn = new DbConnection();
         jLabel15 = new javax.swing.JLabel();
         rbFemale = new javax.swing.JRadioButton();
         rbMale = new javax.swing.JRadioButton();
-        jButton3 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         dateBirth = new com.toedter.calendar.JDateChooser();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        btnEdit = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
@@ -127,6 +167,8 @@ DbConnection DbConn = new DbConnection();
         tblPatient = new javax.swing.JTable();
         txtSearch = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -194,7 +236,7 @@ DbConnection DbConn = new DbConnection();
         });
         jPanel3.add(txtDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 287, 390, -1));
         jPanel3.add(txtPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 330, 390, -1));
-        jPanel3.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 140, 30));
+        jPanel3.add(txtNationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 140, 30));
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("NAME:");
@@ -248,16 +290,38 @@ DbConnection DbConn = new DbConnection();
         rbMale.setText("Male");
         jPanel3.add(rbMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/NewIcon.png"))); // NOI18N
-        jButton3.setText("Add");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setBackground(new java.awt.Color(255, 255, 255));
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/NewIcon.png"))); // NOI18N
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 2, 110, 40));
+        jPanel3.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 110, 40));
         jPanel3.add(dateBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 150, 30));
+
+        jLabel7.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel7.setText("*");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 10, 10));
+
+        jLabel9.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel9.setText("*");
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 10, 10));
+
+        jLabel17.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel17.setText("*");
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 10, 10));
+
+        btnEdit.setBackground(new java.awt.Color(255, 255, 255));
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/EditIcon.png"))); // NOI18N
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 110, 40));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 530, 490));
 
@@ -273,14 +337,14 @@ DbConnection DbConn = new DbConnection();
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 120, 60));
+        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 120, 60));
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("PICTURE");
-        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 270, 137));
+        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 270, 100));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, 290, 240));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 350, 290, 200));
 
         jPanel5.setBackground(new java.awt.Color(214, 214, 194));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
@@ -297,6 +361,11 @@ DbConnection DbConn = new DbConnection();
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPatientMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblPatient);
 
         jPanel5.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 270, 140));
@@ -305,7 +374,21 @@ DbConnection DbConn = new DbConnection();
         jButton1.setText("RESET");
         jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 270, -1));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 290, 230));
+        btnPrint.setBackground(new java.awt.Color(255, 255, 255));
+        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/printericon.png"))); // NOI18N
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, 50));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 290, 280));
+
+        jLabel16.setFont(new java.awt.Font("Dialog", 2, 10)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel16.setText("All mandatory fields are marked with *");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 220, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -320,8 +403,8 @@ DbConnection DbConn = new DbConnection();
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -342,11 +425,24 @@ DbConnection DbConn = new DbConnection();
         }
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        getNextPID();
+        if (txtName.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter a patient name","Name",JOptionPane.WARNING_MESSAGE);
+            txtName.requestFocus();
+            return;
+        }
+        if (dateBirth.getDate() == null){
+            JOptionPane.showMessageDialog(this, "Please enter birthdate","Birthdate",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (!rbMale.isSelected() && !rbFemale.isSelected()){
+            JOptionPane.showMessageDialog(this, "Please select gender","Gender",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         if (add == true || edit == false){
+            getNextPID();
             try{
                 String insertPDQuery = "INSERT INTO tblpatientdetails (pd_pid,pd_name,pd_gender,pd_dob,pd_address,pd_mobile,"
-                        + "pd_occupation,pd_department,pd_remarks) values(?,?,?,?,?,?,?,?,?)";
+                        + "pd_occupation,pd_department,pd_remarks,pd_nationality,pd_position) values(?,?,?,?,?,?,?,?,?,?,?)";
                 DbConn.pstmt = DbConn.conn.prepareStatement(insertPDQuery);
                 DbConn.pstmt.setInt(1, getMaxPID);
                 DbConn.pstmt.setString(2, txtName.getText());
@@ -361,11 +457,43 @@ DbConnection DbConn = new DbConnection();
                 DbConn.pstmt.setString(7, txtOccupation.getText());
                 DbConn.pstmt.setString(8, txtDepartment.getText());
                 DbConn.pstmt.setString(9,txtRemarks.getText());
+                DbConn.pstmt.setString(10,txtNationality.getText());
+                DbConn.pstmt.setString(11,txtPosition.getText());
                 DbConn.pstmt.execute();
                 DbConn.pstmt.close();
                 JOptionPane.showMessageDialog(this, "REGISTRATION SUCCESFUL");
                 clearTexts();
                 fillTable();
+                DisableTexts();
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }    
+        }else if (add == false && edit == true){
+            try{
+                DbConn.SQLQuery = "Update tblpatientdetails set pd_name=?,pd_gender=?,pd_dob=?,pd_address=?,pd_mobile=?,"
+                        + "pd_occupation=?,pd_department=?,pd_remarks=?,pd_nationality=?, pd_position=? where pd_pid=?";
+                DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
+                DbConn.pstmt.setString(1, txtName.getText());
+                if (rbMale.isSelected()){
+                    DbConn.pstmt.setString(2, "MALE");
+                }else if (rbFemale.isSelected()){
+                    DbConn.pstmt.setString(2, "FEMALE");
+                }
+                DbConn.pstmt.setString(3, DbConn.sdfDate.format(dateBirth.getDate()));
+                DbConn.pstmt.setString(4,txtAddress.getText());
+                DbConn.pstmt.setInt(5, Integer.valueOf(txtMobileNumber.getText()));
+                DbConn.pstmt.setString(6, txtOccupation.getText());
+                DbConn.pstmt.setString(7, txtDepartment.getText());
+                DbConn.pstmt.setString(8,txtRemarks.getText());
+                DbConn.pstmt.setString(9,txtNationality.getText());
+                DbConn.pstmt.setString(10, txtPosition.getText());
+                DbConn.pstmt.setString(11, lblPid.getText());
+                DbConn.pstmt.executeUpdate();
+                DbConn.pstmt.close();
+                JOptionPane.showMessageDialog(this, "Record Edited");
+                clearTexts();
+                fillTable();
+                DisableTexts();
             }catch(SQLException e){
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }    
@@ -387,14 +515,97 @@ DbConnection DbConn = new DbConnection();
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDepartmentActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         getNextPID();
         lblPid.setText(String.valueOf(getMaxPID));
-    }//GEN-LAST:event_jButton3ActionPerformed
-
+        CleartTexts();
+        EnableTexts();
+        txtName.requestFocus();
+        add = true;
+        edit=false;
+    }//GEN-LAST:event_btnAddActionPerformed
+    private void CleartTexts(){
+        txtAddress.setText("");
+        txtDepartment.setText("");
+        txtMobileNumber.setText("");
+        txtName.setText("");
+        txtOccupation.setText("");
+        txtPosition.setText("");
+        txtRemarks.setText("");
+        txtSearch.setText("");
+    }
     private void dateBirthMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dateFromMouseReleased
 
     }//GEN-LAST:event_dateFromMouseReleased
+    private void LoadDetails(){
+        int row = tblPatient.getSelectedRow();
+        int ba = tblPatient.convertRowIndexToModel(row);
+        String tblClick =tblPatient.getModel().getValueAt(ba, 0).toString();
+        String fetchData = "Select * from tblpatientdetails where pd_pid=?";
+        try{
+            DbConn.pstmt = DbConn.conn.prepareStatement(fetchData);
+            DbConn.pstmt.setString(1, tblClick);
+            DbConn.rs = DbConn.pstmt.executeQuery();
+            if (DbConn.rs.next()){
+                txtAddress.setText(DbConn.rs.getString("pd_address"));
+                txtDepartment.setText(DbConn.rs.getString("pd_department"));
+                txtMobileNumber.setText(DbConn.rs.getString("pd_mobile"));
+                txtName.setText(DbConn.rs.getString("pd_name"));
+                txtOccupation.setText(DbConn.rs.getString("pd_occupation"));
+                txtPosition.setText(DbConn.rs.getString("pd_position"));
+                txtRemarks.setText(DbConn.rs.getString("pd_remarks"));
+                txtNationality.setText(DbConn.rs.getString("pd_nationality"));
+                lblPid.setText(DbConn.rs.getString("pd_pid"));
+                dateBirth.setDate(DbConn.rs.getDate("pd_dob"));
+                String GetGender = "";
+                GetGender = DbConn.rs.getString("pd_gender");
+                if(GetGender.equals("MALE")){
+                    rbMale.setSelected(true);
+                }else if (GetGender.equals("FEMALE")){
+                    rbFemale.setSelected(true);
+                }else{
+                    rbMale.setSelected(false);
+                    rbFemale.setSelected(false);
+                }
+            }
+            DbConn.pstmt.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage(),"Registration Load Patient",JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    private void tblPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPatientMouseClicked
+        LoadDetails();
+    }//GEN-LAST:event_tblPatientMouseClicked
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        edit = true;
+        add = false;
+        EnableTexts();
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+         Map param = new HashMap();
+        int row = tblPatient.getSelectedRow();
+        int ba = tblPatient.convertRowIndexToModel(row);
+        param.put("PID", tblPatient.getValueAt(ba, 0).toString());
+//        param.put("dateTo", sdfDate.format(getToDate));
+//        param.put("showStatus", cmbStatus.getSelectedItem().toString());
+//        param.put("showClient", cmbClient.getSelectedItem().toString());
+        try{
+            DbConn.conn.close();
+            Class.forName("com.mysql.jdbc.Driver");
+            //            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbticketing","root","root");
+            DbConn.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbemrph","root","root");
+//            DbConn.conn = DriverManager.getConnection("jdbc:mysql://166.62.10.53:3306/dbemrbeta","betapilfer","123456789");
+            JasperDesign jd = JRXmlLoader.load(new File("src\\reports\\reportPatient.jrxml"));
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = JasperFillManager.fillReport(jr, param,DbConn.conn);
+            JasperViewer.viewReport(jp,false);
+
+        }catch(ClassNotFoundException | SQLException | JRException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,11 +644,13 @@ DbConnection DbConn = new DbConnection();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnEdit;
     private javax.swing.ButtonGroup btnGroupGender;
+    private javax.swing.JButton btnPrint;
     private com.toedter.calendar.JDateChooser dateBirth;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -445,12 +658,16 @@ DbConnection DbConn = new DbConnection();
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -459,7 +676,6 @@ DbConnection DbConn = new DbConnection();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lblPid;
     private javax.swing.JRadioButton rbFemale;
     private javax.swing.JRadioButton rbMale;
@@ -468,6 +684,7 @@ DbConnection DbConn = new DbConnection();
     private javax.swing.JTextField txtDepartment;
     private javax.swing.JTextField txtMobileNumber;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtNationality;
     private javax.swing.JTextField txtOccupation;
     private javax.swing.JTextField txtPosition;
     private javax.swing.JTextArea txtRemarks;

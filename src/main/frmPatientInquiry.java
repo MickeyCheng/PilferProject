@@ -10,12 +10,22 @@ import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class frmPatientInquiry extends javax.swing.JFrame {
 DbConnection DbConn = new DbConnection();
@@ -91,6 +101,7 @@ DbConnection DbConn = new DbConnection();
         jLabel1 = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPatient = new javax.swing.JTable();
 
@@ -116,7 +127,17 @@ DbConnection DbConn = new DbConnection();
                 btnSearchActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 120, -1));
+        jPanel2.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 120, -1));
+
+        btnPrint.setBackground(new java.awt.Color(255, 255, 255));
+        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/printericon.png"))); // NOI18N
+        btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 120, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 430, 110));
 
@@ -159,6 +180,30 @@ DbConnection DbConn = new DbConnection();
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
        
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        Map param = new HashMap();
+        int row = tblPatient.getSelectedRow();
+        int ba = tblPatient.convertRowIndexToModel(row);
+        param.put("PID", tblPatient.getValueAt(ba, 0).toString());
+//        param.put("dateTo", sdfDate.format(getToDate));
+//        param.put("showStatus", cmbStatus.getSelectedItem().toString());
+//        param.put("showClient", cmbClient.getSelectedItem().toString());
+        try{
+            DbConn.conn.close();
+            Class.forName("com.mysql.jdbc.Driver");
+            //            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbticketing","root","root");
+//            DbConn.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbemrph","root","root");
+            DbConn.conn = DriverManager.getConnection("jdbc:mysql://166.62.10.53:3306/dbemrbeta","betapilfer","123456789");
+            JasperDesign jd = JRXmlLoader.load(new File("src\\reports\\reportPatient.jrxml"));
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = JasperFillManager.fillReport(jr, param,DbConn.conn);
+            JasperViewer.viewReport(jp,false);
+
+        }catch(ClassNotFoundException | SQLException | JRException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
     private void ListenSearch(){
          try{
             DbConn.SQLQuery = "select pd_pid,pd_name,pd_gender,pd_dob,pd_address,pd_mobile from tblpatientdetails "
@@ -211,6 +256,7 @@ DbConnection DbConn = new DbConnection();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

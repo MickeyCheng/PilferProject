@@ -36,6 +36,7 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
                 DbConn.MasterSecurityForm = false;
             }
         });
+        UncheckAll();
         cmbUserName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -49,7 +50,18 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
     } catch (IOException ex) {
         Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
     }
-    }public void CheckUserAccessLocal(){
+    }
+    
+    private void UncheckAll(){
+        chkRegAll.setSelected(false);
+        chkApptAll.setSelected(false);
+        chkBillingAll.setSelected(false);
+        chkDoctorAll.setSelected(false);
+        chkInqAll.setSelected(false);
+        chkMastersAll.setSelected(false);
+        chkReportsAll.setSelected(false);
+    }
+    public void CheckUserAccessLocal(){
         try{
             DbConn.pstmt = DbConn.conn.prepareStatement("Select * from tblusersecurity where us_name =?");
             DbConn.pstmt.setString(1, cmbUserName.getSelectedItem().toString());
@@ -1144,7 +1156,11 @@ String RegView,RegInsert,RegDelete,RegEdit,RegPrint,ApptView,ApptInsert,ApptEdit
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void chkReportsAllMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkReportsAllMouseReleased
-        // TODO add your handling code here:
+        if (chkReportsAll.isSelected()){
+            chkReportMedCert.setSelected(true);
+        }else{
+            chkReportMedCert.setSelected(false);
+        }
     }//GEN-LAST:event_chkReportsAllMouseReleased
 
     private void chkReportsAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkReportsAllActionPerformed

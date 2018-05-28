@@ -190,6 +190,11 @@ boolean add,edit;
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/DeleteIcon.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 100, 60));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
@@ -399,6 +404,10 @@ boolean add,edit;
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_tblUserMasterMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
