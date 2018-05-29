@@ -75,26 +75,23 @@
 	</background>
 	<title>
 		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="56" y="0" width="180" height="136" uuid="272d5fb1-b9dc-453c-8eb8-9f1060f4e4a9"/>
+				<imageExpression><![CDATA["src\\images\\ESSolutionsLogo.jpg"]]></imageExpression>
+			</image>
 			<staticText>
-				<reportElement style="Title" x="170" y="0" width="263" height="62" uuid="0321ebfd-240c-407b-959e-7cad429d9f80"/>
+				<reportElement style="Title" x="170" y="0" width="380" height="62" uuid="0321ebfd-240c-407b-959e-7cad429d9f80"/>
 				<textElement verticalAlignment="Middle">
 					<font pdfFontName="Times-Roman"/>
 				</textElement>
-				<text><![CDATA[Coffee Title]]></text>
+				<text><![CDATA[ES Solutions]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SubTitle" x="219" y="62" width="196" height="22" uuid="0aa3ef52-6ab0-4a00-b2b2-5fc27799b3be"/>
 				<textElement>
 					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
 				</textElement>
-				<text><![CDATA[Coffee SubTitle]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="172" y="94" width="383" height="42" uuid="4a159b09-2091-467a-b869-40eadad6b009"/>
-				<textElement textAlignment="Right">
-					<font size="10"/>
-				</textElement>
-				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
+				<text><![CDATA[Sales Report]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -111,86 +108,132 @@
 			</line>
 			<staticText>
 				<reportElement style="Column header" x="0" y="0" width="25" height="15" forecolor="#736343" uuid="0d26548f-d1fb-4658-ae85-e11befd396e2"/>
-				<text><![CDATA[ih_number]]></text>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[INV #]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="37" y="0" width="214" height="15" forecolor="#736343" uuid="cb13ff1f-47fa-4cec-b6cf-a5e27e777750"/>
-				<text><![CDATA[ih_patientname]]></text>
+				<reportElement style="Column header" x="37" y="0" width="161" height="15" forecolor="#736343" uuid="cb13ff1f-47fa-4cec-b6cf-a5e27e777750"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[PATIENT NAME]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="251" y="0" width="34" height="15" forecolor="#736343" uuid="5edb5c6a-2228-470a-907a-cc99db7c997f"/>
-				<text><![CDATA[INS]]></text>
+				<reportElement style="Column header" x="205" y="0" width="62" height="15" forecolor="#736343" uuid="5edb5c6a-2228-470a-907a-cc99db7c997f"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[INSURANCE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="291" y="0" width="38" height="15" forecolor="#736343" uuid="b4c24258-8dd4-4fe6-a0aa-30013f806593"/>
+				<reportElement style="Column header" x="272" y="0" width="38" height="15" forecolor="#736343" uuid="b4c24258-8dd4-4fe6-a0aa-30013f806593"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
 				<text><![CDATA[CASH]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="334" y="0" width="37" height="15" forecolor="#736343" uuid="9ad0b0ab-fcf4-4ac3-8e55-6187e65aefe7"/>
+				<reportElement style="Column header" x="316" y="0" width="37" height="15" forecolor="#736343" uuid="9ad0b0ab-fcf4-4ac3-8e55-6187e65aefe7"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
 				<text><![CDATA[CARD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="374" y="0" width="29" height="15" forecolor="#736343" uuid="26ef55de-a5f5-4c3f-bc2c-aa88dec778d2"/>
-				<text><![CDATA[CHQ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="408" y="0" width="24" height="15" forecolor="#736343" uuid="fbac92b3-c069-433d-bc96-49eb27ab70c0"/>
+				<reportElement style="Column header" x="362" y="0" width="24" height="15" forecolor="#736343" uuid="fbac92b3-c069-433d-bc96-49eb27ab70c0"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
 				<text><![CDATA[DIS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="437" y="0" width="32" height="15" forecolor="#736343" uuid="43ff9ada-6282-40e8-ab41-c3560e17e8ce"/>
+				<reportElement style="Column header" x="395" y="0" width="32" height="15" forecolor="#736343" uuid="43ff9ada-6282-40e8-ab41-c3560e17e8ce"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
 				<text><![CDATA[SUB]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="477" y="0" width="27" height="15" forecolor="#736343" uuid="6f8d5aa5-87e1-4d87-8eb0-42da01ed79e6"/>
+				<reportElement style="Column header" x="437" y="0" width="33" height="15" forecolor="#736343" uuid="6f8d5aa5-87e1-4d87-8eb0-42da01ed79e6"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
 				<text><![CDATA[NET]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="512" y="0" width="38" height="15" forecolor="#736343" uuid="abb242f7-3c40-4ff3-9654-8cbb28e2b490"/>
+				<reportElement style="Column header" x="484" y="0" width="66" height="15" forecolor="#736343" uuid="abb242f7-3c40-4ff3-9654-8cbb28e2b490"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
 				<text><![CDATA[DOC]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="49" splitType="Stretch">
+		<band height="72" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
 				<reportElement style="Detail" x="0" y="0" width="25" height="15" uuid="7105308a-9c85-4371-9b08-e6dd081bdaed"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{ih_number}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" x="37" y="0" width="214" height="49" uuid="05cdb789-d354-4bd3-b6cd-924b5f30669f"/>
+				<reportElement style="Detail" x="37" y="0" width="161" height="49" uuid="05cdb789-d354-4bd3-b6cd-924b5f30669f"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{ih_patientname}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" x="251" y="0" width="34" height="15" uuid="fc2efd84-f7c0-42b1-86ff-48e65e5d8222"/>
+				<reportElement style="Detail" x="205" y="0" width="62" height="15" uuid="fc2efd84-f7c0-42b1-86ff-48e65e5d8222"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{ih_insurance}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" x="291" y="0" width="38" height="15" uuid="07a54736-9667-424b-ad94-1213ff803542"/>
+				<reportElement style="Detail" x="272" y="0" width="38" height="15" uuid="07a54736-9667-424b-ad94-1213ff803542"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{ih_cash}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" x="374" y="0" width="29" height="15" uuid="34536d1f-5c8e-4d86-9983-4f7033a0ab15"/>
-				<textFieldExpression><![CDATA[$F{ih_cheque}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" x="334" y="0" width="37" height="15" uuid="4da685ae-da4f-41f2-b2fb-9e38912bfc83"/>
+				<reportElement style="Detail" x="316" y="0" width="37" height="15" uuid="4da685ae-da4f-41f2-b2fb-9e38912bfc83"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{ih_card}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" x="408" y="0" width="24" height="15" uuid="ebb4dd71-29bd-4670-a5e6-03f94a25bbc3"/>
+				<reportElement style="Detail" x="362" y="0" width="24" height="15" uuid="ebb4dd71-29bd-4670-a5e6-03f94a25bbc3"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{ih_discount}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" x="437" y="0" width="32" height="15" uuid="2130e45a-37d5-4493-ac76-d259152d56cf"/>
+				<reportElement style="Detail" x="395" y="0" width="32" height="15" uuid="2130e45a-37d5-4493-ac76-d259152d56cf"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{ih_subtotal}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" x="477" y="0" width="27" height="15" uuid="5027e81c-ec2a-4f8a-a44e-9123d349ed13"/>
+				<reportElement style="Detail" x="437" y="0" width="33" height="15" uuid="5027e81c-ec2a-4f8a-a44e-9123d349ed13"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{ih_netamount}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" x="513" y="0" width="38" height="15" uuid="39311f90-4f6e-4655-854f-c368bc937fd8"/>
+				<reportElement style="Detail" x="485" y="0" width="66" height="15" uuid="39311f90-4f6e-4655-854f-c368bc937fd8"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{ih_doctor}]]></textFieldExpression>
 			</textField>
 		</band>

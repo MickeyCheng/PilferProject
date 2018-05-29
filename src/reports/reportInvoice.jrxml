@@ -70,26 +70,23 @@
 	</background>
 	<title>
 		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="58" y="0" width="180" height="134" uuid="d97cf5f6-3ef5-46cd-a73a-2a7733b1a5af"/>
+				<imageExpression><![CDATA["src\\images\\ESSolutionsLogo.jpg"]]></imageExpression>
+			</image>
 			<staticText>
-				<reportElement style="Title" x="170" y="0" width="263" height="62" uuid="2d77af29-79ee-4206-a489-6a90aff0d291"/>
+				<reportElement style="Title" x="170" y="0" width="385" height="62" uuid="2d77af29-79ee-4206-a489-6a90aff0d291"/>
 				<textElement verticalAlignment="Middle">
 					<font pdfFontName="Times-Roman"/>
 				</textElement>
-				<text><![CDATA[Invoice]]></text>
+				<text><![CDATA[ES Solutions]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SubTitle" x="219" y="62" width="196" height="22" uuid="0fd87549-ca13-45ba-88d9-6b83ad6e1a01"/>
 				<textElement>
 					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
 				</textElement>
-				<text><![CDATA[Coffee SubTitle]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="172" y="94" width="383" height="42" uuid="c3d22b10-c461-4001-b90f-9922510cd4f1"/>
-				<textElement textAlignment="Right">
-					<font size="10"/>
-				</textElement>
-				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
+				<text><![CDATA[Invoice Report]]></text>
 			</staticText>
 		</band>
 	</title>

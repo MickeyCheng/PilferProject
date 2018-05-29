@@ -69,6 +69,7 @@ DbConnection DbConn = new DbConnection();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("X-Ray");
 
         jPanel1.setBackground(new java.awt.Color(214, 214, 194));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

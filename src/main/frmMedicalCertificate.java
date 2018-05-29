@@ -128,6 +128,7 @@ DbConnection DbConn = new DbConnection();
         txtSearch = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Medical Certificate");
 
         jPanel1.setBackground(new java.awt.Color(214, 214, 194));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

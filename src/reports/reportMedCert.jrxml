@@ -51,6 +51,10 @@
 	</background>
 	<title>
 		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="69" y="0" width="180" height="136" uuid="c83034ea-809f-492a-8741-6165d4738b03"/>
+				<imageExpression><![CDATA["src\\images\\ESSolutionsLogo.jpg"]]></imageExpression>
+			</image>
 			<staticText>
 				<reportElement style="Title" x="170" y="0" width="263" height="62" uuid="3cd58b59-14ad-4ff5-b7ba-f16e0aa9b4b6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -64,13 +68,6 @@
 					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
 				</textElement>
 				<text><![CDATA[Sick Leave]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="172" y="94" width="383" height="42" uuid="81328228-e545-4512-8ee7-e19564b2d167"/>
-				<textElement textAlignment="Right">
-					<font size="10"/>
-				</textElement>
-				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
 			</staticText>
 		</band>
 	</title>

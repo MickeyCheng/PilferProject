@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cf323985-7d27-4460-a0e4-57d3df8e081e">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="59"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -62,7 +62,7 @@
 		<band height="155" splitType="Stretch">
 			<image>
 				<reportElement x="46" y="0" width="166" height="136" uuid="20bb2c53-bdc1-4d4d-8c23-5ee2673e81a9"/>
-				<imageExpression><![CDATA["C:\\Users\\USER\\Documents\\NetBeansProjects\\Git EMR\\EMRJava\\src\\images\\ESSolutionsLogo.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["src\\images\\ESSolutionsLogo.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement style="Title" x="170" y="0" width="336" height="62" uuid="3fe294b0-50cb-4c42-ac0a-096187af8ef4"/>
@@ -77,13 +77,6 @@
 					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
 				</textElement>
 				<text><![CDATA[Patient Report File]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="172" y="94" width="383" height="42" uuid="77384d28-59c4-4700-a3d6-de20ffee3557"/>
-				<textElement textAlignment="Right">
-					<font size="10"/>
-				</textElement>
-				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
 			</staticText>
 			<line>
 				<reportElement x="1" y="148" width="554" height="1" forecolor="#999900" uuid="407be45f-fcff-4a68-8f33-6107a93fcc16"/>

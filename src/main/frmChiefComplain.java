@@ -52,6 +52,7 @@ DbConnection DbConn = new DbConnection();
         btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Chief Complaint");
 
         jPanel1.setBackground(new java.awt.Color(214, 214, 194));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

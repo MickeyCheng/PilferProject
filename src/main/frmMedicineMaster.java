@@ -109,6 +109,7 @@ boolean add,edit;
         txtGeneric2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Medicine Master");
 
         jPanel1.setBackground(new java.awt.Color(214, 214, 194));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));

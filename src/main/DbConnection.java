@@ -52,7 +52,7 @@ public class DbConnection
             Class.forName("com.mysql.jdbc.Driver");
 //            conn = DriverManager.getConnection("jdbc:mysql://166.62.10.53:3306/DbEmrPh","jopjop","strongadmin123");
 //            conn = DriverManager.getConnection("jdbc:mysql://166.62.10.53:3306/dbemrbeta","betapilfer","123456789");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DbEmrPh","root","root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DbEmrPh?autoReconnect=true","root","root");
     System.out.println("web connected");
         }catch(SQLException | ClassNotFoundException e){
             JOptionPane.showMessageDialog(null, e.getMessage());

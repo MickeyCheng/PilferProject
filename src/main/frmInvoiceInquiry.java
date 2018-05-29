@@ -188,6 +188,7 @@ String GetFromDate,GetToDate;
         btnViewInvoice = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Invoice Inquiry");
 
         jPanel1.setBackground(new java.awt.Color(214, 214, 194));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));

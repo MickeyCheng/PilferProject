@@ -90,7 +90,8 @@ DbConnection DbConn = new DbConnection();
     }
     private void loadDateBooked(){
         dateBooked.setDate(new java.util.Date());
-        btnApptShowActionPerformed(null);
+        fillTableSchedule();
+        fillTableScheduleSecond();
     }
     private void SetTablesEditable(){
         tblDoctor1.setDefaultEditor(Object.class, null);
@@ -271,7 +272,6 @@ DbConnection DbConn = new DbConnection();
         cmbDoctor1 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         dateBooked = new com.toedter.calendar.JDateChooser();
-        btnApptShow = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         btnVitalSigns = new javax.swing.JButton();
         btnXray = new javax.swing.JButton();
@@ -280,6 +280,7 @@ DbConnection DbConn = new DbConnection();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Appointment");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(214, 214, 194));
@@ -490,14 +491,6 @@ DbConnection DbConn = new DbConnection();
         });
         jPanel7.add(dateBooked, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 230, 30));
 
-        btnApptShow.setText("Show");
-        btnApptShow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnApptShowActionPerformed(evt);
-            }
-        });
-        jPanel7.add(btnApptShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, -1, -1));
-
         jPanel10.setBackground(new java.awt.Color(214, 214, 194));
         jPanel10.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(153, 153, 153)));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -629,7 +622,7 @@ DbConnection DbConn = new DbConnection();
             if (txtMobile.getText().equals("")){
                 DbConn.pstmt.setInt(4, 0);
             }else{
-                DbConn.pstmt.setInt(4, Integer.valueOf(txtMobile.getText()));
+                DbConn.pstmt.setString(4, txtMobile.getText());
             }
             if (dateDob.getDate() == null){
                 DbConn.pstmt.setString(5, "1900-01-00");
@@ -652,11 +645,6 @@ DbConnection DbConn = new DbConnection();
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btnApptShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApptShowActionPerformed
-        fillTableSchedule();
-        fillTableScheduleSecond();
-    }//GEN-LAST:event_btnApptShowActionPerformed
 
     private void btnVitalSignsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVitalSignsActionPerformed
         frmVitalSigns obj = new frmVitalSigns();
@@ -808,7 +796,6 @@ DbConnection DbConn = new DbConnection();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnApptShow;
     private javax.swing.JButton btnChiefComplaint;
     private javax.swing.JButton btnVitalSigns;
     private javax.swing.JButton btnXray;

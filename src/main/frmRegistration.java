@@ -79,6 +79,7 @@ DbConnection DbConn = new DbConnection();
         dateBirth.setEnabled(false);
         rbMale.setEnabled(false);
         rbFemale.setEnabled(false);
+        txtNationality.setEnabled(false);
     }
     private void EnableTexts(){
         txtAddress.setEnabled(true);
@@ -91,6 +92,7 @@ DbConnection DbConn = new DbConnection();
         dateBirth.setEnabled(true);
         rbMale.setEnabled(true);
         rbFemale.setEnabled(true);
+        txtNationality.setEnabled(true);
     }
     private void SearchPatient(){
         try{
@@ -172,6 +174,7 @@ DbConnection DbConn = new DbConnection();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registration");
 
         jPanel1.setBackground(new java.awt.Color(214, 214, 194));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -517,6 +520,7 @@ DbConnection DbConn = new DbConnection();
         txtRemarks.setText("");
         dateBirth.setDate(null);
         lblPid.setText("");
+        txtNationality.setText("");
     }
     private void txtDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepartmentActionPerformed
         // TODO add your handling code here:

@@ -94,6 +94,7 @@ DbConnection DbConn = new DbConnection();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Insurance Master");
 
         jPanel1.setBackground(new java.awt.Color(214, 214, 194));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

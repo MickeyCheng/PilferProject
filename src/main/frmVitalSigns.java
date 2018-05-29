@@ -83,6 +83,7 @@ SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
         jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Vital Signs");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(214, 214, 194));
