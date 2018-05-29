@@ -27,6 +27,7 @@ boolean add,edit;
         radYes.setSelected(true);
         setDefaultCloseOperation(frmMedicineMaster.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        tblMedicine.setDefaultEditor(Object.class, null);
         tblMedicine.setAutoResizeMode(tblMedicine.AUTO_RESIZE_OFF);
         tblMedicine.setAutoscrolls(true);
         SetWidth();

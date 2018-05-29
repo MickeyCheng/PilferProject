@@ -142,6 +142,13 @@ Date todayDate = new Date();
         tblPrescriptionSummary.setAutoscrolls(true);
         tblHistorySummary.setAutoResizeMode(tblHistorySummary.AUTO_RESIZE_OFF);
         tblHistorySummary.setAutoscrolls(true);
+        tblHistory.setDefaultEditor(Object.class, null);
+        tblAppointment.setDefaultEditor(Object.class, null);
+        tblHistorySummary.setDefaultEditor(Object.class, null);
+        tblPrescriptionSummary.setDefaultEditor(Object.class, null);
+        tblTreatmentSummary.setDefaultEditor(Object.class, null);
+        tblICDSearch.setDefaultEditor(Object.class, null);
+        tblMedicine.setDefaultEditor(Object.class, null);
     }
     private void LoadTableSummaryHeader(){
         //treatment
@@ -1452,14 +1459,11 @@ Date todayDate = new Date();
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Map param = new HashMap();
         param.put("ApptNumber", lblApptID.getText());
-//        param.put("dateTo", sdfDate.format(getToDate));
-//        param.put("showStatus", cmbStatus.getSelectedItem().toString());
-//        param.put("showClient", cmbClient.getSelectedItem().toString());
         try{
             DbConn.conn.close();
             Class.forName("com.mysql.jdbc.Driver");
             //            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbticketing","root","root");
-            DbConn.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbemrph","root","root");
+            DbConn.conn = DriverManager.getConnection("jdbc:mysql://166.62.10.53:3306/dbemrbeta","betapilfer","123456789");
             JasperDesign jd = JRXmlLoader.load(new File("src\\reports\\reportMedCert.jrxml"));
             JasperReport jr = JasperCompileManager.compileReport(jd);
             JasperPrint jp = JasperFillManager.fillReport(jr, param,DbConn.conn);

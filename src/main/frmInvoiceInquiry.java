@@ -42,6 +42,7 @@ String GetFromDate,GetToDate;
         TodayDate = new Date();
         SetTodayDate();
         FillTodayTable();
+        tblInvoice.setDefaultEditor(Object.class, null);
         tblInvoice.setAutoCreateRowSorter(true);
         tblInvoice.setAutoResizeMode(tblInvoice.AUTO_RESIZE_OFF);
         tblInvoice.setAutoscrolls(true);
@@ -305,8 +306,9 @@ String GetFromDate,GetToDate;
         try{
             DbConn.conn.close();
             Class.forName("com.mysql.jdbc.Driver");
-            //            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbticketing","root","root");
-            DbConn.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbemrph","root","root");
+            
+//            DbConn.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbemrph","root","root");
+            DbConn.conn = DriverManager.getConnection("jdbc:mysql://166.62.10.53:3306/dbemrbeta","betapilfer","123456789");
             JasperDesign jd = JRXmlLoader.load(new File("src\\reports\\reportInvoice.jrxml"));
             JasperReport jr = JasperCompileManager.compileReport(jd);
             JasperPrint jp = JasperFillManager.fillReport(jr, param,DbConn.conn);

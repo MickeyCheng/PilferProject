@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -44,6 +44,7 @@ DbConnection DbConn = new DbConnection();
         setDefaultCloseOperation(frmAppointment.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         tblPatient.setAutoCreateRowSorter(true);
+        SetTablesEditable();
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e){
@@ -90,6 +91,11 @@ DbConnection DbConn = new DbConnection();
     private void loadDateBooked(){
         dateBooked.setDate(new java.util.Date());
         btnApptShowActionPerformed(null);
+    }
+    private void SetTablesEditable(){
+        tblDoctor1.setDefaultEditor(Object.class, null);
+        tblDoctor2.setDefaultEditor(Object.class, null);
+        tblPatient.setDefaultEditor(Object.class, null);
     }
     private void listenSearchPatient(){
         try{
@@ -604,13 +610,14 @@ DbConnection DbConn = new DbConnection();
         }
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Date TodayDate = new Date();
         getNextAPPTid();
         if (addRegister == true){
             saveUnregisteredPatient();
         }
         try{
             String insertApptQuery = "INSERT INTO tblappointment (ap_pid,ap_name,ap_cpr,ap_mobile,ap_dob,ap_doctor,"
-                    + "ap_apptdate,ap_appttime,ap_remarks,ap_apptNumber) values (?,?,?,?,?,?,?,?,?,?)";
+                    + "ap_apptdate,ap_appttime,ap_remarks,ap_apptNumber,ap_adduser,ap_adddate) values (?,?,?,?,?,?,?,?,?,?,?,?)";
             DbConn.pstmt = DbConn.conn.prepareStatement(insertApptQuery);
             DbConn.pstmt.setInt(1,Integer.valueOf(lblPID.getText()));
             DbConn.pstmt.setString(2, txtName.getText());
@@ -635,6 +642,8 @@ DbConnection DbConn = new DbConnection();
             DbConn.pstmt.setString(8,cmbTime.getSelectedItem().toString());
             DbConn.pstmt.setString(9,txtRemarks.getText());
             DbConn.pstmt.setInt(10, getMaxApptID);
+            DbConn.pstmt.setString(11,DbConn.LoggedUserName);
+            DbConn.pstmt.setString(12,DbConn.sdfDate.format(TodayDate));
             DbConn.pstmt.execute();
             DbConn.pstmt.close();
             JOptionPane.showMessageDialog(this, "APPOINTMENT SUCCESSFULLY BOOKED");

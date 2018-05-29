@@ -26,6 +26,7 @@ boolean add,edit;
         FillTable();
         radYes.setSelected(true);
         tblTreatment.setAutoCreateRowSorter(true);
+        tblTreatment.setDefaultEditor(Object.class, null);
         setDefaultCloseOperation(frmICDMaster.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         addWindowListener(new WindowAdapter() {

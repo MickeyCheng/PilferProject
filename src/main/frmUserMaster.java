@@ -23,6 +23,7 @@ boolean add,edit;
         FillCombo();
         ClearTexts();
         setLocationRelativeTo(null);
+        tblUserMaster.setDefaultEditor(Object.class, null);
         setDefaultCloseOperation(frmUserMaster.DISPOSE_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override

@@ -37,6 +37,7 @@ DbConnection DbConn = new DbConnection();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(frmMedicalCertificate.DISPOSE_ON_CLOSE);
         tblMedCert.setAutoscrolls(true);
+        tblMedCert.setDefaultEditor(Object.class, null);
         tblMedCert.setAutoResizeMode(tblMedCert.AUTO_RESIZE_OFF);
         addWindowListener(new WindowAdapter() {
             @Override

@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -41,6 +41,7 @@ DbConnection DbConn = new DbConnection();
         setDefaultCloseOperation(frmRegistration.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         tblPatient.setAutoCreateRowSorter(true);
+        tblPatient.setDefaultEditor(Object.class, null);
         addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e){
@@ -425,6 +426,7 @@ DbConnection DbConn = new DbConnection();
         }
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Date TodayDate = new Date();
         if (txtName.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Please enter a patient name","Name",JOptionPane.WARNING_MESSAGE);
             txtName.requestFocus();
@@ -442,7 +444,7 @@ DbConnection DbConn = new DbConnection();
             getNextPID();
             try{
                 String insertPDQuery = "INSERT INTO tblpatientdetails (pd_pid,pd_name,pd_gender,pd_dob,pd_address,pd_mobile,"
-                        + "pd_occupation,pd_department,pd_remarks,pd_nationality,pd_position) values(?,?,?,?,?,?,?,?,?,?,?)";
+                        + "pd_occupation,pd_department,pd_remarks,pd_nationality,pd_position,pd_adduser,pd_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 DbConn.pstmt = DbConn.conn.prepareStatement(insertPDQuery);
                 DbConn.pstmt.setInt(1, getMaxPID);
                 DbConn.pstmt.setString(2, txtName.getText());
@@ -453,12 +455,14 @@ DbConnection DbConn = new DbConnection();
                 }
                 DbConn.pstmt.setString(4, DbConn.sdfDate.format(dateBirth.getDate()));
                 DbConn.pstmt.setString(5,txtAddress.getText());
-                DbConn.pstmt.setInt(6, Integer.valueOf(txtMobileNumber.getText()));
+                DbConn.pstmt.setString(6, txtMobileNumber.getText());
                 DbConn.pstmt.setString(7, txtOccupation.getText());
                 DbConn.pstmt.setString(8, txtDepartment.getText());
                 DbConn.pstmt.setString(9,txtRemarks.getText());
                 DbConn.pstmt.setString(10,txtNationality.getText());
                 DbConn.pstmt.setString(11,txtPosition.getText());
+                DbConn.pstmt.setString(12,DbConn.LoggedUserName);
+                DbConn.pstmt.setString(13,DbConn.sdfDate.format(TodayDate));
                 DbConn.pstmt.execute();
                 DbConn.pstmt.close();
                 JOptionPane.showMessageDialog(this, "REGISTRATION SUCCESFUL");
@@ -471,7 +475,8 @@ DbConnection DbConn = new DbConnection();
         }else if (add == false && edit == true){
             try{
                 DbConn.SQLQuery = "Update tblpatientdetails set pd_name=?,pd_gender=?,pd_dob=?,pd_address=?,pd_mobile=?,"
-                        + "pd_occupation=?,pd_department=?,pd_remarks=?,pd_nationality=?, pd_position=? where pd_pid=?";
+                        + "pd_occupation=?,pd_department=?,pd_remarks=?,pd_nationality=?, pd_position=?,pd_moduser=?,pd_date=? "
+                        + "where pd_pid=?";
                 DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
                 DbConn.pstmt.setString(1, txtName.getText());
                 if (rbMale.isSelected()){
@@ -481,13 +486,15 @@ DbConnection DbConn = new DbConnection();
                 }
                 DbConn.pstmt.setString(3, DbConn.sdfDate.format(dateBirth.getDate()));
                 DbConn.pstmt.setString(4,txtAddress.getText());
-                DbConn.pstmt.setInt(5, Integer.valueOf(txtMobileNumber.getText()));
+                DbConn.pstmt.setString(5, txtMobileNumber.getText());
                 DbConn.pstmt.setString(6, txtOccupation.getText());
                 DbConn.pstmt.setString(7, txtDepartment.getText());
                 DbConn.pstmt.setString(8,txtRemarks.getText());
                 DbConn.pstmt.setString(9,txtNationality.getText());
                 DbConn.pstmt.setString(10, txtPosition.getText());
-                DbConn.pstmt.setString(11, lblPid.getText());
+                DbConn.pstmt.setString(11, DbConn.LoggedUserName);
+                DbConn.pstmt.setString(12, DbConn.sdfDate.format(TodayDate));
+                DbConn.pstmt.setString(13, lblPid.getText());
                 DbConn.pstmt.executeUpdate();
                 DbConn.pstmt.close();
                 JOptionPane.showMessageDialog(this, "Record Edited");
@@ -594,9 +601,7 @@ DbConnection DbConn = new DbConnection();
         try{
             DbConn.conn.close();
             Class.forName("com.mysql.jdbc.Driver");
-            //            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbticketing","root","root");
-            DbConn.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbemrph","root","root");
-//            DbConn.conn = DriverManager.getConnection("jdbc:mysql://166.62.10.53:3306/dbemrbeta","betapilfer","123456789");
+            DbConn.conn = DriverManager.getConnection("jdbc:mysql://166.62.10.53:3306/dbemrbeta","betapilfer","123456789");
             JasperDesign jd = JRXmlLoader.load(new File("src\\reports\\reportPatient.jrxml"));
             JasperReport jr = JasperCompileManager.compileReport(jd);
             JasperPrint jp = JasperFillManager.fillReport(jr, param,DbConn.conn);

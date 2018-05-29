@@ -35,6 +35,7 @@ DbConnection DbConn = new DbConnection();
         DbConn.DoConnect();
         FillTable();
         SetTableWidth();
+        tblPatient.setDefaultEditor(Object.class, null);
         setDefaultCloseOperation(frmPatientInquiry.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         tblPatient.setAutoscrolls(true);

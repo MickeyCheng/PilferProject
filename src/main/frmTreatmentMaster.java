@@ -27,6 +27,7 @@ boolean add,edit;
         radYes.setSelected(true);
         setDefaultCloseOperation(frmTreatmentMaster.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        tblTreatment.setDefaultEditor(Object.class, null);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e){
