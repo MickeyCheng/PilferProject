@@ -1146,6 +1146,11 @@ Date todayDate = new Date();
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/printericon.png"))); // NOI18N
         jButton2.setText("PRINT PRESCRIPTION");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel11.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 300, 50));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
@@ -1553,6 +1558,25 @@ Date todayDate = new Date();
     private void panelSummaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSummaryMouseClicked
 
     }//GEN-LAST:event_panelSummaryMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Map param = new HashMap();
+        param.put("apptNumber", lblApptID.getText());
+        try{
+            DbConn.conn.close();
+            Class.forName("com.mysql.jdbc.Driver");
+            //            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbticketing","root","root");
+//            DbConn.conn = DriverManager.getConnection("jdbc:mysql://166.62.10.53:3306/dbemrbeta","betapilfer","123456789");
+            DbConn.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DbEmrPh?autoReconnect=true","root","root");
+            JasperDesign jd = JRXmlLoader.load(new File("src\\reports\\reportPrescription.jrxml"));
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = JasperFillManager.fillReport(jr, param,DbConn.conn);
+            JasperViewer.viewReport(jp,false);
+
+        }catch(ClassNotFoundException | SQLException | JRException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
     private void UpdateAppointment(){
         try{
             DbConn.pstmt = DbConn.conn.prepareStatement("Update tblappointment set ap_billed=? where ap_apptnumber =?");

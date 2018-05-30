@@ -129,6 +129,7 @@ public class frmMain extends javax.swing.JFrame {
         mnuInvoiceInq = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         mnuMedCert = new javax.swing.JMenuItem();
+        mnuPrescription = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         mnuGenMaster = new javax.swing.JMenuItem();
         mnuUserMaster = new javax.swing.JMenuItem();
@@ -298,6 +299,15 @@ public class frmMain extends javax.swing.JFrame {
             }
         });
         jMenu4.add(mnuMedCert);
+
+        mnuPrescription.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        mnuPrescription.setText("Prescription");
+        mnuPrescription.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPrescriptionActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuPrescription);
 
         jMenuBar1.add(jMenu4);
 
@@ -591,12 +601,18 @@ public class frmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void btnRadiologyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRadiologyActionPerformed
-        // TODO add your handling code here:
+JOptionPane.showMessageDialog(this, "This feature is not available yet for your EMR version. \n "
+                + "                         Please contact us at info@whutthetech.com to avail this feature.","WhutTheTech",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnRadiologyActionPerformed
 
     private void btnLaboratoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaboratoryActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "This feature is not available yet for your EMR version. \n "
+                + "                         Please contact us at info@whutthetech.com to avail this feature.","WhutTheTech",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnLaboratoryActionPerformed
+
+    private void mnuPrescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrescriptionActionPerformed
+            
+    }//GEN-LAST:event_mnuPrescriptionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -661,6 +677,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuInvoiceReceipt;
     private javax.swing.JMenuItem mnuMedCert;
     private javax.swing.JMenuItem mnuPatientInquiry;
+    private javax.swing.JMenuItem mnuPrescription;
     private javax.swing.JMenuItem mnuSalesInq;
     private javax.swing.JMenuItem mnuTreatmentMaster;
     private javax.swing.JMenuItem mnuUserMaster;

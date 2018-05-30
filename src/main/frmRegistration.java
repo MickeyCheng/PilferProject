@@ -37,6 +37,7 @@ DbConnection DbConn = new DbConnection();
         initComponents();
         DbConn.DoConnect();
         fillTable();
+        FillNationality();
         DisableTexts();
         setDefaultCloseOperation(frmRegistration.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -68,6 +69,20 @@ DbConnection DbConn = new DbConnection();
         Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
+    private void FillNationality(){
+        cmbNationality.removeAllItems();
+        try{
+            DbConn.SQLQuery = "select * from tblnationalitymaster order by nm_description";
+            DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
+            DbConn.rs = DbConn.pstmt.executeQuery();
+            while (DbConn.rs.next()){
+                cmbNationality.addItem(DbConn.rs.getString("nm_description"));
+            }
+            DbConn.pstmt.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
     private void DisableTexts(){
         txtAddress.setEnabled(false);
         txtDepartment.setEnabled(false);
@@ -79,7 +94,7 @@ DbConnection DbConn = new DbConnection();
         dateBirth.setEnabled(false);
         rbMale.setEnabled(false);
         rbFemale.setEnabled(false);
-        txtNationality.setEnabled(false);
+        cmbNationality.setEnabled(false);
     }
     private void EnableTexts(){
         txtAddress.setEnabled(true);
@@ -92,7 +107,7 @@ DbConnection DbConn = new DbConnection();
         dateBirth.setEnabled(true);
         rbMale.setEnabled(true);
         rbFemale.setEnabled(true);
-        txtNationality.setEnabled(true);
+        cmbNationality.setEnabled(true);
     }
     private void SearchPatient(){
         try{
@@ -141,7 +156,6 @@ DbConnection DbConn = new DbConnection();
         txtOccupation = new javax.swing.JTextField();
         txtDepartment = new javax.swing.JTextField();
         txtPosition = new javax.swing.JTextField();
-        txtNationality = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         lblPid = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -162,6 +176,7 @@ DbConnection DbConn = new DbConnection();
         jLabel9 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         btnEdit = new javax.swing.JButton();
+        cmbNationality = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
@@ -240,7 +255,6 @@ DbConnection DbConn = new DbConnection();
         });
         jPanel3.add(txtDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 287, 390, -1));
         jPanel3.add(txtPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 330, 390, -1));
-        jPanel3.add(txtNationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 140, 30));
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("NAME:");
@@ -326,6 +340,9 @@ DbConnection DbConn = new DbConnection();
             }
         });
         jPanel3.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 110, 40));
+
+        cmbNationality.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel3.add(cmbNationality, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 140, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 530, 490));
 
@@ -462,7 +479,7 @@ DbConnection DbConn = new DbConnection();
                 DbConn.pstmt.setString(7, txtOccupation.getText());
                 DbConn.pstmt.setString(8, txtDepartment.getText());
                 DbConn.pstmt.setString(9,txtRemarks.getText());
-                DbConn.pstmt.setString(10,txtNationality.getText());
+                DbConn.pstmt.setString(10,cmbNationality.getSelectedItem().toString());
                 DbConn.pstmt.setString(11,txtPosition.getText());
                 DbConn.pstmt.setString(12,DbConn.LoggedUserName);
                 DbConn.pstmt.setString(13,DbConn.sdfDate.format(TodayDate));
@@ -493,7 +510,7 @@ DbConnection DbConn = new DbConnection();
                 DbConn.pstmt.setString(6, txtOccupation.getText());
                 DbConn.pstmt.setString(7, txtDepartment.getText());
                 DbConn.pstmt.setString(8,txtRemarks.getText());
-                DbConn.pstmt.setString(9,txtNationality.getText());
+                DbConn.pstmt.setString(9,cmbNationality.getSelectedItem().toString());
                 DbConn.pstmt.setString(10, txtPosition.getText());
                 DbConn.pstmt.setString(11, DbConn.LoggedUserName);
                 DbConn.pstmt.setString(12, DbConn.sdfDate.format(TodayDate));
@@ -520,7 +537,7 @@ DbConnection DbConn = new DbConnection();
         txtRemarks.setText("");
         dateBirth.setDate(null);
         lblPid.setText("");
-        txtNationality.setText("");
+        cmbNationality.setSelectedIndex(-1);
     }
     private void txtDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepartmentActionPerformed
         // TODO add your handling code here:
@@ -565,7 +582,7 @@ DbConnection DbConn = new DbConnection();
                 txtOccupation.setText(DbConn.rs.getString("pd_occupation"));
                 txtPosition.setText(DbConn.rs.getString("pd_position"));
                 txtRemarks.setText(DbConn.rs.getString("pd_remarks"));
-                txtNationality.setText(DbConn.rs.getString("pd_nationality"));
+                cmbNationality.setSelectedItem(DbConn.rs.getString("pd_nationality"));
                 lblPid.setText(DbConn.rs.getString("pd_pid"));
                 dateBirth.setDate(DbConn.rs.getDate("pd_dob"));
                 String GetGender = "";
@@ -657,6 +674,7 @@ DbConnection DbConn = new DbConnection();
     private javax.swing.JButton btnEdit;
     private javax.swing.ButtonGroup btnGroupGender;
     private javax.swing.JButton btnPrint;
+    private javax.swing.JComboBox<String> cmbNationality;
     private com.toedter.calendar.JDateChooser dateBirth;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -693,7 +711,6 @@ DbConnection DbConn = new DbConnection();
     private javax.swing.JTextField txtDepartment;
     private javax.swing.JTextField txtMobileNumber;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtNationality;
     private javax.swing.JTextField txtOccupation;
     private javax.swing.JTextField txtPosition;
     private javax.swing.JTextArea txtRemarks;
