@@ -471,8 +471,8 @@ try {
         try{
             DbConn.SQLQuery = "insert into tblinvoiceheader (ih_number,ih_date,ih_pid,ih_apptid,"
                     + "ih_insurance,ih_card,ih_cash,ih_cheque,ih_subtotal,ih_discount,ih_insuranceamount,"
-                    + "ih_netamount,ih_doctor,ih_patientname) "
-                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    + "ih_netamount,ih_doctor,ih_patientname,ih_adduser,ih_adddate) "
+                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
             DbConn.pstmt.setString(1, txtInvoice.getText());
             DbConn.pstmt.setString(2, DbConn.sdfDate.format(todayDate));
@@ -488,6 +488,8 @@ try {
             DbConn.pstmt.setString(12,lblNet.getText());
             DbConn.pstmt.setString(13,GetDoctor);
             DbConn.pstmt.setString(14,GetPatientName);
+            DbConn.pstmt.setString(15, DbConn.LoggedUserName);
+            DbConn.pstmt.setString(16, DbConn.sdfDate.format(todayDate));
             DbConn.pstmt.execute();
             DbConn.pstmt.close();
         }catch(SQLException e){
@@ -520,7 +522,7 @@ try {
         while (rowCount != tblPayable.getRowCount()){
             try{
                 DbConn.SQLQuery = "insert into tblinvoicedetail (id_number,id_description,id_qty,id_unitprice,id_subtotal,id_discount,id_insurance,"
-                        + "id_netamount) values (?,?,?,?,?,?,?,?)";
+                        + "id_netamount,id_adduser,id_adddate) values (?,?,?,?,?,?,?,?,?,?)";
                 DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
                 DbConn.pstmt.setString(1, txtInvoice.getText());
                 DbConn.pstmt.setString(2, tblPayable.getValueAt(rowCount, 0).toString());
@@ -530,6 +532,8 @@ try {
                 DbConn.pstmt.setString(6, txtDiscount.getText());
                 DbConn.pstmt.setString(7, txtInsurance.getText());
                 DbConn.pstmt.setString(8,lblNet.getText());
+                DbConn.pstmt.setString(9, DbConn.LoggedUserName);
+                DbConn.pstmt.setString(10, DbConn.sdfDate.format(todayDate));
                 DbConn.pstmt.execute();
                 DbConn.pstmt.close();
                 rowCount++;
