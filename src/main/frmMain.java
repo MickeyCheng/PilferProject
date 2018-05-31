@@ -419,7 +419,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.RegForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_btnRegistrationActionPerformed
 
@@ -430,7 +430,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.ApptForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_btnAppointmentActionPerformed
 
@@ -441,7 +441,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.DoctorForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_btnDoctorActionPerformed
 
@@ -451,7 +451,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.InqPatientForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_mnuPatientInquiryActionPerformed
 
@@ -461,7 +461,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.InqApptForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_mnuApptInquiryActionPerformed
 
@@ -471,7 +471,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.InqSalesForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_mnuSalesInqActionPerformed
 
@@ -481,7 +481,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.InqInvoiceForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_mnuInvoiceInqActionPerformed
 
@@ -491,7 +491,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.MasterGenForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_mnuGenMasterActionPerformed
 
@@ -501,7 +501,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.MasterUserForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_mnuUserMasterActionPerformed
 
@@ -511,7 +511,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.MasterDrugForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_mnuDrugMasterActionPerformed
 
@@ -521,7 +521,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.MasterTreatmentForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_mnuTreatmentMasterActionPerformed
 
@@ -531,7 +531,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.MasterICDForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_mnuICDMasterActionPerformed
 
@@ -541,7 +541,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.MasterInsuranceForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_mnuInsuranceMasterActionPerformed
 
@@ -572,7 +572,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.MedCertForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_mnuMedCertActionPerformed
 
@@ -582,7 +582,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.InvGenForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_mnuInvoiceReceiptActionPerformed
 
@@ -592,7 +592,7 @@ public class frmMain extends javax.swing.JFrame {
             obj.setVisible(true);
             DbConn.MasterSecurityForm = true;
         }else{
-          JOptionPane.showMessageDialog(this, "Page is already opened");
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
         }
     }//GEN-LAST:event_mnuUserSecMasterActionPerformed
 
@@ -609,7 +609,13 @@ JOptionPane.showMessageDialog(this, "This feature is not available yet for your 
     }//GEN-LAST:event_btnLaboratoryActionPerformed
 
     private void mnuPrescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrescriptionActionPerformed
-            
+        frmPrescription obj = new frmPrescription();
+        if (DbConn.PrescribeForm !=true){
+            obj.setVisible(true);
+            DbConn.PrescribeForm = true;
+        }else{
+          JOptionPane.showMessageDialog(this, "Page is already opened. Press switch window or press alt+tab.");
+        }
     }//GEN-LAST:event_mnuPrescriptionActionPerformed
 
     /**

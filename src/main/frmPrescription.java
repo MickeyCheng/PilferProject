@@ -39,7 +39,7 @@ DbConnection DbConn = new DbConnection();
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e){
-                DbConn.MedCertForm = false;
+                DbConn.PrescribeForm = false;
             }
         });
         txtSearch.getDocument().addDocumentListener(new DocumentListener() {
