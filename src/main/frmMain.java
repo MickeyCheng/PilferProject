@@ -601,13 +601,11 @@ public class frmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void btnRadiologyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRadiologyActionPerformed
-JOptionPane.showMessageDialog(this, "This feature is not available yet for your EMR version. \n "
-                + "                         Please contact us at info@whutthetech.com to avail this feature.","WhutTheTech",JOptionPane.INFORMATION_MESSAGE);
+JOptionPane.showMessageDialog(this, "This feature is not available yet for your EMR version. \n Please contact us at info@whutthetech.com to avail this feature.","WhutTheTech",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnRadiologyActionPerformed
 
     private void btnLaboratoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaboratoryActionPerformed
-        JOptionPane.showMessageDialog(this, "This feature is not available yet for your EMR version. \n "
-                + "                         Please contact us at info@whutthetech.com to avail this feature.","WhutTheTech",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "This feature is not available yet for your EMR version. \n Please contact us at info@whutthetech.com to avail this feature.","WhutTheTech",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnLaboratoryActionPerformed
 
     private void mnuPrescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrescriptionActionPerformed
