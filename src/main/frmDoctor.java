@@ -1645,8 +1645,8 @@ Date todayDate = new Date();
         while (rowCount != tblMedicineTable.getRowCount()){
             try{
                 DbConn.SQLQuery = "insert into tblpatientmedications (pm_pid,pm_apptid,pm_code,pm_description,pm_days,pm_route,pm_signa,pm_dose,"
-                        + "pm_specialinstruction,pm_doctor,pm_comments,pm_qty) "
-                        + "values (?,?,?,?,?,?,?,?,?,?,?,?)";
+                        + "pm_specialinstruction,pm_doctor,pm_comments,pm_qty,pm_name) "
+                        + "values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
                 DbConn.pstmt.setString(1,lblPID.getText());
                 DbConn.pstmt.setString(2,lblApptID.getText());
@@ -1659,7 +1659,8 @@ Date todayDate = new Date();
                 DbConn.pstmt.setString(9,tblMedicineTable.getValueAt(rowCount, 7).toString());
                 DbConn.pstmt.setString(10,lblDoctor.getText());
                 DbConn.pstmt.setString(11,tblMedicineTable.getValueAt(rowCount, 8).toString());
-                DbConn.pstmt.setString(12,tblMedicineTable.getValueAt(rowCount, 2).toString());
+                DbConn.pstmt.setString(12,tblMedicineTable.getValueAt(rowCount, 2).toString());                
+                DbConn.pstmt.setString(13,lblPatientName.getText());
                 DbConn.pstmt.execute();
                 DbConn.pstmt.close();
                 rowCount++;
