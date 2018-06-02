@@ -19,6 +19,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import net.proteanit.sql.DbUtils;
@@ -35,6 +37,7 @@ public class frmBilling extends javax.swing.JFrame {
 DbConnection DbConn = new DbConnection();
 Date todayDate = new Date();
 String GetApptID,GetBillStatus,GetPID,GetDoctor,GetPatientName;
+JCheckBox chkInsurance = new JCheckBox();
     public frmBilling() {
         initComponents();
         loadToday();
@@ -183,13 +186,13 @@ try {
 
         tblPayable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Description", "Quantity", "Price", "Value"
+                "Description", "Quantity", "Price", "Value", "Insurance"
             }
         ));
         jScrollPane2.setViewportView(tblPayable);
@@ -392,6 +395,7 @@ try {
         int row = tblBilling.getSelectedRow();
         int ba = tblBilling.convertRowIndexToModel(row);
         GetApptID = tblBilling.getValueAt(ba, 0).toString();
+        
         try{
             DbConn.SQLQuery = "select tblpatientservices.ps_description,tblpatientservices.ps_qty, tblpatientservices.ps_price,tblpatientservices.ps_value from tblpatientservices where ps_apptid =?";
             DbConn.pstmt = DbConn.conn.prepareStatement(DbConn.SQLQuery);
